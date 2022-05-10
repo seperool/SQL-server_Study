@@ -4,20 +4,20 @@ subtitle: "Readme.rmd"
 author: "Sergio Pedro R Oliveira"
 date: "`r Sys.Date()`"
 output:
-  pdf_document:
-    number_sections: true
-    toc: TRUE
   md_document:
     number_sections: true
     variant: markdown_github
-  word_document:
-    toc: TRUE
+  odt_document:
     number_sections: true
+  pdf_document:
+    number_sections: true
+    toc: TRUE
   github_document: default
   html_document:
     number_sections: true
     df_print: paged
-  odt_document:
+  word_document:
+    toc: TRUE
     number_sections: true
 ---
 
@@ -26,3 +26,9 @@ output:
 # Objetivo
 
 Estudo dirigido de SQL-server.
+
+# Referência
+
+Vídeo aulas "O curso completo de Banco de Dados e SQL, sem mistérios" - Udemy.
+
+\newpage
