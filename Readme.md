@@ -49,6 +49,26 @@ sqlcmd -S localhost -U SA
 
 ## 3.3 Bancos do sistema
 
+-   São os bancos de dados do sistema que armazenam os dicionarios de
+    dados.  
+-   Bancos de dados do sistema:  
+    -   **master**  
+        -   É o banco de dados principal do sistema.  
+        -   Todas as informações dos outros bancos de dados criados
+            ficam armazenados nele.  
+    -   **model**  
+        -   São modelos de tabelas e bancos de dados, que ficam
+            armazenados nesse banco de dados.  
+        -   Pode servir de modelo automatico na criação de uma nova
+            tabela ou banco de dados.  
+    -   **msdb**  
+        -   Armazenamento de rotinas.  
+        -   Integrations Services, área de BI (ferramenta de **ETL**).  
+    -   **tempdb**  
+        -   Bancos de dados temporarios, ele é apagado todo vez que
+            fecha e abre o sistema do banco de dados.  
+        -   Muito utilizado para agilizar o teste de aplicações.  
+
 ## 3.4 Uso do delimitador **GO**
 
 # 4 Andamento dos Estudos
