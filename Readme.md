@@ -1,6 +1,6 @@
 # 1 Objetivo
 
-Estudo dirigido de SQL-server.
+Estudo dirigido de SQL Server.
 
 # 2 Referência
 
@@ -20,7 +20,7 @@ Udemy.
 -   Ubuntu  
     <https://docs.microsoft.com/pt-br/sql/linux/quickstart-install-connect-ubuntu?view=sql-server-ver15>  
     Basta seguir o passo a passo do site, ou pesquisar por pesquisar por
-    “SQL-server Ubuntu” no youtube e seguir alguns tutoriais.  
+    “SQL Server Ubuntu” no youtube e seguir alguns tutoriais.  
 
 -   Windows  
 
@@ -31,7 +31,7 @@ Udemy.
 -   Onde baixar:  
     <https://docs.microsoft.com/pt-br/sql/azure-data-studio/download-azure-data-studio?view=sql-server-ver15>  
 
-## 3.2 Acessando SQL-server pelo terminal
+## 3.2 Acessando **SQL Server** pelo terminal
 
 -   Execute o sqlcmd com parâmetros para o nome do SQL Server (-S), o
     nome de usuário (-U) e a senha (-P). Neste tutorial, você está se
@@ -69,7 +69,32 @@ sqlcmd -S localhost -U SA
             fecha e abre o sistema do banco de dados.  
         -   Muito utilizado para agilizar o teste de aplicações.  
 
-## 3.4 Uso do delimitador **GO**
+## 3.4 Detalhes básicos da sintaxe do **SQL SERVER**
+
+### 3.4.1 Inserindo comentarios
+
+-   Um comentário é uma seqüência arbitrária de caracteres começando por
+    dois hífens (“--”) e prosseguindo até o fim da linha.  
+-   Como alternativa, podem ser utilizados blocos de comentários no
+    estilo C (/\**bloco de comentarios*\*/). Utilizado para comentar
+    mais de uma linha.  
+
+### 3.4.2 Extensão de arquivo script SQL
+
+-   O arquivo com o script SQL é salvo em “.sql”.  
+
+-   As duas formas recomendadas de escrever os script’s são:
+
+    -   **Azure**  
+        É um gerenciador de banco de dados e oferece ferramentas para o
+        melhor entendimento e programação de um script “.sql”.  
+
+    -   Num arquivo de texto  
+        Preferencialmente o programa “**Sublime Text**”, pois oferece a
+        opção de escrever e salvar arquivos “.sql” com todas as
+        ferramentas que envolve o processo.  
+
+### 3.4.3 Uso do delimitador **GO**
 
 # 4 Andamento dos Estudos
 

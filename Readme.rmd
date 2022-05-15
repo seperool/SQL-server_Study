@@ -4,28 +4,28 @@ subtitle: "Readme.rmd"
 author: "Sergio Pedro R Oliveira"
 date: "`r Sys.Date()`"
 output:
-  md_document:
-    number_sections: true
-    variant: markdown_github
-  word_document:
-    toc: TRUE
-    number_sections: true
   pdf_document:
     number_sections: true
     toc: TRUE
-  github_document: default
-  odt_document:
-    number_sections: true
   html_document:
     number_sections: true
     df_print: paged
+  md_document:
+    number_sections: true
+    variant: markdown_github
+  github_document: default
+  word_document:
+    toc: TRUE
+    number_sections: true
+  odt_document:
+    number_sections: true
 ---
 
 \newpage
 
 # Objetivo
 
-Estudo dirigido de SQL-server.
+Estudo dirigido de SQL Server.
 
 # Referência
 
@@ -43,7 +43,7 @@ Versão usada é a express 2019, por ser a versão mais completa gratuita.\
 - Ubuntu\
 https://docs.microsoft.com/pt-br/sql/linux/quickstart-install-connect-ubuntu?view=sql-server-ver15
 \
-Basta seguir o passo a passo do site, ou pesquisar por pesquisar por "SQL-server Ubuntu" no youtube e seguir alguns tutoriais.\
+Basta seguir o passo a passo do site, ou pesquisar por pesquisar por "SQL Server Ubuntu" no youtube e seguir alguns tutoriais.\
 
 - Windows\
 
@@ -55,7 +55,7 @@ https://docs.microsoft.com/pt-br/sql/azure-data-studio/download-azure-data-studi
 
 \newpage
 
-## Acessando SQL-server pelo terminal
+## Acessando **SQL Server** pelo terminal
 - Execute o sqlcmd com parâmetros para o nome do SQL Server (-S), o nome de usuário (-U) e a senha (-P). Neste tutorial, você está se conectando localmente, portanto, o nome do servidor é localhost. O nome de usuário é SA (system administrator, equivalente ao root do MySQL) e a senha é a mesma fornecida para a conta SA durante a instalação.\
 
 sqlcmd -S localhost -U SA -P '*YourPassword*'\
@@ -84,8 +84,23 @@ sqlcmd -S localhost -U SA\
     - Muito utilizado para agilizar o teste de aplicações.\
 
 \newpage
+## Detalhes básicos da sintaxe do **SQL SERVER**
+### Inserindo comentarios
 
-## Uso do delimitador **GO**
+- Um comentário é uma seqüência arbitrária de caracteres começando por dois hífens ("\-\-") e prosseguindo até o fim da linha.\
+- Como alternativa, podem ser utilizados blocos de comentários no estilo C (/\**bloco de comentarios*\*/). Utilizado para comentar mais de uma linha.\
+
+### Extensão de arquivo script SQL
+- O arquivo com o script SQL é salvo em ".sql".\
+
+- As duas formas recomendadas de escrever os script's são:
+  - **Azure**\
+  É um gerenciador de banco de dados e oferece ferramentas para o melhor entendimento e programação de um script ".sql".\
+  
+  - Num arquivo de texto\
+  Preferencialmente o programa "**Sublime Text**", pois oferece a opção de escrever e salvar arquivos ".sql" com todas as ferramentas que envolve o processo.\
+  
+### Uso do delimitador **GO**
 
 
 \newpage
