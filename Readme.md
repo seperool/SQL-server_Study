@@ -96,8 +96,42 @@ sqlcmd -S localhost -U SA
 
 ### 3.4.3 Uso do delimitador **GO**
 
-# 4 Andamento dos Estudos
+-   O **AZURE** e o **SQL Server** funcionam da seguinte forma com seus
+    script’s:  
+    -   Não precisa do delimitador para compilar o código,
+        *processamento assincrono*.  
+    -   Quando é pedido para compilar todo o script (sem seleções do
+        código e sem uso de delimitador), o **SQL Server** executa o que
+        for mais rapido primeiro, fora de ordem, por conta do
+        *processamento assincrono*.  
+    -   Ao selecionar uma parte do código ele compila apenas aquela
+        parte do código.  
+    -   Usando o delimitador **GO** executar o código por partes.  
+-   Demilitador **GO**  
+    -   O uso do GO ao final de cada instrução serve como delimitador.  
+    -   O **GO** quebra o codigo em pequenos pacotes que são enviados
+        para o servidor executar.  
+    -   Colocando o **GO** no código ao final de cada instrução, o
+        servidor não faz o *processamento assincrono*, assim quebrando o
+        grande pacote que é o script inteiro, em pequenos pacotes para
+        serem executados na ordem de envio. 
+-   Modo de usar:  
+    -   Colocar o **GO** ao final de cada instrução.  
+    -   Inserir o **GO** na linha de baixo a instrução.  
+    -   Sintaxe:  
+        **CREATE** **DATABASE** *nome_database*  
+        **GO**  
+        **USE** *nome_database*  
+        **GO**  
+        **CREATE** **TABLE** *nome_tabela*(  
+        *campo* *tipo*  
+        )  
+        **GO**  
 
-## 4.1 Assunto em andamento
+# 4 Modulo 25 - Arquitetura do **SQL Server**
 
-Atualmente estou estudando Módulo 24.  
+# 5 Andamento dos Estudos
+
+## 5.1 Assunto em andamento
+
+Atualmente estou estudando Módulo 25.  
