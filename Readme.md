@@ -130,6 +130,59 @@ sqlcmd -S localhost -U SA
 
 # 4 Modulo 25 - Arquitetura do **SQL Server**
 
+## 4.1 Arquitetura do **SQL Server** na maquina
+
+-   No Ubuntu os dados de arquitetura ficam gravados no caminho:  
+    ‘/var/opt/mssql/data’  
+
+-   No Windows os dados de arquitetura ficam gravados no caminho:  
+    ‘…/MSSQL/DATA’  
+
+## 4.2 Tipos de dados
+
+-   **MDF** (*master data file*)  
+    -   Armazena dados do sistema (dicionario de dados).  
+    -   Criação automatica pelo sistema.  
+    -   Recomenda-se que use o MDF apenas para dados do sistema (mudança
+        manual).  
+-   **LDF** (*log data file*)  
+    -   Armazena log’s, transações, conjuntos de instruções.  
+    -   Criação automatica pelo sistema.  
+    -   É apagado quando explicitado (**BEGIN**) a transação, ao
+        finalizada com **COMMIT** (confirmando a transação) ou
+        **ROLLBACK** (desfazendo a transação).  
+-   **NDF** (*not master data file*)  
+    -   Não é criado automaticamente pelo sistema (criação manual),
+        diferente dos outros.  
+    -   Utilizado para armazenar dados.  
+    -   Podendo armazenar dados atraves de grupos dados (*GP*), para
+        melhor organizar os dados, assim fazendo a separação dos dados
+        por assunto.  
+
+## 4.3 **Transaction** - Transação
+
+-   É uma instrução que só executa as instruções dentro dela, no caso
+    (**INSERT**, **UPDATE**, **DELETE**, …), apenas se todas as
+    instruções sejam concluidas com sucesso.  
+-   Caso alguma instrução dentro dela dê ERRO, tudo é desfeito.  
+-   Muito util para fazer operações de transação financeira entre
+    contas.  
+    -   Exemplo de transação financeira, transferencia de dinheiro entre
+        contas:  
+        -   Subtrair dinheiro de uma conta.  
+        -   Somar dinheiro em outra conta.  
+-   **COMMIT** ou **ROLLBACK**: Comandos que finalizam a transação onde
+    o ‘**COMMIT**’ confirma o conjunto de comandos e o ‘**ROLLBACK**’
+    desfaz todo o processo executado pelo corpo de comandos caso tenha
+    ocorrindo algum evento contrario ao desejado.
+-   Sintaxe:  
+    **BEGIN** **TRANSACTION** (ou **BEGIN**)  
+    UPDATE tabela SET coluna1_a\_modificar = expressão1  
+    WHERE tabela IN (lista_dos_registros_a\_modificar)  
+    UPDATE tabela SET coluna2_a\_modificar = expressão2  
+    WHERE tabela IN (lista_dos_registros_a\_modificar)  
+    **COMMIT** (ou **ROLLBACK**)  
+
 # 5 Andamento dos Estudos
 
 ## 5.1 Assunto em andamento

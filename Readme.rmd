@@ -4,18 +4,18 @@ subtitle: "Readme.rmd"
 author: "Sergio Pedro R Oliveira"
 date: "`r Sys.Date()`"
 output:
-  pdf_document:
-    number_sections: true
-    toc: TRUE
   md_document:
     number_sections: true
     variant: markdown_github
-  odt_document:
+  pdf_document:
     number_sections: true
-  github_document: default
+    toc: TRUE
   html_document:
     number_sections: true
     df_print: paged
+  github_document: default
+  odt_document:
+    number_sections: true
   word_document:
     toc: TRUE
     number_sections: true
@@ -130,6 +130,43 @@ sqlcmd -S localhost -U SA\
 \newpage
 
 # Modulo 25 - Arquitetura do **SQL Server**
+
+## Arquitetura do **SQL Server** na maquina
+- No Ubuntu os dados de arquitetura ficam gravados no caminho:\
+'/var/opt/mssql/data' \
+
+- No Windows os dados de arquitetura ficam gravados no caminho:\
+'.../MSSQL/DATA' \
+
+## Tipos de dados
+- **MDF** (*master data file*)\
+  - Armazena dados do sistema (dicionario de dados).\
+  - Criação automatica pelo sistema.\
+  - Recomenda-se que use o MDF apenas para dados do sistema (mudança manual).\
+- **LDF** (*log data file*)\
+  - Armazena log's, transações, conjuntos de instruções.\
+  - Criação automatica pelo sistema.\
+  - É apagado quando explicitado (**BEGIN**) a transação, ao finalizada com **COMMIT** (confirmando a transação) ou **ROLLBACK** (desfazendo a transação).\
+- **NDF** (*not master data file*)\
+  - Não é criado automaticamente pelo sistema (criação manual), diferente dos outros.\
+  - Utilizado para armazenar dados.\
+  - Podendo armazenar dados atraves de grupos dados (*GP*), para melhor organizar os dados, assim fazendo a separação dos dados por assunto.\
+
+## **Transaction** - Transação
+- É uma instrução que só executa as instruções dentro dela, no caso (**INSERT**, **UPDATE**, **DELETE**, ...), apenas se todas as instruções sejam concluidas com sucesso.\
+- Caso alguma instrução dentro dela dê ERRO, tudo é desfeito.\
+- Muito util para fazer operações de transação financeira entre contas.\
+  - Exemplo de transação financeira, transferencia de dinheiro entre contas:\
+    - Subtrair dinheiro de uma conta.\
+    - Somar dinheiro em outra conta.\
+- **COMMIT** ou **ROLLBACK**: Comandos que finalizam a transação onde o ‘**COMMIT**’ confirma o conjunto de comandos e o ‘**ROLLBACK**’ desfaz todo o processo executado pelo corpo de comandos caso tenha ocorrindo algum evento contrario ao desejado. 
+- Sintaxe:\
+  **BEGIN** **TRANSACTION** (ou **BEGIN**)\
+  UPDATE tabela SET coluna1_a_modificar = expressão1\
+  WHERE tabela IN (lista_dos_registros_a_modificar)\
+  UPDATE tabela SET coluna2_a_modificar = expressão2\
+  WHERE tabela IN (lista_dos_registros_a_modificar)\
+  **COMMIT** (ou **ROLLBACK**)\
 
 \newpage
 
