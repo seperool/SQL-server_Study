@@ -152,14 +152,20 @@ sqlcmd -S localhost -U SA\
   - Utilizado para armazenar dados.\
   - Podendo armazenar dados atraves de grupos dados (*GP*), para melhor organizar os dados, assim fazendo a separação dos dados por assunto.\
 
-## **Transaction** - Transação
+\newpage
+
+## **TRANSACTION** - Transação
 - É uma instrução que só executa as instruções dentro dela, no caso (**INSERT**, **UPDATE**, **DELETE**, ...), apenas se todas as instruções sejam concluidas com sucesso.\
+
 - Caso alguma instrução dentro dela dê ERRO, tudo é desfeito.\
+
 - Muito util para fazer operações de transação financeira entre contas.\
   - Exemplo de transação financeira, transferencia de dinheiro entre contas:\
     - Subtrair dinheiro de uma conta.\
     - Somar dinheiro em outra conta.\
+
 - **COMMIT** ou **ROLLBACK**: Comandos que finalizam a transação onde o ‘**COMMIT**’ confirma o conjunto de comandos e o ‘**ROLLBACK**’ desfaz todo o processo executado pelo corpo de comandos caso tenha ocorrindo algum evento contrario ao desejado. 
+
 - Sintaxe:\
   **BEGIN** **TRANSACTION** (ou **BEGIN**)\
   UPDATE tabela SET coluna1_a_modificar = expressão1\
@@ -167,6 +173,24 @@ sqlcmd -S localhost -U SA\
   UPDATE tabela SET coluna2_a_modificar = expressão2\
   WHERE tabela IN (lista_dos_registros_a_modificar)\
   **COMMIT** (ou **ROLLBACK**)\
+
+- Observação: Pode usar **BEGIN** **TRANSACTION** ou apenas **BEGIN**.\
+
+## Função **ERRO**
+- No **SQL Server** temos uma função de sistema que faz a endentificação de um erro dentro de uma transação chamada de ‘**\@\@ERROR**’ função essa que por padrão recebe o valor 0 (zero) caso não ocorra nem um erro , no caso de algum erro ela assume o valor 1 (um).\
+
+- Uso da função ‘**\@\@ERROR**’ dentro de um **IF**, para determinar uma *transação* (**TRANSACTION**) pode se mostrar uma boa solução.\
+
+- Sintaxe:\
+**BEGIN** **TRANSACTION**\
+**UPDATE** **FROM** *tabela*\
+**SET** *campo_1* = 10.000\
+**WHERE** *campo_1* < 50\
+**IF** **\@\@ERROR** = 0\
+**COMMIT**\
+**ELSE**\
+**ROLLBACK**\
+**END**\
 
 \newpage
 
