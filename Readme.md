@@ -83,7 +83,12 @@ sqlcmd -S localhost -U SA
 
 -   O arquivo com o script SQL é salvo em “.sql”.  
 
--   As duas formas recomendadas de escrever os script’s são:
+-   As três formas recomendadas de escrever os script’s são:
+
+    -   **SQL server Management Studio** (**SSMS**)  
+        É um gerenciador de bancos de dados oferecidos pela microsoft,
+        ótimo para gerenciar e trabalhar com banco de dados e arquivos
+        “.sql”.  
 
     -   **Azure**  
         É um gerenciador de banco de dados e oferece ferramentas para o
@@ -94,10 +99,18 @@ sqlcmd -S localhost -U SA
         opção de escrever e salvar arquivos “.sql” com todas as
         ferramentas que envolve o processo.  
 
-### 3.4.3 Uso do delimitador **GO**
+### 3.4.3 Abrindo uma “nova consulta”
 
--   O **AZURE** e o **SQL Server** funcionam da seguinte forma com seus
-    script’s:  
+-   Para começar a escrever um script no **SSMS** é necessario iniciar
+    uma “nova consulta”, abrir uma pagina que serve para escrever os
+    comandos SQL.  
+-   As duas formas de iniciar essa pagina são:  
+    -   Clickar em nova consulta, parte superior da pagina.  
+    -   Atalho **CRTL** + **N**  
+
+### 3.4.4 Uso do delimitador **GO**
+
+-   O **SQL Server** funciona da seguinte forma com seus script’s:  
     -   Não precisa do delimitador para compilar o código,
         *processamento assincrono*.  
     -   Quando é pedido para compilar todo o script (sem seleções do
