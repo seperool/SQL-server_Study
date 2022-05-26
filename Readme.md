@@ -69,7 +69,7 @@ sqlcmd -S localhost -U SA
             fecha e abre o sistema do banco de dados.  
         -   Muito utilizado para agilizar o teste de aplicações.  
 
-## 3.4 Detalhes básicos da sintaxe do **SQL SERVER**
+## 3.4 Detalhes básicos do **SQL SERVER**
 
 ### 3.4.1 Inserindo comentarios
 
@@ -108,7 +108,7 @@ sqlcmd -S localhost -U SA
     -   Clickar em nova consulta, parte superior da pagina.  
     -   Atalho **CRTL** + **N**  
 
-### 3.4.4 Uso do delimitador **GO**
+## 3.5 Uso do delimitador **GO**
 
 -   O **SQL Server** funciona da seguinte forma com seus script’s:  
     -   Não precisa do delimitador para compilar o código,
@@ -143,21 +143,28 @@ sqlcmd -S localhost -U SA
 
 # 4 Modulo 25 - Arquitetura do **SQL Server**
 
-## 4.1 Arquitetura do **SQL Server** na maquina
+## 4.1 Acessando arquivos de banco de dados
+
+-   Primeiro clickando com botão direito no banco de dados desejado.  
+    -   Propriedades \> Arquivos.  
+
+## 4.2 Arquitetura do **SQL Server** na maquina
 
 -   No Ubuntu os dados de arquitetura ficam gravados no caminho:  
     ‘/var/opt/mssql/data’  
 
 -   No Windows os dados de arquitetura ficam gravados no caminho:  
-    ‘…/MSSQL/DATA’  
+    ‘C:\\Program Files\\Microsoft SQL
+    Server\\MSSQL15.SQLEXPRESS\\MSSQL\\DATA’  
 
-## 4.2 Tipos de dados
+## 4.3 Tipos de arquivos
 
 -   **MDF** (*master data file*)  
     -   Armazena dados do sistema (dicionario de dados).  
     -   Criação automatica pelo sistema.  
     -   Recomenda-se que use o MDF apenas para dados do sistema (mudança
         manual).  
+    -   Arquivos **MDF** sempre vão dentro do grupo **PRIMARY**.  
 -   **LDF** (*log data file*)  
     -   Armazena log’s, transações, conjuntos de instruções.  
     -   Criação automatica pelo sistema.  
@@ -171,8 +178,9 @@ sqlcmd -S localhost -U SA
     -   Podendo armazenar dados atraves de grupos dados (*GP*), para
         melhor organizar os dados, assim fazendo a separação dos dados
         por assunto.  
+    -   Possibilita a separação fisica dos dados em HD.  
 
-## 4.3 **TRANSACTION** - Transação
+## 4.4 **TRANSACTION** - Transação
 
 -   É uma instrução que só executa as instruções dentro dela, no caso
     (**INSERT**, **UPDATE**, **DELETE**, …), apenas se todas as
@@ -204,7 +212,7 @@ sqlcmd -S localhost -U SA
 -   Observação: Pode usar **BEGIN** **TRANSACTION** ou apenas
     **BEGIN**.  
 
-## 4.4 Função **ERRO**
+## 4.5 Função **ERRO**
 
 -   No **SQL Server** temos uma função de sistema que faz a
     endentificação de um erro dentro de uma transação chamada de
@@ -226,8 +234,84 @@ sqlcmd -S localhost -U SA
     **ROLLBACK**  
     **END**  
 
+## 4.6 Criando Grupos de arquivos
+
+### 4.6.1 Criando grupos de dados apartir de um novo banco de dados
+
+-   Clickar com o botão direito no “Banco de dados”, na aba “Pesquisador
+    de objetos”.  
+-   Opção “novo banco de dados”.  
+-   Na aba “Geral” pode dar nome para o banco de dados criado.  
+-   Na aba “Grupos de arquivos” é onde é criado os grupos de arquivos.  
+    -   O botão “adicionar grupo de arquivos” cria um novo grupo de
+        arquivo.  
+    -   Podemos nomear esse novo grupo, a boa pratica indica sempre
+        começar com o prefixo “GA\_” (abreviação de “grupo de arquivo”),
+        depois o nome grupo.  
+    -   A opção “PADRÃO” indica que todos os arquivos não espeficiados o
+        grupo, vai cair nesse grupo. Não deixar ele marcado em
+        **PRIMARY**, pois esse grupo é para pertencer apenas os
+        **MDF** - *dicionarios do sistema*.  
+-   Criar arquivos de banco de dados **NDF**:
+    -   Na aba “Geral”, clickar no botão “adicionar” para criar um novo
+        “arquivo de banco de dados”.
+    -   Em “Nome” nomear esse novo arquivo pela categoria (setor, …).  
+    -   Em “Nome do Arquivo” repetir o nome + o sufixo “.ndf”.  
+    -   Em “Grupo de Arquivos” direcionar para o grupo desejado (criado
+        anteriormente).  
+    -   Em “Aumento Automático/Tamanho Máximo” podemos determinar o
+        crescimento do banco de dados cada vez que ele atinge o limite,
+        e determinar um tamanho máximo para o banco de dados (quando ele
+        atinge o tamanho máximo, o banco de dados para).  
+-   “OK” para confirmar as criações no final.  
+
+### 4.6.2 Criando grupos de dados em bancos de dados existentes
+
+-   Clickar com o botão direito no Banco de dados desejado, na aba
+    “Pesquisador de objetos”.  
+-   Na opção “Propriedades”.  
+-   Na aba “Grupos de arquivos” é onde é criado os grupos de arquivos.  
+    -   O botão “adicionar grupo de arquivos” cria um novo grupo de
+        arquivo.  
+    -   Podemos nomear esse novo grupo, a boa pratica indica sempre
+        começar com o prefixo “GA\_” (abreviação de “grupo de arquivo”),
+        depois o nome grupo.  
+    -   A opção “PADRÃO” indica que todos os arquivos não espeficiados o
+        grupo, vai cair nesse grupo. Não deixar ele marcado em
+        **PRIMARY**, pois esse grupo é para pertencer apenas os
+        **MDF** - *dicionarios do sistema*.  
+-   Criar arquivos de banco de dados **NDF**:
+    -   Na aba “Arquivos”, clickar no botão “adicionar” para criar um
+        novo “arquivo de banco de dados”.
+    -   Em “Nome” nomear esse novo arquivo pela categoria (setor, …).  
+    -   Em “Nome do Arquivo” repetir o nome + o sufixo “.ndf”.  
+    -   Em “Grupo de Arquivos” direcionar para o grupo desejado (criado
+        anteriormente).  
+    -   Em “Aumento Automático/Tamanho Máximo” podemos determinar o
+        crescimento do banco de dados cada vez que ele atinge o limite,
+        e determinar um tamanho máximo para o banco de dados (quando ele
+        atinge o tamanho máximo, o banco de dados para).  
+-   “OK” para confirmar as criações no final.  
+
+## 4.7 Direcionando dados de tabela para grupos de arquivos (**NDF**)
+
+-   Clickar com o botão direito na tabela desejada.  
+-   Na opção”design”.  
+-   Na aba de “Propriedades”.  
+    -   Dentro de “Identidade”, em “Nome” podemos alterar o nome da
+        tabela.  
+    -   Dentro de “Designer de tabela”, dentro de “Especificação de
+        Espaço de Dados Regular”, em “Nome do Esquema de Partição ou
+        Grupo de Arquivos” podemos selecionar um grupo de arquivos
+        criado anteriormente para enviar a tabela.  
+    -   Dentro de “Designer de tabela”, em “Grupo de Arquivos de
+        Texto/Imagem” caso o banco de dados salve arquivos do tipo texto
+        (.doc ou .odt) e imagem (pdf, jpeg ou .png) pode direcionar para
+        ser salvo dentro de um grupo de arquivos criado anteriormente,
+        podendo ser um grupo diferente do tópico anterior.  
+
 # 5 Andamento dos Estudos
 
 ## 5.1 Assunto em andamento
 
-Atualmente estou estudando Módulo 25.  
+Atualmente estou estudando Módulo 26.  
