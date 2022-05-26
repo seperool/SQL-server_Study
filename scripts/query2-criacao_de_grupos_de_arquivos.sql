@@ -1,0 +1,16 @@
+/*Organizar fisicamente e logicamente um banco de dados*/
+/*
+1 - CRIAR UM BANCO COM ARQUIVOS PARA OS SETORES DE MKT E RH.
+2 - CRIAR UM ARQUIVO GERAL.
+3 - DEIXAR O MDF APENAS PARA O DICIONARIO DE DADOS.
+4 - CRIAR DOIS GRUPOS DE ARQUIVOS
+*/
+
+USE EMPRESA
+GO
+CREATE TABLE EMPRESA(
+ID INT,
+NOME VARCHAR(50)
+)
+GO
+/*depois de tudo criado, o default é GA_GERAL*/
