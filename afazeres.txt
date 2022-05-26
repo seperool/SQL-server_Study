@@ -1,13 +1,13 @@
-ESCRITO EM 23/5/22
+ESCRITO EM 26/5/22
 ---
-PARA 24/5/22
+PARA 27/5/22
 ---
 Subir github:
 
 Estudar:
-- Modulo 25 - aula 98
-
+	- Modulo 26
 afazeres:
+
 - Conectar os dois bancos
 - Programar script aula 98
-- melhorar Readme.* arquitetura de dados
+- Modulo 26
