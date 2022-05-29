@@ -1,6 +1,6 @@
-ESCRITO EM 26/5/22
+ESCRITO EM 29/5/22
 ---
-PARA 27/5/22
+PARA 30/5/22
 ---
 Subir github:
 
@@ -8,6 +8,6 @@ Estudar:
 	- Modulo 26
 afazeres:
 
+- Escrever AULA 99
 - Conectar os dois bancos
-- Programar script aula 98
 - Modulo 26
