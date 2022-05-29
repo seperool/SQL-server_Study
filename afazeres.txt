@@ -7,7 +7,8 @@ Subir github:
 Estudar:
 	- Modulo 26
 afazeres:
-
-- Escrever AULA 99
-- Conectar os dois bancos
-- Modulo 26
+	- Escrever AULA 99
+	- Conectar os dois bancos
+	- Modulo 26
+pull:
+	- Ubuntu
