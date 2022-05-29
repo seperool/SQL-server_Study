@@ -1,0 +1,85 @@
+/* CONECTANDO A UM BANCO DE DADOS */
+
+USE EMPRESA
+GO
+
+/* CRIAÇÃO DE TABELAS */
+
+CREATE TABLE ALUNO(
+IDALUNO INT PRIMARY KEY IDENTITY,
+NOME VARCHAR(30) NOT NULL,
+SEXO CHAR(1) NOT NULL,
+NASCIMENTO DATE NOT NULL,
+EMAIL VARCHAR(50) UNIQUE
+)
+GO
+-- IDENTITY = AUTO_INCREMENT
+-- pode ser escrito também "IDENTITY (1,1)" (inciar em 1, incrementar de 1 em 1)
+-- IDENTITY = IDENTITY (1,1), forma resumida
+
+/*ABREVIAÇÕES DE REGRAS NO DICIONARIO DE DADOS - SISTEMA*/
+-- 'PK' é abreviação de "PRIMARY KEY"
+-- 'FK' é abreviação de "FOERIGN"
+-- 'UQ' é abreviação de "UNIQUE"
+-- 'CK' é abreviação de "CHECK"
+
+/*CONSTRAINTS*/
+-- regras
+
+ALTER TABLE ALUNO
+ADD CONSTRAINT CK_SEXO
+CHECK (SEXO IN ('M','F'))
+GO
+-- Verifica se dentro da coluna SEXO, os valores são 'M' ou 'F'
+-- Uma especie de substituto para o ENUM no SQL-Server
+-- "CK" é "CHECK"
+
+/* 1 X 1 */
+
+CREATE TABLE ENDERECO(
+IDENDERECO INT PRIMARY KEY IDENTITY(100,10),
+UF CHAR(2) NOT NULL
+CHECK (UF IN ('RJ','SP','MG')),
+ID_ALUNO INT UNIQUE
+)
+GO
+
+/*CRIANDO A FK*/
+
+ALTER TABLE ENDERECO
+ADD CONSTRAINT FK_ENDERECO_ALUNO
+FOREIGN KEY (ID_ALUNO)
+REFERENCES ALUNO(IDALUNO)
+GO
+
+/* COMANDO DE DESCRIÇÃO */
+
+-- No MYSQL os comandos eram:
+-- DESC, SHOW CREATE TABLE
+
+-- No SQL-Server a descriação é atraves de PROCEDURES 
+-- PROCEDURES Já criadas e armazenadas no sistema
+-- "STORAGE PROCEDURES" - SP
+SP_COLUMNS ALUNO
+GO
+-- SP_COLUMNS = DESC
+
+SP_HELP ALUNO
+GO
+-- SP_HELP = SHOW CREATE TABLE
+-- MAIS DETALHADO
+
+/* INSERINDO DADOS */
+
+INSERT INTO ALUNO 
+VALUES 
+('ANDRE','M','1981/12/09','ANDRE@IG.COM'), 
+('ANA','F','1978/03/09','ANA@IG.COM'), 
+('RUI','M','1951/07/09','RUI@IG.COM'), 
+('JOÃO','M','2002/11/09','JOAO@IG.COM') 
+GO
+-- Na coluna PK não preciso passa valor nenhum
+
+-- VERIFICANDO
+SELECT * FROM ALUNO
+GO
