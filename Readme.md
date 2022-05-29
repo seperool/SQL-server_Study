@@ -310,8 +310,39 @@ sqlcmd -S localhost -U SA
         ser salvo dentro de um grupo de arquivos criado anteriormente,
         podendo ser um grupo diferente do tópico anterior.  
 
-# 5 Andamento dos Estudos
+# 5 Modulo 26 - **IDENTITY**, **CONSTRAINTS** e descrição de tabelas
 
-## 5.1 Assunto em andamento
+## 5.1 Regras - **CONSTRAINTS**
 
-Atualmente estou estudando Módulo 26.  
+### 5.1.1 **IDENTITY**
+
+### 5.1.2 **CONSTRAINTS**
+
+## 5.2 Comandos de descrição tabelas - **SP\_**
+
+### 5.2.1 **SP_COLUMNS**
+
+### 5.2.2 **SP_HELP**
+
+## 5.3 Inserindo dados - **INSERT**
+
+# 6 Observações
+
+## 6.1 Problemas para fazer *login* o **SSMS**
+
+-   Caso o **SSMS** não identifique o usuário “sa” e senha como deveria,
+    seguir os seguintes passos:  
+    -   Desabilitar temporariamente o antivirus do computados.  
+    -   Desabilitar o “**firewall**” do computados.  
+        “Painel de Controle\\Sistema e Segurança\\Windows Defender
+        Firewall\\Personalizar Configurações”  
+    -   Abrir o *instalador* de **SQL Server** e pedir para
+        “**Reparar**”.  
+    -   Ao final da reparação, abrir o **SSMS** novamente e fazer o
+        *login*.  
+
+# 7 Andamento dos Estudos
+
+## 7.1 Assunto em andamento
+
+Atualmente estou estudando Módulo 26 - AULA 99.  

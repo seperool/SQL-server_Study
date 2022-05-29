@@ -7,17 +7,17 @@ output:
   pdf_document:
     number_sections: true
     toc: TRUE
+  odt_document:
+    number_sections: true
+  html_document:
+    number_sections: true
+    df_print: paged
+  github_document: default
   md_document:
     number_sections: true
     variant: markdown_github
   word_document:
     toc: TRUE
-    number_sections: true
-  github_document: default
-  html_document:
-    number_sections: true
-    df_print: paged
-  odt_document:
     number_sections: true
 ---
 
@@ -257,8 +257,42 @@ sqlcmd -S localhost -U SA\
 
 \newpage
 
+# Modulo 26 - **IDENTITY**, **CONSTRAINTS** e descrição de tabelas
+
+## Regras - **CONSTRAINTS**
+
+### **IDENTITY**
+
+### **CONSTRAINTS**
+
+\newpage
+
+## Comandos de descrição tabelas - **SP_**
+
+### **SP_COLUMNS** 
+
+### **SP_HELP**
+
+\newpage
+
+## Inserindo dados - **INSERT**
+
+\newpage
+
+# Observações
+
+## Problemas para fazer *login* o **SSMS**
+- Caso o **SSMS** não identifique o usuário "sa" e senha como deveria, seguir os seguintes passos:\
+  - Desabilitar temporariamente o antivirus do computados.\
+  - Desabilitar o "**firewall**" do computados.\
+  "Painel de Controle\\Sistema e Segurança\\Windows Defender Firewall\\Personalizar Configurações"\
+  - Abrir o *instalador* de **SQL Server** e pedir para "**Reparar**".\
+  - Ao final da reparação, abrir o **SSMS** novamente e fazer o *login*.\
+
+\newpage
+
 # Andamento dos Estudos
 
 ## Assunto em andamento
 
-Atualmente estou estudando Módulo 26.\
+Atualmente estou estudando Módulo 26 - AULA 99.\
