@@ -312,19 +312,54 @@ sqlcmd -S localhost -U SA
 
 # 5 Modulo 26 - **IDENTITY**, **CONSTRAINTS** e descrição de tabelas
 
-## 5.1 Regras - **CONSTRAINTS**
+## 5.1 Comandos básicos
 
-### 5.1.1 **IDENTITY**
+-   **USE** conectando a um banco de dados.  
+    -   Sintaxe:  
+        **USE** *nome_database*  
+        **GO**  
+-   **CREATE TABLE** criação de banco de dados.  
+    -   Sintaxe:  
+        **CREATE TABLE** *nome_tabela*(  
+        *coluna1* *tipo*,  
+        …  
+        )  
+        **GO**  
 
-### 5.1.2 **CONSTRAINTS**
+## 5.2 Regras - **CONSTRAINTS**
 
-## 5.2 Comandos de descrição tabelas - **SP\_**
+### 5.2.1 **IDENTITY**
 
-### 5.2.1 **SP_COLUMNS**
+-   Exerce a mesma função que **AUTO_INCREMENT** no **MySQL**,
+    incrementar automaticamente a coluna determinada.  
+-   Trás de novo a opção de argumentos
+    “**IDENTITY**(*1º_nº*,*2º_nº*)”:  
+    -   O primeiro número é onde começa.  
+    -   O segundo numero é quanto incrementa a cada vez.  
+-   É possivel suprimir os argumentos, onde “**IDENTITY** =
+    **IDENTITY**(1,1)”.  
+-   No **SQL Server**, diferente do **MySQL**, quando feito o **INSERT**
+    de dados no campo onde tem **IDENTITY** não precisa entrar com valor
+    nenhum (nem **NULL**), basta ignorar este campo, o **SQL Server**
+    entende automaticamente que é para preencher ele.  
+-   Sintaxe:  
+    **CREATE TABLE** *nome_tabela*(  
+    *coluna1* *int* **PRIMARY KEY** **IDENTITY**(100,10),  
+    …  
+    )  
+    **GO**  
+-   Observação: A *coluna1* começa em 100 e recebe o incremento de 10 em
+    10 a cada novo dado.  
 
-### 5.2.2 **SP_HELP**
+### 5.2.2 **CONSTRAINTS**
 
-## 5.3 Inserindo dados - **INSERT**
+## 5.3 Comandos de descrição tabelas - **SP\_**
+
+### 5.3.1 **SP_COLUMNS**
+
+### 5.3.2 **SP_HELP**
+
+## 5.4 Inserindo dados - **INSERT**
 
 # 6 Observações
 
