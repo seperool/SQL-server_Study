@@ -4,21 +4,21 @@ subtitle: "Readme.rmd"
 author: "Sergio Pedro R Oliveira"
 date: "`r Sys.Date()`"
 output:
-  md_document:
-    number_sections: true
-    variant: markdown_github
-  word_document:
-    toc: TRUE
-    number_sections: true
   pdf_document:
     number_sections: true
     toc: TRUE
-  github_document: default
-  odt_document:
+  md_document:
     number_sections: true
+    variant: markdown_github
   html_document:
     number_sections: true
     df_print: paged
+  github_document: default
+  word_document:
+    toc: TRUE
+    number_sections: true
+  odt_document:
+    number_sections: true
 ---
 
 \newpage
@@ -318,6 +318,14 @@ sqlcmd -S localhost -U SA\
   "Painel de Controle\\Sistema e Segurança\\Windows Defender Firewall\\Personalizar Configurações"\
   - Abrir o *instalador* de **SQL Server** e pedir para "**Reparar**".\
   - Ao final da reparação, abrir o **SSMS** novamente e fazer o *login*.\
+
+## Abreviações do nome de regras (**CONSTRAINTS**) no dicionario de dados - sistema (boas práticas)
+- Padronização do nome de regras salvas no sistema.\
+- Abreviações do nome de regras (**CONSTRAINTS**), para salvar no sistema por meio do **ALTER TABLE**.\
+  - '**PK**' é abreviação de "**PRIMARY KEY**"\
+  - '**FK**' é abreviação de "**FOERIGN**"\
+  - '**UQ**' é abreviação de "**UNIQUE**"\
+  - '**CK**' é abreviação de "**CHECK**"\
 
 \newpage
 

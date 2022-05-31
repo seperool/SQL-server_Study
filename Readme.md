@@ -376,6 +376,16 @@ sqlcmd -S localhost -U SA
     -   Ao final da reparação, abrir o **SSMS** novamente e fazer o
         *login*.  
 
+## 6.2 Abreviações do nome de regras (**CONSTRAINTS**) no dicionario de dados - sistema (boas práticas)
+
+-   Padronização do nome de regras salvas no sistema.  
+-   Abreviações do nome de regras (**CONSTRAINTS**), para salvar no
+    sistema por meio do **ALTER TABLE**.  
+    -   ‘**PK**’ é abreviação de “**PRIMARY KEY**”  
+    -   ‘**FK**’ é abreviação de “**FOERIGN**”  
+    -   ‘**UQ**’ é abreviação de “**UNIQUE**”  
+    -   ‘**CK**’ é abreviação de “**CHECK**”  
+
 # 7 Andamento dos Estudos
 
 ## 7.1 Assunto em andamento
