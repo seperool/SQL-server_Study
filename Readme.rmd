@@ -4,21 +4,21 @@ subtitle: "Readme.rmd"
 author: "Sergio Pedro R Oliveira"
 date: "`r Sys.Date()`"
 output:
-  md_document:
-    number_sections: true
-    variant: markdown_github
-  odt_document:
-    number_sections: true
-  html_document:
-    number_sections: true
-    df_print: paged
-  github_document: default
   pdf_document:
     number_sections: true
     toc: TRUE
   word_document:
     toc: TRUE
     number_sections: true
+  odt_document:
+    number_sections: true
+  github_document: default
+  md_document:
+    number_sections: true
+    variant: markdown_github
+  html_document:
+    number_sections: true
+    df_print: paged
 ---
 
 \newpage
@@ -306,6 +306,12 @@ sqlcmd -S localhost -U SA\
 
 ### **CONSTRAINTS**
 - **PRIMARY KEY** (**PK**)\
+  - Toda tabela necessita de pelo menos um campo que identifique todo registro como sendo único (é o que chamamos de “*Chave Primaria*” ou “**Primary Key**”).\
+  - Sintaxe:\
+  **ALTER TABLE** *nome_tabela*\
+  **ADD CONSTRAINT** **PK_***nome_tabela* \
+  **PRIMARY KEY** (*coluna*)\
+  **GO**\
 
 - **FOREIGN KEY** (**FK**)\
   - Cria uma relação entre duas tabelas, atraves de uma *chave estrangeira* na tabela.\
@@ -337,7 +343,6 @@ sqlcmd -S localhost -U SA\
   **ADD CONSTRAINT** **UQ_***nome_tabela*\
   **UNIQUE** (*coluna_recebe_UQ*)\
   **GO**\
-
 
 \newpage
 

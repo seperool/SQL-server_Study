@@ -365,9 +365,15 @@ sqlcmd -S localhost -U SA
 ### 5.2.2 **CONSTRAINTS**
 
 -   **PRIMARY KEY** (**PK**)  
-
+    -   Toda tabela necessita de pelo menos um campo que identifique
+        todo registro como sendo único (é o que chamamos de “*Chave
+        Primaria*” ou “**Primary Key**”).  
+    -   Sintaxe:  
+        **ALTER TABLE** *nome_tabela*  
+        **ADD CONSTRAINT** **PK\_***nome_tabela*  
+        **PRIMARY KEY** (*coluna*)  
+        **GO**  
 -   **FOREIGN KEY** (**FK**)  
-
     -   Cria uma relação entre duas tabelas, atraves de uma *chave
         estrangeira* na tabela.  
     -   Sintaxe:  
@@ -386,9 +392,7 @@ sqlcmd -S localhost -U SA
             respectivamente referente a tabela e coluna que serão
             referenciadas pela ligação (relação) **FK**, ou seja, são as
             que não recebem a regra.  
-
 -   **CHECK** (**CK**)  
-
     -   Verifica (checa) se determinada coluna os valores dos dados são
         iguais aos especificados.  
     -   Um substituto no **SQL Server** ao **ENUM** no **MySQL**.  
@@ -399,9 +403,7 @@ sqlcmd -S localhost -U SA
         **ADD CONSTRAINT** **CK\_***nome_tabela*  
         **CHECK** (*nome_coluna* **IN** (‘*valor1*’,‘*valor2*’))  
         **GO**  
-
 -   **UNIQUE** (**UQ**)  
-
     -   A restrição **UNIQUE** garante que todos os valores em uma
         coluna sejam diferentes.  
     -   Sintaxe:  
