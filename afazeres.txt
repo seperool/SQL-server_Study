@@ -1,13 +1,14 @@
-ESCRITO EM 29/5/22
+ESCRITO EM 1/6/22
 ---
-PARA 30/5/22
+PARA 2/6/22
 ---
 Subir github:
-
+	- script atualização
+	- atualização Rmarkdown INSERT e SP_
 Estudar:
-	- Modulo 26
+	- Modulo 26 Aula 100
 afazeres:
-	- Escrever AULA 99
+	- Escrever AULA 100
 	- Conectar os dois bancos
 	- Modulo 26
 pull:
