@@ -314,17 +314,28 @@ sqlcmd -S localhost -U SA
 
 ## 5.1 Comandos básicos
 
--   **USE** conectando a um banco de dados.  
+-   **USE** - Conectando a um banco de dados.  
     -   Sintaxe:  
         **USE** *nome_database*  
         **GO**  
--   **CREATE TABLE** criação de banco de dados.  
+-   **CREATE TABLE** - Criação de banco de dados.  
     -   Sintaxe:  
         **CREATE TABLE** *nome_tabela*(  
         *coluna1* *tipo*,  
         …  
         )  
         **GO**  
+-   **ALTER TABLE** - Adiciona regras (**CONSTRAINT**) a tabelas.  
+    -   É uma boa prática o uso de **ALTER TABLE** para normalizar o
+        nome salvo das regras no sistema. Facilita a pesquisa
+        posteriormente.  
+    -   Sintaxe:  
+        **ALTER TABLE** *nome_tabela*  
+        **ADD CONSTRAINT** *nome_regra*  
+        \[*regra a ser implementada*\]  
+        **GO**  
+    -   Observação: o *nome_regra* (nome da regra) é o nome que fica
+        salvo no **dicionario de dados** (sistema).  
 
 ## 5.2 Regras - **CONSTRAINTS**
 
@@ -352,6 +363,52 @@ sqlcmd -S localhost -U SA
     10 a cada novo dado.  
 
 ### 5.2.2 **CONSTRAINTS**
+
+-   **PRIMARY KEY** (**PK**)  
+
+-   **FOREIGN KEY** (**FK**)  
+
+    -   Cria uma relação entre duas tabelas, atraves de uma *chave
+        estrangeira* na tabela.  
+    -   Sintaxe:  
+        **ALTER TABLE** *nome_tabela*  
+        **ADD CONSTRAINT**
+        **FK\_***tabela-recebe*\_*tabelare-referenciada*  
+        **FOREIGN KEY** (*coluna_FK*)  
+        **REFERENCES** *tabela_referenciada*(*coluna_referenciada*)  
+        **GO**  
+    -   Observações:
+        -   A *tabela-recebe* é a tabela que vai receber a regra
+            **FK**.  
+        -   A *coluna_FK* é a coluna especifica na tabela, que recebe a
+            regra, que vai servir para fazer a ligação (relação).  
+        -   As *tabela_referenciada* e *coluna_referenciada* é
+            respectivamente referente a tabela e coluna que serão
+            referenciadas pela ligação (relação) **FK**, ou seja, são as
+            que não recebem a regra.  
+
+-   **CHECK** (**CK**)  
+
+    -   Verifica (checa) se determinada coluna os valores dos dados são
+        iguais aos especificados.  
+    -   Um substituto no **SQL Server** ao **ENUM** no **MySQL**.  
+    -   Pode ser usado tanto na criação de tabela (**CREATE TABLE**)
+        quanto na alteração de tabelas (**ALTER TABLE**).  
+    -   Sintaxe:  
+        **ALTER TABLE** *nome_tabela*  
+        **ADD CONSTRAINT** **CK\_***nome_tabela*  
+        **CHECK** (*nome_coluna* **IN** (‘*valor1*’,‘*valor2*’))  
+        **GO**  
+
+-   **UNIQUE** (**UQ**)  
+
+    -   A restrição **UNIQUE** garante que todos os valores em uma
+        coluna sejam diferentes.  
+    -   Sintaxe:  
+        **ALTER TABLE** *nome_tabela*  
+        **ADD CONSTRAINT** **UQ\_***nome_tabela*  
+        **UNIQUE** (*coluna_recebe_UQ*)  
+        **GO**  
 
 ## 5.3 Comandos de descrição tabelas - **SP\_**
 
