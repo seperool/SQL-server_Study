@@ -78,7 +78,7 @@ VALUES
 ('RUI','M','1951/07/09','RUI@IG.COM'), 
 ('JOÃO','M','2002/11/09','JOAO@IG.COM') 
 GO
--- Na coluna PK não preciso passa valor nenhum
+-- Na coluna PK, com IDENTITY, não preciso passar valor nenhum
 
 -- VERIFICANDO
 SELECT * FROM ALUNO
