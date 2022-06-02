@@ -321,7 +321,7 @@ sqlcmd -S localhost -U SA
 -   **CREATE TABLE** - Criação de banco de dados.  
     -   Sintaxe:  
         **CREATE TABLE** *nome_tabela*(  
-        *coluna1* *tipo*,  
+        *coluna1* *tipo* *regras*,  
         …  
         )  
         **GO**  
@@ -336,6 +336,20 @@ sqlcmd -S localhost -U SA
         **GO**  
     -   Observação: o *nome_regra* (nome da regra) é o nome que fica
         salvo no **dicionario de dados** (sistema).  
+-   **INSERT** - Inserindo novos registros numa tabela.  
+    -   No **SQL Server**, diferente do **MySQL**, nas colunas **PK**
+        (**PRIMARY KEY**) com **IDENTITY** não precisa passar nenhum
+        valor (nem **NULL**), o sistema já entende que vai haver
+        preenchimento e incrementação automatica dos valores.  
+    -   Os valores que vão ser inseridos do *tipo* *String* (*char*,
+        *varchar*, …) ou *DATE* devem ser passados entre aspas
+        simples(‘*valor*’).  
+    -   Sintaxe:  
+        **INSERT INTO** *nome_tabela*  **VALUES**  
+        (*valor_coluna1*,
+        *valor_coluna2*,*valor_coluna3*,*valor_coluna4*, …),  …  
+        (*valor_coluna1*,
+        *valor_coluna2*,*valor_coluna3*,*valor_coluna4*, …)  **GO**  
 
 ## 5.2 Regras - **CONSTRAINTS**
 
@@ -414,11 +428,34 @@ sqlcmd -S localhost -U SA
 
 ## 5.3 Comandos de descrição tabelas - **SP\_**
 
+-   No **SQL Server** a descriação de uma tabela é atraves de
+    **PROCEDURES**.  
+-   **PROCEDURES** já criadas e armazenadas no sistema, “**STORAGE
+    PROCEDURES**” (**SP**).  
+
 ### 5.3.1 **SP_COLUMNS**
+
+-   **SP_COLUMNS** é igual a **DESC**, no **MySQL**.  
+-   Faz uma descrição da tabela:  
+    -   Nome das colunas  
+    -   *Tipo* de cada coluna  
+    -   *Regras* em cada coluna  
+    -   …  
+-   Sintaxe:  
+    **SP_COLUMNS** *nome_tabela*  
+    **GO**  
 
 ### 5.3.2 **SP_HELP**
 
-## 5.4 Inserindo dados - **INSERT**
+-   **SP_HELP** é igual ao **SHOW CREATE TABLE**, no **MySQL**.  
+-   Faz uma descrição mais detalha da tabela que **SP_COLUMNS**:  
+    -   Quem criou a tabela.  
+    -   Permissões.  
+    -   Datas importantes (criação e modificação).  
+    -   …  
+-   Sintaxe:  
+    **SP_HELP** *nome_tabela*  
+    **GO**  
 
 # 6 Observações
 
