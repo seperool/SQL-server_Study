@@ -1,10 +1,9 @@
-ESCRITO EM 2/6/22
+ESCRITO EM 3/6/22
 ---
-PARA 3/6/22
+PARA 4/6/22
 ---
 Subir github:
-	- Modificações AULA 99
-	- script AULA 100
+
 Estudar:
 	- Modulo 26 AULA 100
 afazeres:
