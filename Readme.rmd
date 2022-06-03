@@ -6,19 +6,19 @@ date: "`r Sys.Date()`"
 output:
   odt_document:
     number_sections: true
-  pdf_document:
-    number_sections: true
+  word_document:
     toc: TRUE
-  html_document:
     number_sections: true
-    df_print: paged
   github_document: default
   md_document:
     number_sections: true
     variant: markdown_github
-  word_document:
-    toc: TRUE
+  html_document:
     number_sections: true
+    df_print: paged
+  pdf_document:
+    number_sections: true
+    toc: TRUE
 ---
 
 \newpage
@@ -257,7 +257,7 @@ sqlcmd -S localhost -U SA\
 
 \newpage
 
-# Modulo 26 - **IDENTITY**, **CONSTRAINTS** e descrição de tabelas
+# Modulo 26 PARTE 1 - Comandos básicos, **CONSTRAINTS** e descrição de tabelas
 
 ## Comandos básicos
 - **USE** \- Conectando a um banco de dados.\
@@ -295,7 +295,10 @@ sqlcmd -S localhost -U SA\
 
 \newpage
 
-## Regras - **CONSTRAINTS**
+## Regras/Restrições - **CONSTRAINTS**
+
+- Uma boa prática é criar as **CONSTRAINTS** por fora da tabela, para ter o controle dos nomes das *restrições* que ficaram salvas no dicionario de dados (sistema).\
+  - Normalmente com uso de **ALTER TABLE**.\
 
 ### **IDENTITY**
 
@@ -338,7 +341,7 @@ sqlcmd -S localhost -U SA\
     - As *tabela_referenciada* e *coluna_referenciada* é respectivamente referente a tabela e coluna que serão referenciadas pela ligação (relação) **FK**, ou seja, são as que não recebem a regra.\
 
 - **CHECK** (**CK**)\
-  - Verifica (checa) se determinada coluna os valores dos dados são iguais aos especificados.\
+  - Verifica (checa) se determinada coluna os valores dos dados são iguais aos especificados em uma lista.\
   - Um substituto no **SQL Server** ao **ENUM** no **MySQL**.\
   - Pode ser usado tanto na criação de tabela (**CREATE TABLE**) quanto na alteração de tabelas (**ALTER TABLE**).\
   - Sintaxe:\
@@ -348,7 +351,7 @@ sqlcmd -S localhost -U SA\
   **GO**\
 
 - **UNIQUE** (**UQ**)\
-  - A restrição **UNIQUE** garante que todos os valores em uma coluna sejam diferentes.\
+  - A *restrição* **UNIQUE** garante que todos os valores em uma coluna sejam diferentes.\
   - Sintaxe:\
   **ALTER TABLE** *nome_tabela*\
   **ADD CONSTRAINT** **UQ_***nome_tabela*\
@@ -359,7 +362,7 @@ sqlcmd -S localhost -U SA\
 
 ## Comandos de descrição tabelas - **SP_**
 
-- No **SQL Server** a descriação de uma tabela é atraves de **PROCEDURES**.\
+- No **SQL Server** a descriação de uma tabela é atraves de **PROCEDURES** (funções).\
 - **PROCEDURES** já criadas e armazenadas no sistema, "**STORAGE PROCEDURES**" (**SP**).\
 
 ### **SP_COLUMNS** 
@@ -388,6 +391,28 @@ sqlcmd -S localhost -U SA\
 
 \newpage
 
+# Modulo 26 PARTE 2 - Funções, Projeções (**SELECT**) e Junções (**JOIN**)
+
+## Funções
+
+- **ISNULL**()\
+
+- **GETDATE**()\
+
+\newpage
+
+## Projeção e Junção - **SELECT** e **JOIN**
+
+### Projeção - **SELECT**
+
+### Junção - **JOIN**
+
+- **INNER JOIN**\
+
+- **LEFT JOIN**\
+
+\newpage
+
 # Observações
 
 ## Problemas para fazer *login* o **SSMS**
@@ -398,9 +423,9 @@ sqlcmd -S localhost -U SA\
   - Abrir o *instalador* de **SQL Server** e pedir para "**Reparar**".\
   - Ao final da reparação, abrir o **SSMS** novamente e fazer o *login*.\
 
-## Abreviações do nome de regras (**CONSTRAINTS**) no dicionario de dados - sistema (boas práticas)
-- Padronização do nome de regras salvas no sistema.\
-- Abreviações do nome de regras (**CONSTRAINTS**), para salvar no sistema por meio do **ALTER TABLE**.\
+## Abreviações do nome de restrições (**CONSTRAINTS**) no dicionario de dados - sistema (boas práticas)
+- Padronização do nome das restrições salvas no sistema.\
+- Abreviações do nome das restrições (**CONSTRAINTS**), para salvar no sistema por meio do **ALTER TABLE**.\
   - '**PK**' é abreviação de "**PRIMARY KEY**"\
   - '**FK**' é abreviação de "**FOERIGN**"\
   - '**UQ**' é abreviação de "**UNIQUE**"\
@@ -412,4 +437,4 @@ sqlcmd -S localhost -U SA\
 
 ## Assunto em andamento
 
-Atualmente estou estudando Módulo 26 - AULA 99.\
+Atualmente estou estudando Módulo 26 - AULA 100.\

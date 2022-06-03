@@ -310,7 +310,7 @@ sqlcmd -S localhost -U SA
         ser salvo dentro de um grupo de arquivos criado anteriormente,
         podendo ser um grupo diferente do tópico anterior.  
 
-# 5 Modulo 26 - **IDENTITY**, **CONSTRAINTS** e descrição de tabelas
+# 5 Modulo 26 PARTE 1 - Comandos básicos, **CONSTRAINTS** e descrição de tabelas
 
 ## 5.1 Comandos básicos
 
@@ -351,7 +351,12 @@ sqlcmd -S localhost -U SA
         (*valor_coluna1*,
         *valor_coluna2*,*valor_coluna3*,*valor_coluna4*, …)  **GO**  
 
-## 5.2 Regras - **CONSTRAINTS**
+## 5.2 Regras/Restrições - **CONSTRAINTS**
+
+-   Uma boa prática é criar as **CONSTRAINTS** por fora da tabela, para
+    ter o controle dos nomes das *restrições* que ficaram salvas no
+    dicionario de dados (sistema).  
+    -   Normalmente com uso de **ALTER TABLE**.  
 
 ### 5.2.1 **IDENTITY**
 
@@ -408,7 +413,7 @@ sqlcmd -S localhost -U SA
             que não recebem a regra.  
 -   **CHECK** (**CK**)  
     -   Verifica (checa) se determinada coluna os valores dos dados são
-        iguais aos especificados.  
+        iguais aos especificados em uma lista.  
     -   Um substituto no **SQL Server** ao **ENUM** no **MySQL**.  
     -   Pode ser usado tanto na criação de tabela (**CREATE TABLE**)
         quanto na alteração de tabelas (**ALTER TABLE**).  
@@ -418,7 +423,7 @@ sqlcmd -S localhost -U SA
         **CHECK** (*nome_coluna* **IN** (‘*valor1*’,‘*valor2*’))  
         **GO**  
 -   **UNIQUE** (**UQ**)  
-    -   A restrição **UNIQUE** garante que todos os valores em uma
+    -   A *restrição* **UNIQUE** garante que todos os valores em uma
         coluna sejam diferentes.  
     -   Sintaxe:  
         **ALTER TABLE** *nome_tabela*  
@@ -429,7 +434,7 @@ sqlcmd -S localhost -U SA
 ## 5.3 Comandos de descrição tabelas - **SP\_**
 
 -   No **SQL Server** a descriação de uma tabela é atraves de
-    **PROCEDURES**.  
+    **PROCEDURES** (funções).  
 -   **PROCEDURES** já criadas e armazenadas no sistema, “**STORAGE
     PROCEDURES**” (**SP**).  
 
@@ -457,9 +462,27 @@ sqlcmd -S localhost -U SA
     **SP_HELP** *nome_tabela*  
     **GO**  
 
-# 6 Observações
+# 6 Modulo 26 PARTE 2 - Funções, Projeções (**SELECT**) e Junções (**JOIN**)
 
-## 6.1 Problemas para fazer *login* o **SSMS**
+## 6.1 Funções
+
+-   **ISNULL**()  
+
+-   **GETDATE**()  
+
+## 6.2 Projeção e Junção - **SELECT** e **JOIN**
+
+### 6.2.1 Projeção - **SELECT**
+
+### 6.2.2 Junção - **JOIN**
+
+-   **INNER JOIN**  
+
+-   **LEFT JOIN**  
+
+# 7 Observações
+
+## 7.1 Problemas para fazer *login* o **SSMS**
 
 -   Caso o **SSMS** não identifique o usuário “sa” e senha como deveria,
     seguir os seguintes passos:  
@@ -472,18 +495,18 @@ sqlcmd -S localhost -U SA
     -   Ao final da reparação, abrir o **SSMS** novamente e fazer o
         *login*.  
 
-## 6.2 Abreviações do nome de regras (**CONSTRAINTS**) no dicionario de dados - sistema (boas práticas)
+## 7.2 Abreviações do nome de restrições (**CONSTRAINTS**) no dicionario de dados - sistema (boas práticas)
 
--   Padronização do nome de regras salvas no sistema.  
--   Abreviações do nome de regras (**CONSTRAINTS**), para salvar no
+-   Padronização do nome das restrições salvas no sistema.  
+-   Abreviações do nome das restrições (**CONSTRAINTS**), para salvar no
     sistema por meio do **ALTER TABLE**.  
     -   ‘**PK**’ é abreviação de “**PRIMARY KEY**”  
     -   ‘**FK**’ é abreviação de “**FOERIGN**”  
     -   ‘**UQ**’ é abreviação de “**UNIQUE**”  
     -   ‘**CK**’ é abreviação de “**CHECK**”  
 
-# 7 Andamento dos Estudos
+# 8 Andamento dos Estudos
 
-## 7.1 Assunto em andamento
+## 8.1 Assunto em andamento
 
-Atualmente estou estudando Módulo 26 - AULA 99.  
+Atualmente estou estudando Módulo 26 - AULA 100.  
