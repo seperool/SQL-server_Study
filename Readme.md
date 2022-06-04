@@ -462,7 +462,7 @@ sqlcmd -S localhost -U SA
     **SP_HELP** *nome_tabela*  
     **GO**  
 
-# 6 Modulo 26 PARTE 2 - Funções, Projeções (**SELECT**) e Junções (**JOIN**)
+# 6 Modulo 26 PARTE 2 - Funções, Projeções, Seleções e Junções
 
 ## 6.1 Funções
 
@@ -470,15 +470,135 @@ sqlcmd -S localhost -U SA
 
 -   **GETDATE**()  
 
-## 6.2 Projeção e Junção - **SELECT** e **JOIN**
+    -   Pega a data no sistema (data e horário).  
+    -   Formato:  
+        “aaaa-mm-dd hh:mm:ss.mmm”  
 
-### 6.2.1 Projeção - **SELECT**
+## 6.2 Projeção, seleção e Junção - **SELECT**, **WHERE** e **JOIN**
 
-### 6.2.2 Junção - **JOIN**
+Principais passos de uma consulta.  
 
--   **INNER JOIN**  
+### 6.2.1 PROJEÇÃO
 
--   **LEFT JOIN**  
+-   O primeiro passo de uma consulta é montar o que quer ver na tela -
+    **SELECT**.  
+-   É tudo que você quer ver na tela.  
+-   Sintaxe comentada:  
+    **SELECT** *coluna_1* (PROJEÇÃO)  
+    **FROM** *tabela*; (ORIGEM)  
+    ou  
+    **SELECT** 2+2 **AS** *alias*; (PROJEÇÃO)  
+    Obs.: o que esta entre parênteses é comentario.  
+
+### 6.2.2 SELEÇÃO
+
+-   O segundo passo de uma consulta é a seleção dos dados de uma
+    consulta - **WHERE**.  
+-   É filtrar.  
+-   Trazer um subconjunto do conjunto total de registros de uma
+    tabela.  
+-   Sintaxe comentada:  
+    **SELECT** *coluna_1*, *coluna_2*, *coluna_3* (PROJEÇÃO)  
+    **FROM** *tabela* (ORIGEM)  
+    **WHERE** *critero* **=** *valor_do_criterio*; (SELEÇÃO)  
+    Obs.: o que esta entre parênteses é comentario.  
+
+### 6.2.3 JUNÇÃO
+
+#### 6.2.3.1 Junção forma errada - gambiarra
+
+-   Usa seleção como uma forma de juntar tabelas.  
+-   Como conseguencia:  
+    -   Uso de operadores lógicos para mais criterios de seleção -
+        **WHERE**.  
+    -   Ineficiencia na pesquisa, maior custo computacional.  
+-   Sintaxe comentada:  
+    **SELECT** *coluna1_tab1*, *coluna2_tab1*, *coluna1_tab2*
+    (PROJEÇÃO)  
+    **FROM** *tabela1*, *tabela2* (ORIGENS)  
+    **WHERE** *chave_primaria_tab1* **=**
+    *chave_estrangeira_tab2*;(JUNÇÃO)  
+    ou  
+    **SELECT** *coluna1_tab1*, *coluna2_tab1*, *coluna1_tab2*
+    (PROJEÇÃO)  
+    **FROM** *tabela1*, *tabela2* (ORIGENS)  
+    **WHERE** *chave_primaria_tab1* **=** *chave_estrangeira_tab2*
+    (JUNÇÃO)  
+    **AND** *criterio* **=** *valor*;(SELEÇÃO com operador lógico)  
+    Obs.: o que esta entre parênteses é comentario.  
+
+#### 6.2.3.2 Junção forma certa - **JOIN**
+
+-   Junção **JOIN**, junta duas ou mais tabelas apartir das colunas de
+    *chaves primarias* e *chaves estrangeiras*.  
+
+-   Admite seleção - **WHERE** - sem maiores custos computacionais.  
+
+1.  **INNER**  
+
+-   Exclui os registros sem par (orfans) na outra tabela - **INNER**.  
+
+-   Consulta com duas tabelas.  
+
+    -   Sintaxe comentada:  
+        **SELECT** *coluna1_tab1*, *coluna2_tab1*, *coluna1_tab2*
+        (PROJEÇÃO)  
+        **FROM** *tabela1* (ORIGEM)  
+        **INNER** **JOIN** *tabela2* (JUNÇÃO)  
+        **ON** *chave_primaria_tab1* **=** *chave_estrangeira_tab2*  
+        **WHERE** *criterio* **=** *valor*;(SELEÇÃO)  
+
+1.  **LEFT**  
+
+-   Mostra ate os registros sem par (nulos) - **LEFT**.  
+    -   Comum usar a função *ISNULL*() para tratar os valores nulos.  
+-   Consulta com duas tabelas.  
+    -   Sintaxe comentada:  
+        **SELECT** *coluna1_tab1*, *coluna2_tab1*, *coluna1_tab2*
+        (PROJEÇÃO)  
+        **FROM** *tabela1* (ORIGEM)  
+        **LEFT** **JOIN** *tabela2* (JUNÇÃO)  
+        **ON** *chave_primaria_tab1* **=** *chave_estrangeira_tab2*  
+        **WHERE** *criterio* **=** *valor*;(SELEÇÃO)  
+
+#### 6.2.3.3 Cláusulas ambíguas e Ponteiramento
+
+-   Consulta com mais de duas tabelas.  
+    -   Pode apresentar colunas/campos com o mesmo nome, de tabelas
+        diferentes. Caso comum das *chaves estrangeiras* (**FK**).  
+    -   Indicar de onde vem cada coluna atraves de
+        “*nome_da_tabela*.*nome_da_coluna*”.  
+    -   Sintaxe comentada:  
+        **SELECT**  
+        *tabela1*.*coluna1_tab1*,  
+        *tabela1*.*coluna2_tab1*,  
+        *tabela2*.*coluna1_tab2*,  
+        *tabela3*.*coluna1_tab3* (PROJEÇÃO)  
+        **FROM** *tabela1* (ORIGEM)  
+        **LEFT** **JOIN** *tabela2* (JUNÇÃO)  
+        **ON** *tabela1*.*chave_primaria_tab1* **=**
+        *tabela2*.*chave_estrangeira_tab2*  
+        **INNER** **JOIN** *tabela3* (JUNÇÃO)  
+        **ON** *tabela1*.*chave_primaria_tab1* **=**
+        *tabela3*.*chave_estrangeira_tab3*  
+        **WHERE** *criterio* **=** *valor*;(SELEÇÃO)  
+        Obs.: o que esta entre parênteses é comentario.  
+-   Ponteiramento (alias para tabelas)  
+    -   Melhora a performance da consulta.  
+    -   Sintaxe comentada:  
+        **SELECT**  
+        *A*.*coluna1_tab1*,  
+        *A*.*coluna2_tab1*,  
+        *B*.*coluna1_tab2*,  
+        *C*.*coluna1_tab3*  
+        **FROM** *tabela1* *A* (PONTEIRAMENTO DA TABELA 1)  
+        **LEFT** **JOIN** *tabela2* *B* (PONTEIRAMENTO DA TABELA 2)  
+        **ON** *A*.*chave_primaria_tab1* **=**
+        *B*.*chave_estrangeira_tab2*  
+        **INNER** **JOIN** *tabela3* *C* (PONTEIRAMENTO DA TABELA 3)  
+        **ON** *A*.*chave_primaria_tab1* **=**
+        *C*.*chave_estrangeira_tab3*  
+        **WHERE** *criterio* **=** *valor*;  
 
 # 7 Observações
 
