@@ -146,7 +146,7 @@ sqlcmd -S localhost -U SA
 ## 4.1 Acessando arquivos de banco de dados
 
 -   Primeiro clickando com botão direito no banco de dados desejado.  
-    -   Propriedades \> Arquivos.  
+    -   Propriedades > Arquivos.  
 
 ## 4.2 Arquitetura do **SQL Server** na maquina
 
@@ -499,9 +499,11 @@ Principais passos de uma consulta.
 -   É tudo que você quer ver na tela.  
 -   Sintaxe comentada:  
     **SELECT** *coluna_1* (PROJEÇÃO)  
-    **FROM** *tabela*; (ORIGEM)  
+    **FROM** *tabela* (ORIGEM)  
+    **GO**  
     ou  
-    **SELECT** 2+2 **AS** *alias*; (PROJEÇÃO)  
+    **SELECT** 2+2 **AS** *alias* (PROJEÇÃO)  
+    **GO**  
     Obs.: o que esta entre parênteses é comentario.  
 
 ### 6.2.2 SELEÇÃO
@@ -514,7 +516,8 @@ Principais passos de uma consulta.
 -   Sintaxe comentada:  
     **SELECT** *coluna_1*, *coluna_2*, *coluna_3* (PROJEÇÃO)  
     **FROM** *tabela* (ORIGEM)  
-    **WHERE** *critero* **=** *valor_do_criterio*; (SELEÇÃO)  
+    **WHERE** *critero* **=** *valor_do_criterio* (SELEÇÃO)  
+    **GO**  
     Obs.: o que esta entre parênteses é comentario.  
 
 ### 6.2.3 JUNÇÃO
@@ -531,14 +534,16 @@ Principais passos de uma consulta.
     (PROJEÇÃO)  
     **FROM** *tabela1*, *tabela2* (ORIGENS)  
     **WHERE** *chave_primaria_tab1* **=**
-    *chave_estrangeira_tab2*;(JUNÇÃO)  
+    *chave_estrangeira_tab2*(JUNÇÃO)  
+    **GO**  
     ou  
     **SELECT** *coluna1_tab1*, *coluna2_tab1*, *coluna1_tab2*
     (PROJEÇÃO)  
     **FROM** *tabela1*, *tabela2* (ORIGENS)  
     **WHERE** *chave_primaria_tab1* **=** *chave_estrangeira_tab2*
     (JUNÇÃO)  
-    **AND** *criterio* **=** *valor*;(SELEÇÃO com operador lógico)  
+    **AND** *criterio* **=** *valor*(SELEÇÃO com operador lógico)  
+    **GO**  
     Obs.: o que esta entre parênteses é comentario.  
 
 #### 6.2.3.2 Junção forma certa - **JOIN**
@@ -560,7 +565,8 @@ Principais passos de uma consulta.
         **FROM** *tabela1* (ORIGEM)  
         **INNER** **JOIN** *tabela2* (JUNÇÃO)  
         **ON** *chave_primaria_tab1* **=** *chave_estrangeira_tab2*  
-        **WHERE** *criterio* **=** *valor*;(SELEÇÃO)  
+        **WHERE** *criterio* **=** *valor* (SELEÇÃO)  
+        **GO**  
 
 1.  **LEFT**  
 
@@ -573,7 +579,8 @@ Principais passos de uma consulta.
         **FROM** *tabela1* (ORIGEM)  
         **LEFT** **JOIN** *tabela2* (JUNÇÃO)  
         **ON** *chave_primaria_tab1* **=** *chave_estrangeira_tab2*  
-        **WHERE** *criterio* **=** *valor*;(SELEÇÃO)  
+        **WHERE** *criterio* **=** *valor* (SELEÇÃO)  
+        **GO**  
 
 #### 6.2.3.3 Cláusulas ambíguas e Ponteiramento
 
@@ -595,7 +602,8 @@ Principais passos de uma consulta.
         **INNER** **JOIN** *tabela3* (JUNÇÃO)  
         **ON** *tabela1*.*chave_primaria_tab1* **=**
         *tabela3*.*chave_estrangeira_tab3*  
-        **WHERE** *criterio* **=** *valor*;(SELEÇÃO)  
+        **WHERE** *criterio* **=** *valor* (SELEÇÃO)  
+        **GO**  
         Obs.: o que esta entre parênteses é comentario.  
 -   Ponteiramento (alias para tabelas)  
     -   Melhora a performance da consulta.  
@@ -612,7 +620,8 @@ Principais passos de uma consulta.
         **INNER** **JOIN** *tabela3* *C* (PONTEIRAMENTO DA TABELA 3)  
         **ON** *A*.*chave_primaria_tab1* **=**
         *C*.*chave_estrangeira_tab3*  
-        **WHERE** *criterio* **=** *valor*;  
+        **WHERE** *criterio* **=** *valor*  
+        **GO**  
 
 # 7 Observações
 
