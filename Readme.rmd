@@ -4,21 +4,21 @@ subtitle: "Readme.rmd"
 author: "Sergio Pedro R Oliveira"
 date: "`r Sys.Date()`"
 output:
-  pdf_document:
-    number_sections: true
-    toc: TRUE
   md_document:
     number_sections: true
     variant: markdown_github
-  github_document: default
-  odt_document:
-    number_sections: true
   word_document:
     toc: TRUE
     number_sections: true
+  github_document: default
+  pdf_document:
+    number_sections: true
+    toc: TRUE
   html_document:
     number_sections: true
     df_print: paged
+  odt_document:
+    number_sections: true
 ---
 
 \newpage
@@ -396,6 +396,21 @@ sqlcmd -S localhost -U SA\
 ## Funções
 
 - **ISNULL**()\
+  - Trata os valores **nulos**, na coluna especificada, na consulta.\
+  - Equivalente do **IFNULL**() do **MySQL**.\
+  - Dentro do **ISNULL**(), os argumentos são:\ 
+    - *Nome da coluna* a ser avaliada.\
+    - *Texto* se o valor for **nulo**.\
+  - Dentro do **ISNULL**() usar aspas simples ('').\
+  - Sintaxe:\
+  **SELECT** \
+  **A**.*coluna1*,\ 
+  **ISNULL**(**T**.*coluna2*, 'SEM') **AS** "*alias1*", \
+  **ISNULL**(**T**.*coluna3*, 'SEM_NUMERO') **AS** "*alias2*",\ 
+  **FROM** *tabela1* **A**\
+  **LEFT JOIN** *tabela3* **T**\
+  **ON** **A**.*coluna***PK** = **T**.*coluna***FK**\
+  **GO**\
 
 - **GETDATE**()\
   - Pega a data no sistema (data e horário).\

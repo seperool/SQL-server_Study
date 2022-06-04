@@ -467,9 +467,23 @@ sqlcmd -S localhost -U SA
 ## 6.1 Funções
 
 -   **ISNULL**()  
-
+    -   Trata os valores **nulos**, na coluna especificada, na
+        consulta.  
+    -   Equivalente do **IFNULL**() do **MySQL**.  
+    -   Dentro do **ISNULL**(), os argumentos são: 
+        -   *Nome da coluna* a ser avaliada.  
+        -   *Texto* se o valor for **nulo**.  
+    -   Dentro do **ISNULL**() usar aspas simples (’’).  
+    -   Sintaxe:  
+        **SELECT**  
+        **A**.*coluna1*,  **ISNULL**(**T**.*coluna2*, ‘SEM’) **AS**
+        “*alias1*”,  
+        **ISNULL**(**T**.*coluna3*, ‘SEM_NUMERO’) **AS** “*alias2*”, 
+        **FROM** *tabela1* **A**  
+        **LEFT JOIN** *tabela3* **T**  
+        **ON** **A**.*coluna***PK** = **T**.*coluna***FK**  
+        **GO**  
 -   **GETDATE**()  
-
     -   Pega a data no sistema (data e horário).  
     -   Formato:  
         “aaaa-mm-dd hh:mm:ss.mmm”  
