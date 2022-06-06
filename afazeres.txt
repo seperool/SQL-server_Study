@@ -1,12 +1,13 @@
-ESCRITO EM 4/6/22
+ESCRITO EM 6/6/22
 ---
-PARA 5/6/22
+PARA 7/6/22
 ---
 Subir github:
 
 Estudar:
 	- Modulo 26 AULA 101
 afazeres:
+	- Escrever AULA 101
 	- Conectar os dois bancos
 	- Modulo 26
 pull:
