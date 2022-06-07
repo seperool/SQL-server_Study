@@ -146,7 +146,7 @@ sqlcmd -S localhost -U SA
 ## 4.1 Acessando arquivos de banco de dados
 
 -   Primeiro clickando com botão direito no banco de dados desejado.  
-    -   Propriedades > Arquivos.  
+    -   Propriedades \> Arquivos.  
 
 ## 4.2 Arquitetura do **SQL Server** na maquina
 
@@ -466,6 +466,8 @@ sqlcmd -S localhost -U SA
 
 ## 6.1 Funções
 
+### 6.1.1 Funções usuais
+
 -   **ISNULL**()  
     -   Trata os valores **nulos**, na coluna especificada, na
         consulta.  
@@ -483,10 +485,54 @@ sqlcmd -S localhost -U SA
         **LEFT JOIN** *tabela3* **T**  
         **ON** **A**.*coluna***PK** = **T**.*coluna***FK**  
         **GO**  
+
+### 6.1.2 Funções de datas
+
 -   **GETDATE**()  
     -   Pega a data no sistema (data e horário).  
     -   Formato:  
         “aaaa-mm-dd hh:mm:ss.mmm”  
+-   **DATEDIFF**()  
+    -   Calcula a diferença entre duas datas.  
+        -   Retorna um valor inteiro (*INT*), dia (*DAY*), ou mês
+            (*MONTH*), ou ano (*YEAR*), ou dia da semana (*WEEKDAY*).  
+        -   Sintaxe:  
+            **DATEDIFF**(*intervalo*, *data_inicio*, *data_termino*)  
+            -   *intervalo*, indica a função com que parametro estou
+                trabalhando (*day*, *month*, *year*, *weekday*)  
+    -   Outras funções podem se usadas em conjunto, como parametros,
+        para ajudar a fazer os cálculos.  
+        -   Comummente usada em conjunto com **GETDATE**() para cálcular
+            idade.  
+        -   Sintaxe:  
+            **DATEDIFF**(*intevalo*,*data_inicio*, **GETDATE**())  
+            -   a função **GETDATE**(), data atual, entra no lugar do
+                parametro *data de termino*, cálculando assim a idade
+                atual.  
+-   **DATENAME**()  
+    -   Retorna o nome da parte da data em questão. (ex.: nome do mês)  
+    -   Retorna uma *string*.  
+    -   Sintaxe:  
+        **DATENAME**(*intervalo*, *data*)  
+        -   *intervalo*, indica a função com que parametro estou
+            trabalhando (*day*, *month*, *year*, *weekday*)  
+-   **DATEPART**()  
+    -   Função parecida com **DATENAME**(), porem retorna um inteiro
+        (*INT*).  
+    -   Retorna uma parte da data.  
+    -   Sintaxe:  
+        **DATEPART**(*intervalo*, *data*)  
+        -   *intervalo*, indica a função com que parametro estou
+            trabalhando (*day*, *month*, *year*, *weekday*)  
+-   **DATEADD**()  
+    -   Retorna uma data somada a outra data.  
+    -   Sintaxe:  
+        **DATEADD** (*intervalo*, *incremento_INT*, *data*)  
+        -   *intervalo*, indica a função com que parametro estou
+            trabalhando (*day*, *month*, *year*, *weekday*)  
+        -   *incremento_INT*, com base no parametro informado pelo
+            *intervalo*, quanto deve ser somado (valor *INT*).  
+        -   *data*, data a ser incrementada.  
 
 ## 6.2 Projeção, seleção e Junção - **SELECT**, **WHERE** e **JOIN**
 
@@ -647,6 +693,11 @@ Principais passos de uma consulta.
     -   ‘**FK**’ é abreviação de “**FOERIGN**”  
     -   ‘**UQ**’ é abreviação de “**UNIQUE**”  
     -   ‘**CK**’ é abreviação de “**CHECK**”  
+
+## 7.3 Formato da data no sistema
+
+“aaaa-mm-dd hh:mm:ss.mmm”  
+(ano-mês-dia hora:minuto:segundos.milisegundos)  
 
 # 8 Andamento dos Estudos
 
