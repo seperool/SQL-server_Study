@@ -1,14 +1,15 @@
-ESCRITO EM 6/6/22
+ESCRITO EM 8/6/22
 ---
-PARA 7/6/22
+PARA 9/6/22
 ---
 Subir github:
 
 Estudar:
-	- Modulo 26 AULA 101
+	- Modulo 26 AULA 104
 afazeres:
-	- Escrever AULA 101
+	- Escrever AULA 102 E 103
 	- Conectar os dois bancos
 	- Modulo 26
+	- Testar codigo no SQL Server
 pull:
 	- Ubuntu
