@@ -3,11 +3,11 @@ ESCRITO EM 8/6/22
 PARA 9/6/22
 ---
 Subir github:
-
+	- atualização funções de data
 Estudar:
 	- Modulo 26 AULA 104
 afazeres:
-	- Escrever AULA 102 E 103
+	- Escrever AULA 102 E 103 - conversão de dados
 	- Conectar os dois bancos
 	- Modulo 26
 	- Testar codigo no SQL Server
