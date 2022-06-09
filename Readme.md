@@ -533,6 +533,21 @@ sqlcmd -S localhost -U SA
         -   *incremento_INT*, com base no parametro informado pelo
             *intervalo*, quanto deve ser somado (valor *INT*).  
         -   *data*, data a ser incrementada.  
+-   **DAY**()  
+    -   Recebe como argumento uma data, formato do sistema.  
+    -   Retorna o dia (**DAY**) contido na data.  
+    -   Sintaxe:  
+        **DAY**(*data*)  
+-   **MONTH**()  
+    -   Recebe como argumento uma data, formato do sistema.  
+    -   Retorna o mês (**MONTH**) contido na data.  
+    -   Sintaxe:  
+        **MONTH**(*data*)  
+-   **YEAR**()  
+    -   Recebe como argumento uma data, formato do sistema.  
+    -   Retorna o ano (**YEAR**) contido na data.  
+    -   Sintaxe:  
+        **YEAR**(*data*)  
 
 ## 6.2 Projeção, seleção e Junção - **SELECT**, **WHERE** e **JOIN**
 
@@ -669,9 +684,17 @@ Principais passos de uma consulta.
         **WHERE** *criterio* **=** *valor*  
         **GO**  
 
-# 7 Observações
+# 7 Modulo 26 PARTE 3 - Conversão de tipo de dados
 
-## 7.1 Problemas para fazer *login* o **SSMS**
+## 7.1 Conversão de dados automatica pelo sistema
+
+## 7.2 Funções de conversão
+
+-   **CAST**()  
+
+# 8 Observações
+
+## 8.1 Problemas para fazer *login* o **SSMS**
 
 -   Caso o **SSMS** não identifique o usuário “sa” e senha como deveria,
     seguir os seguintes passos:  
@@ -684,7 +707,7 @@ Principais passos de uma consulta.
     -   Ao final da reparação, abrir o **SSMS** novamente e fazer o
         *login*.  
 
-## 7.2 Abreviações do nome de restrições (**CONSTRAINTS**) no dicionario de dados - sistema (boas práticas)
+## 8.2 Abreviações do nome de restrições (**CONSTRAINTS**) no dicionario de dados - sistema (boas práticas)
 
 -   Padronização do nome das restrições salvas no sistema.  
 -   Abreviações do nome das restrições (**CONSTRAINTS**), para salvar no
@@ -694,13 +717,13 @@ Principais passos de uma consulta.
     -   ‘**UQ**’ é abreviação de “**UNIQUE**”  
     -   ‘**CK**’ é abreviação de “**CHECK**”  
 
-## 7.3 Formato da data no sistema
+## 8.3 Formato da data no sistema
 
 “aaaa-mm-dd hh:mm:ss.mmm”  
 (ano-mês-dia hora:minuto:segundos.milisegundos)  
 
-# 8 Andamento dos Estudos
+# 9 Andamento dos Estudos
 
-## 8.1 Assunto em andamento
+## 9.1 Assunto em andamento
 
-Atualmente estou estudando Módulo 26 - AULA 100.  
+Atualmente estou estudando Módulo 26 - AULA 104.  
