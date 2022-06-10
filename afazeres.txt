@@ -1,15 +1,15 @@
-ESCRITO EM 8/6/22
+ESCRITO EM 10/6/22
 ---
-PARA 9/6/22
+PARA 11/6/22
 ---
 Subir github:
-	- atualização funções de data
+	
 Estudar:
 	- Modulo 26 AULA 104
 afazeres:
-	- Escrever AULA 102 E 103 - conversão de dados
+	- Escrever AULA 104
 	- Conectar os dois bancos
 	- Modulo 26
-	- Testar codigo no SQL Server
+	- Testar codigo no SQL Server 102, 103 e 104
 pull:
 	- Ubuntu
