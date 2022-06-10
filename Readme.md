@@ -688,9 +688,62 @@ Principais passos de uma consulta.
 
 ## 7.1 Conversão de dados automatica pelo sistema
 
-## 7.2 Funções de conversão
+-   Conversões de *TIPO* que o **SQL Serve** faz automaticamente pelo
+    sistema.  
+-   Existe um direcionamento em que o sistema costuma forçar de
+    **STRING** para **INT**, nunca o contrario de maneira automatica.  
+-   O simbolo ‘+’, alem de operador matemático, funciona como
+    concatenador.  
+    -   Sintaxe:  
+        **SELECT** ‘1’ + ‘1’  
+        **GO**  
+        (Retorno ‘11’)  
+
+## 7.2 Tabela de conversões de dados automatico pelo sistema
+
+<img src="./Imagens/Tabela_conversao_de_dados_sqlserver.png"
+style="height:15cm" alt="Tabela de Conversão de Dados" />  
+
+-   *Conversão implicita*.  
+    -   São conversões automaticas pelo sistema.  
+-   *Conversão explicita*.  
+    -   São conversões por meio de funções. (Ex.: **CAST**())  
+
+## 7.3 Funções de conversão
 
 -   **CAST**()  
+    -   A função **CAST**() converte um valor (de qualquer tipo) em um
+        tipo de dados especificado.  
+    -   O tipo de dados para converter a expressão. Pode ser um dos
+        seguintes:  
+        -   **BIGINT**  
+        -   **INT**  
+        -   **SMALLINT**  
+        -   **TINYINT** 
+        -   **BIT**  
+        -   **DECIMAL** 
+        -   **NUMERIC**  
+        -   **MONEY**  
+        -   **SMALLMONEY** 
+        -   **FLOAT**  
+        -   **REAL**  
+        -   **DATETIME**  
+        -   **SMALLDATETIME** 
+        -   **CHAR**  
+        -   **VARCHAR** 
+        -   **TEXT**  
+        -   **NCHAR**  
+        -   **NVARCHAR** 
+        -   **NTEXT**  
+        -   **BINARY**  
+        -   **VARBINARY** 
+        -   **IMAGE**  
+    -   *Expressões* do tipo **STRING** devem entrar entre aspas simples
+        (’’).  
+    -   Sintaxe:  
+        **SELECT**  
+        **CAST**(*expressão* **AS** *TIPO_especificado*)  
+        **GO**  
 
 # 8 Observações
 

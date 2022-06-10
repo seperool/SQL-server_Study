@@ -7,18 +7,18 @@ output:
   pdf_document:
     number_sections: true
     toc: TRUE
-  word_document:
-    toc: TRUE
-    number_sections: true
-  github_document: default
-  odt_document:
-    number_sections: true
   html_document:
     number_sections: true
     df_print: paged
+  github_document: default
+  word_document:
+    toc: TRUE
+    number_sections: true
   md_document:
     number_sections: true
     variant: markdown_github
+  odt_document:
+    number_sections: true
 ---
 
 \newpage
@@ -603,10 +603,59 @@ Obs.: o que esta entre parênteses é comentario.\
 # Modulo 26 PARTE 3 - Conversão de tipo de dados
 
 ## Conversão de dados automatica pelo sistema
+- Conversões de *TIPO* que o **SQL Serve** faz automaticamente pelo sistema.\
+- Existe um direcionamento em que o sistema costuma forçar de **STRING** para **INT**, nunca o contrario de maneira automatica.\
+- O simbolo '+', alem de operador matemático, funciona como concatenador.\
+  - Sintaxe:\
+  **SELECT** '1' + '1'\
+  **GO**\
+  (Retorno '11')\
+
+\newpage
+
+## Tabela de conversões de dados automatico pelo sistema
+
+![Tabela de Conversão de Dados](./Imagens/Tabela_conversao_de_dados_sqlserver.png){height=15cm} \
+
+- *Conversão implicita*.\
+  - São conversões automaticas pelo sistema.\
+- *Conversão explicita*.\
+  - São conversões por meio de funções. (Ex.: **CAST**())\
+
+\newpage
 
 ## Funções de conversão
 
 - **CAST**()\
+  - A função **CAST**() converte um valor (de qualquer tipo) em um tipo de dados especificado.\
+  - O tipo de dados para converter a expressão. Pode ser um dos seguintes:\
+    - **BIGINT**\
+    - **INT**\
+    - **SMALLINT**\
+    - **TINYINT**\ 
+    - **BIT**\
+    - **DECIMAL**\ 
+    - **NUMERIC**\
+    - **MONEY**\
+    - **SMALLMONEY**\ 
+    - **FLOAT**\
+    - **REAL**\
+    - **DATETIME**\
+    - **SMALLDATETIME**\ 
+    - **CHAR**\
+    - **VARCHAR**\ 
+    - **TEXT**\
+    - **NCHAR**\
+    - **NVARCHAR**\ 
+    - **NTEXT**\
+    - **BINARY**\
+    - **VARBINARY**\ 
+    - **IMAGE**\
+  - *Expressões* do tipo **STRING** devem entrar entre aspas simples ('').\
+  - Sintaxe:\
+  **SELECT**\
+  **CAST**(*expressão* **AS** *TIPO_especificado*)\
+  **GO**\
 
 \newpage
 
