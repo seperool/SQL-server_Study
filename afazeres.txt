@@ -3,11 +3,13 @@ ESCRITO EM 11/6/22
 PARA 12/6/22
 ---
 Subir github:
-	
+	- QUERY6
+	- ARQUIVO DE DADOS
 Estudar:
 	- Modulo 26 AULA 105 e 106
 afazeres:
-	- Escrever AULA 104
+	- Escrever AULA 104 e 105
+	- RESOLVER EXERCICIO 105
 	- Conectar os dois bancos
 	- Modulo 26
 pull:
