@@ -42,7 +42,7 @@ GO
 /* BULK INSERT - IMPORTAÇÃO DE ARQUIVOS */
 
 BULK INSERT LANCAMENTO_CONTABIL
-FROM 'C:\SPB_Data\github_bkp\SQL-Server\Tabelas_importacao\CONTAS.txt'
+FROM 'C:\SPB_Data\github_bkp\SQL-Server\Arquivos_importacao\CONTAS.txt'
 WITH(
 FIRSTROW = 2,
 DATAFILETYPE = 'char',
