@@ -1,10 +1,9 @@
-ESCRITO EM 12/6/22
+ESCRITO EM 13/6/22
 ---
-PARA 13/6/22
+PARA 14/6/22
 ---
 Subir github:
-	- Escrever AULA 104 e 105
-	- Atualização script QUERY6
+
 Estudar:
 	- Modulo 26 AULA 105 e 106
 afazeres:
