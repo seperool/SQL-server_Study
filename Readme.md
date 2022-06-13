@@ -744,10 +744,126 @@ style="height:15cm" alt="Tabela de Conversão de Dados" />
         **SELECT**  
         **CAST**(*expressão* **AS** *TIPO_especificado*)  
         **GO**  
+-   **CHARINDEX**()  
+    -   Retorna um numero inteiro de acordo com a posição de determinada
+        caracter num **VARCHAR**.  
+        -   As posições no VARCHAR começam a ser contadas a partir da
+            posição 1.  
+        -   O retorno 0, é caso não tenha achado nenhum caracter
+            procurado.  
+    -   Os argumento do CHARINDEX(*o que procurar?*, *onde procurar?*,
+        *a partir de tal posição?*)  
+        -   *O que procurar?*  
+            O caracter que deve ser encontrado.  
+        -   *onde procurar?*  
+            O **VARCHAR** que deve ser percorrido procurando o
+            caracter.  
+        -   *a partir de tal posição?*  
+            A partir de qual posição a busca deve começar. As posições
+            do VARCHAR começam a ser contadas a partir da posição 1.  
+            Pode omitir esse ultimo argumento, a função entenderá como
+            começando da posição 1 (a inicial).  
+    -   Sintaxe:  
+        **SELECT**  
+        **CHARINDEX**(‘*caracter*’,*sting*,
+        *numero_da_posição_inicial_procura*) **AS** ‘*alias*’  
+        **FROM** *tabela*  
+        **GO**  
 
-# 8 Observações
+# 8 Modulo 26 PARTE 4 - Importação de arquivo de dados
 
-## 8.1 Problemas para fazer *login* o **SSMS**
+## 8.1 Aspacetos importantes da importação de Arquivos
+
+-   Além da função de importação de arquivo (**BULK INSERT**), é
+    necessario antes, montar uma estrutura preparada para receber os
+    dados do arquivo (criação de **BANCO DE DADOS** e **TABELAS** para
+    recerber os dados).  
+    -   Sintaxe:  
+        **CREATE DATABASE** *nome_database*  
+        **GO**  
+        **CREATE TABLE** *tabela*(  
+        *campo1* *tipo* *regra*,  
+        *campo2* *tipo* *regra*,  
+        …  
+        )  
+        **GO**  
+-   Outro aspecto importante é como esta organizado os dados no arquivo
+    importados.  
+    -   A organização dos dados, no arquivo, interfere diretamente no
+        processo de importação do arquivo.  
+    -   Partes em branco, dentro do arquivo, provavelmente resultarão em
+        registros *nulos* (**NULL**), quando não em erro.  
+    -   É importante para importação conhecer os caracteres de comando
+        da tabela **ASCII**, são necessarios como argumentos da função
+        **BULK INSERT**.  
+
+<!-- -->
+
+    ##   Nome_na_ASC                Descricao Representacao_em_C
+    ## 1         nul      null byte/byte nulo               \\0*
+    ## 2         bel     bell character/apito                 \a
+    ## 3          bs                backspace                 \b
+    ## 4          ht horizontal tab/tabulação                 \t
+    ## 5          np   formfeed/fim da pagina                 \f
+    ## 6          nl       newline/nova linha                 \n
+    ## 7          cr          carriage return                 \r
+    ## 8          vt             vertical tab                 \v
+
+\* É uma barra invertida só.  
+
+## 8.2 Função de importação de arquivos **BULK INSERT**
+
+-   A função **BULK INSERT** serve para importação dos dados, de um
+    arquivo qualquer, para dentro do **SQL Server**.  
+
+-   Antes de qualquer coisa, deve ser criado anteriormente um estrutura
+    para receber esses dados no **SQL Server**, ou seja, a criação do
+    banco de dados e da tabela que vai receber esses dados.  
+
+-   Sintaxe:  
+    **BULK INSERT** *tabela_importação*  
+    **FROM** ‘*caminho*’  
+    **WITH**(  
+    **FIRSTROW** = 2,  
+    **DATAFILETYPE** = ‘*char*’,  
+    **FIELDTERMINATOR** = ‘\\t’,  
+    **ROWTERMINATOR** = ‘\\n’  
+    )  
+    **GO**  
+
+-   Argumentos do **BULK INSERT**:  
+
+    -   *tabela_importação*  
+        A tabela a qual os dados importatos serão direcionados.  
+    -   *caminho*  
+        O caminho no sistema do computador onde o arquivo esta locado. O
+        caminho é colocado entre aspas simples, pois é uma **string**.  
+        Ex.:
+        ‘C:/SPB_Data/github_bkp/SQL-Server/Arquivos_importacao/CONTAS.txt’  
+
+-   Argumentos do **WITH**:  
+
+    -   **FIRSTROW**  
+        É um numero inteiro que indica a partir de qual linha começa os
+        dados, começando na linha 1.  
+        Normalmente exclui-se o cabeçalho, começando assim a partir da
+        linha 2, ou seja o valor 2.  
+    -   **DATAFILETYPE**  
+        Tipo do arquivo do arquivo (dados).  
+    -   **FIELDTERMINATOR**  
+        Determina onde termina cada dado.  
+        Usar o caracter de comando da tabela ASCII.  Ou o que seja que
+        faça a separação dos dados no arquivo, muito comum o uso do
+        “;”.  
+        O caracter de comando é entre aspas simples ’’.  
+    -   **ROWTERMINATOR**  
+        Determina onde termina cada registro/linha.  
+        Usar o caracter de comando da tabela ASCII.  
+        O caracter de comando é entre aspas simples ’’.  
+
+# 9 Observações
+
+## 9.1 Problemas para fazer *login* o **SSMS**
 
 -   Caso o **SSMS** não identifique o usuário “sa” e senha como deveria,
     seguir os seguintes passos:  
@@ -760,7 +876,7 @@ style="height:15cm" alt="Tabela de Conversão de Dados" />
     -   Ao final da reparação, abrir o **SSMS** novamente e fazer o
         *login*.  
 
-## 8.2 Abreviações do nome de restrições (**CONSTRAINTS**) no dicionario de dados - sistema (boas práticas)
+## 9.2 Abreviações do nome de restrições (**CONSTRAINTS**) no dicionario de dados - sistema (boas práticas)
 
 -   Padronização do nome das restrições salvas no sistema.  
 -   Abreviações do nome das restrições (**CONSTRAINTS**), para salvar no
@@ -770,13 +886,13 @@ style="height:15cm" alt="Tabela de Conversão de Dados" />
     -   ‘**UQ**’ é abreviação de “**UNIQUE**”  
     -   ‘**CK**’ é abreviação de “**CHECK**”  
 
-## 8.3 Formato da data no sistema
+## 9.3 Formato da data no sistema
 
 “aaaa-mm-dd hh:mm:ss.mmm”  
 (ano-mês-dia hora:minuto:segundos.milisegundos)  
 
-# 9 Andamento dos Estudos
+# 10 Andamento dos Estudos
 
-## 9.1 Assunto em andamento
+## 10.1 Assunto em andamento
 
 Atualmente estou estudando Módulo 26 - AULA 104.  
