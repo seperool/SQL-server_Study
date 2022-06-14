@@ -861,9 +861,61 @@ style="height:15cm" alt="Tabela de Conversão de Dados" />
         Usar o caracter de comando da tabela ASCII.  
         O caracter de comando é entre aspas simples ’’.  
 
-# 9 Observações
+# 9 Modulo 26 PARTE 5 - Técnica de “flag-ar” coluna (**SELECT**)
 
-## 9.1 Problemas para fazer *login* o **SSMS**
+-   Técnica usada para criar, numa consulta (**SELECT**), uma espécie de
+    tabela verdade com os resultados possiveis de uma coluna.  
+-   Essa técnica se baseia no uso da função **CHARINDEX**() para achar
+    determinados resultados e a partir dele criar novas colunas, na
+    consulta (**SELECT**).  
+-   Sendo cada nova coluna, um dos resultados possiveis.  
+-   E os resultados são valores de “0” ou “1”, em cada coluna nova.  
+    -   Resultado “0”, na nova coluna, significa que a consulta daque
+        dado, no registro correspondente, não corresponde aquele
+        resultado.  
+    -   Resultado “1”, na nova coluna, significa que a consulta daque
+        dado, no registro correspondente, corresponde aquele
+        resultado.  
+-   Outra possibilidade de continuação da técnica é a partir dessas
+    novas colunas, criar um multiplicador para interagir com os dados e
+    transformar ele.  
+-   Sintaxe exemplo, técnica em duas partes:  
+    -   Parte 1:  
+        **SELECT**  
+        *CONTA*,  
+        *VALOR*,  
+        *DEB_CRED*,  
+        **CHARINDEX**(‘*D*’,*DEB_CRED*) **AS** *DEBITO*,  
+        **CHARINDEX**(‘*C*’,*DEB_CRED*) **AS** *CREDITO*,  
+        ((**CHARINDEX**(‘*C*’,*DEB_CRED*)\*2)-1) **AS**
+        *MULTIPLICADOR*  
+        **FROM** *LANCAMENTO_CONTABIL*  
+        **GO**  
+        -   Cria duas colunas DEBITO e CREDITO.  
+        -   Na nova coluna *CREDITO*, se na coluna *DEB_CRED* o valor é
+            credito (‘C’) a coluna leva “1”, senão leva “0”.  
+        -   Na nova coluna *DEBITO*, se na coluna *DEB_CRED* o valor é
+            debito (‘D’) a coluna leva “1”, senão leva “0”.  
+        -   Por último, cria uma coluna *MULTIPLICADOR*, onde se é
+            credito leva “1”, se é debito leva “-1”.  
+    -   Parte 2:  
+        **SELECT**  
+        *CONTA*,  
+        **SUM**((*VALOR*\*(**CHARINDEX**(‘*C*’,*DEB_CRED*)\*2)-1))
+        **AS** *SALDO*  
+        **FROM** *LANCAMENTO_CONTABIL*  
+        **GROUP BY** *CONTA*  
+        **ORDER BY** *CONTA*  
+        **GO**  
+        -   Cria uma coluna *SALDO* que é a soma dos créditos e
+            debitos.  
+        -   Sendo debito negativo e crédito positivo.  
+        -   agrupando os dados pela coluna *CONTA* e ordenando pela
+            coluna *CONTA*.  
+
+# 10 Observações
+
+## 10.1 Problemas para fazer *login* o **SSMS**
 
 -   Caso o **SSMS** não identifique o usuário “sa” e senha como deveria,
     seguir os seguintes passos:  
@@ -876,7 +928,7 @@ style="height:15cm" alt="Tabela de Conversão de Dados" />
     -   Ao final da reparação, abrir o **SSMS** novamente e fazer o
         *login*.  
 
-## 9.2 Abreviações do nome de restrições (**CONSTRAINTS**) no dicionario de dados - sistema (boas práticas)
+## 10.2 Abreviações do nome de restrições (**CONSTRAINTS**) no dicionario de dados - sistema (boas práticas)
 
 -   Padronização do nome das restrições salvas no sistema.  
 -   Abreviações do nome das restrições (**CONSTRAINTS**), para salvar no
@@ -886,13 +938,13 @@ style="height:15cm" alt="Tabela de Conversão de Dados" />
     -   ‘**UQ**’ é abreviação de “**UNIQUE**”  
     -   ‘**CK**’ é abreviação de “**CHECK**”  
 
-## 9.3 Formato da data no sistema
+## 10.3 Formato da data no sistema
 
 “aaaa-mm-dd hh:mm:ss.mmm”  
 (ano-mês-dia hora:minuto:segundos.milisegundos)  
 
-# 10 Andamento dos Estudos
+# 11 Andamento dos Estudos
 
-## 10.1 Assunto em andamento
+## 11.1 Assunto em andamento
 
 Atualmente estou estudando Módulo 26 - AULA 104.  
