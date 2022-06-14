@@ -1,13 +1,12 @@
-ESCRITO EM 13/6/22
+ESCRITO EM 14/6/22
 ---
-PARA 14/6/22
+PARA 15/6/22
 ---
 Subir github:
-
+	
 Estudar:
-	- Modulo 26 AULA 105 e 106
+	- Modulo 27
 afazeres:
-	- RESOLVER EXERCICIO 105
 	- Conectar os dois bancos
 	- Modulo 26
 pull:
