@@ -3,7 +3,7 @@ ESCRITO EM 18/6/22
 PARA 19/6/22
 ---
 Subir github:
-	
+	- Script atualizado, erros consertados
 Estudar:
 	- Modulo 27 - AULA 109
 afazeres:
