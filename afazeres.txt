@@ -1,11 +1,11 @@
-ESCRITO EM 15/6/22
+ESCRITO EM 18/6/22
 ---
-PARA 16/6/22
+PARA 19/6/22
 ---
 Subir github:
 	
 Estudar:
-	- Modulo 27 - AULA 108
+	- Modulo 27 - AULA 109
 afazeres:
 	- Escrever AULA 107 e 108
 	- Conectar os dois bancos
