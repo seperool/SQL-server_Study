@@ -913,9 +913,11 @@ style="height:15cm" alt="Tabela de Conversão de Dados" />
         -   agrupando os dados pela coluna *CONTA* e ordenando pela
             coluna *CONTA*.  
 
-# 10 Observações
+# 10 Modulo 27 - **TRIGGER** (Gatilho)
 
-## 10.1 Problemas para fazer *login* o **SSMS**
+# 11 Observações
+
+## 11.1 Problemas para fazer *login* o **SSMS**
 
 -   Caso o **SSMS** não identifique o usuário “sa” e senha como deveria,
     seguir os seguintes passos:  
@@ -928,7 +930,7 @@ style="height:15cm" alt="Tabela de Conversão de Dados" />
     -   Ao final da reparação, abrir o **SSMS** novamente e fazer o
         *login*.  
 
-## 10.2 Abreviações do nome de restrições (**CONSTRAINTS**) no dicionario de dados - sistema (boas práticas)
+## 11.2 Abreviações do nome de restrições (**CONSTRAINTS**) no dicionario de dados - sistema (boas práticas)
 
 -   Padronização do nome das restrições salvas no sistema.  
 -   Abreviações do nome das restrições (**CONSTRAINTS**), para salvar no
@@ -938,13 +940,13 @@ style="height:15cm" alt="Tabela de Conversão de Dados" />
     -   ‘**UQ**’ é abreviação de “**UNIQUE**”  
     -   ‘**CK**’ é abreviação de “**CHECK**”  
 
-## 10.3 Formato da data no sistema
+## 11.3 Formato da data no sistema
 
 “aaaa-mm-dd hh:mm:ss.mmm”  
 (ano-mês-dia hora:minuto:segundos.milisegundos)  
 
-# 11 Andamento dos Estudos
+# 12 Andamento dos Estudos
 
-## 11.1 Assunto em andamento
+## 12.1 Assunto em andamento
 
-Atualmente estou estudando Módulo 26 - AULA 104.  
+Atualmente estou estudando Módulo 27 - AULA 107 e 108.  

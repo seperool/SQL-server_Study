@@ -7,18 +7,18 @@ output:
   pdf_document:
     number_sections: true
     toc: TRUE
-  md_document:
-    number_sections: true
-    variant: markdown_github
-  github_document: default
-  html_document:
-    number_sections: true
-    df_print: paged
-  odt_document:
-    number_sections: true
   word_document:
     toc: TRUE
     number_sections: true
+  github_document: default
+  odt_document:
+    number_sections: true
+  html_document:
+    number_sections: true
+    df_print: paged
+  md_document:
+    number_sections: true
+    variant: markdown_github
 ---
 
 \newpage
@@ -787,6 +787,12 @@ Tabela_ASCII
     
 \newpage
 
+# Modulo 27 - **TRIGGER** (Gatilho)
+
+
+
+\newpage
+
 # Observações
 
 ## Problemas para fazer *login* o **SSMS**
@@ -815,4 +821,4 @@ Tabela_ASCII
 
 ## Assunto em andamento
 
-Atualmente estou estudando Módulo 26 - AULA 104.\
+Atualmente estou estudando Módulo 27 - AULA 107 e 108.\
