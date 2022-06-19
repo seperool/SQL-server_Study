@@ -485,8 +485,41 @@ sqlcmd -S localhost -U SA
         **LEFT JOIN** *tabela3* **T**  
         **ON** **A**.*coluna***PK** = **T**.*coluna***FK**  
         **GO**  
+-   **PRINT** ‘*mensagem*’  
+    -   Imprime na tela uma mensagem, colocado entre aspas simples
+        (’’).  
+    -   Pode ser usado dentro de **TRIGGERS** e **PROCEDURES** para
+        passar alguma informação importante ao usuário.  
+    -   Sintaxe com exemplo:  
+        **CREATE** **TRIGGER** *nome_da_trigger*  
+        **ON** *DBO.tabela*  
+        **FOR** **UPDATE**  
+        **AS**  
+        …  
+        **PRINT** ‘*TRIGGER EXECUTADO COM SUCESSO*’  
+        **GO**  
 
-### 6.1.2 Funções de datas
+### 6.1.2 Funções de auditoria
+
+-   **SUSER_NAME**()  
+    -   Função que retorna o usuario logado no banco de dados no
+        momento.  
+    -   Útil para usar dentro de **TRIGGERS** para salvar o usuario
+        reponsavel por alguma alteração numa tabela (audutoria).  
+    -   Sintaxe:  
+        **SELECT** **SUSER_NAME**()  
+        **GO**  
+-   **GETDATE**()  
+    -   Pega a data no sistema (data e horário).  
+    -   Util para usar dentro de **TRIGGERS** para salvar a data e
+        horario de alguma alteração numa tabela (auditoria).  
+    -   Formato:  
+        “aaaa-mm-dd hh:mm:ss.mmm”  
+    -   Sintaxe:  
+        **SELECT** **GETDATE**()  
+        **GO**  
+
+### 6.1.3 Funções de datas
 
 -   **GETDATE**()  
     -   Pega a data no sistema (data e horário).  
@@ -913,7 +946,7 @@ style="height:15cm" alt="Tabela de Conversão de Dados" />
         -   agrupando os dados pela coluna *CONTA* e ordenando pela
             coluna *CONTA*.  
 
-# 10 Modulo 27 - **TRIGGER** (Gatilho)
+# 10 Modulo 27 - **TRIGGER** (Gatilho) **DML** (Data Manipulation Language)
 
 # 11 Observações
 
