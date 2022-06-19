@@ -1,13 +1,18 @@
-ESCRITO EM 18/6/22
+ESCRITO EM 19/6/22
 ---
-PARA 19/6/22
+PARA 20/6/22
 ---
 Subir github:
-	- Script atualizado, erros consertados
+	- Readme.*
+	comandos basicos e categorias de comandos
 Estudar:
 	- Modulo 27 - AULA 109
 afazeres:
-	- Escrever AULA 107 e 108
+	- Revisar para SQL Server:
+		- Categoria de comandos
+		A partir "ALTER" 
+	- Escrever AULA 107 e 108 
+		- TRIGGER
 	- Conectar os dois bancos
 	- Modulo 27
 pull:
