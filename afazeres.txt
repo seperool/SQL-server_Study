@@ -1,16 +1,16 @@
-ESCRITO EM 19/6/22
+ESCRITO EM 20/6/22
 ---
-PARA 20/6/22
+PARA 21/6/22
 ---
 Subir github:
-	- Readme.*
-	comandos basicos e categorias de comandos
+	
 Estudar:
 	- Modulo 27 - AULA 109
 afazeres:
 	- Revisar para SQL Server:
 		- Categoria de comandos
-		A partir "ALTER" 
+		DCL
+		TCL
 	- Escrever AULA 107 e 108 
 		- TRIGGER
 	- Conectar os dois bancos
