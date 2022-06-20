@@ -314,18 +314,36 @@ sqlcmd -S localhost -U SA
 
 ## 5.1 Comandos básicos
 
--   **USE** - Conectando a um banco de dados.  
+-   **CREATE DATABASE**  
+    -   Criação de banco de dados.  
+    -   Sintaxe:  
+        **CRIATE DATABASE** *nome_database*  
+        **GO**  
+-   **DROP DATABASE**  
+    -   Apaga um banco de dados e tudo esta contido dentro.  
+    -   Sintaxe:  
+        **DROP DATABASE** *nome_database*  
+        **GO**  
+-   **USE**  
+    -   Conectando a um banco de dados.  
     -   Sintaxe:  
         **USE** *nome_database*  
         **GO**  
--   **CREATE TABLE** - Criação de banco de dados.  
+-   **CREATE TABLE**  
+    -   Criação de banco de dados.  
     -   Sintaxe:  
         **CREATE TABLE** *nome_tabela*(  
         *coluna1* *tipo* *regras*,  
         …  
         )  
         **GO**  
--   **ALTER TABLE** - Adiciona regras (**CONSTRAINT**) a tabelas.  
+-   **DROP TABLE**  
+    -   Apaga uma tabela.  
+    -   Sintaxe:  
+        **DROP TABLE** *nome_da_tabela*  
+        **GO**  
+-   **ALTER TABLE**  
+    -   Adiciona regras (**CONSTRAINT**) a tabelas.  
     -   É uma boa prática o uso de **ALTER TABLE** para normalizar o
         nome salvo das regras no sistema. Facilita a pesquisa
         posteriormente.  
@@ -336,7 +354,8 @@ sqlcmd -S localhost -U SA
         **GO**  
     -   Observação: o *nome_regra* (nome da regra) é o nome que fica
         salvo no **dicionario de dados** (sistema).  
--   **INSERT** - Inserindo novos registros numa tabela.  
+-   **INSERT**  
+    -   Inserindo novos registros numa tabela.  
     -   No **SQL Server**, diferente do **MySQL**, nas colunas **PK**
         (**PRIMARY KEY**) com **IDENTITY** não precisa passar nenhum
         valor (nem **NULL**), o sistema já entende que vai haver
@@ -350,6 +369,26 @@ sqlcmd -S localhost -U SA
         *valor_coluna2*,*valor_coluna3*,*valor_coluna4*, …),  …  
         (*valor_coluna1*,
         *valor_coluna2*,*valor_coluna3*,*valor_coluna4*, …)  **GO**  
+-   **DELETE**  
+    -   Apaga os registro de uma tabela.  
+    -   Quando usado em conjunto com WHERE, apaga apenas os registros
+        determinados por uma condição.  
+    -   Sintaxe:  
+        **DELETE FROM** *nome_tabela*  
+        **WHERE** *condição*  
+        **GO**  
+-   **UPDATE**  
+    -   Altera os registros de uma tabela.  
+    -   Quando usado em conjunto com WHERE, altera apenas determinados
+        registros definidos por uma condição  
+    -   Sintaxe:  
+        **UPDATE** *tabela_nome*  
+        **SET**  
+        *coluna_1* = *valor_1*,  
+        *coluna_2* = *valor_2*,  
+        …  
+        **WHERE** *condição*  
+        **GO**  
 
 ## 5.2 Regras/Restrições - **CONSTRAINTS**
 
@@ -590,7 +629,9 @@ Principais passos de uma consulta.
 
 -   O primeiro passo de uma consulta é montar o que quer ver na tela -
     **SELECT**.  
+
 -   É tudo que você quer ver na tela.  
+
 -   Sintaxe comentada:  
     **SELECT** *coluna_1* (PROJEÇÃO)  
     **FROM** *tabela* (ORIGEM)  
@@ -598,7 +639,15 @@ Principais passos de uma consulta.
     ou  
     **SELECT** 2+2 **AS** *alias* (PROJEÇÃO)  
     **GO**  
-    Obs.: o que esta entre parênteses é comentario.  
+
+-   É possivel mostrar mais de uma consulta ao mesmo tempo.  
+
+    -   Sintaxe comentada:  
+        **SELECT** \* **FROM** *tabela_1* (PROJEÇÃO 1)  **SELECT** \*
+        **FROM** *tabela_2* (PROJEÇÃO 2)  
+        **GO**  
+
+Obs.: o que esta entre parênteses é comentario.  
 
 ### 6.2.2 SELEÇÃO
 
@@ -948,9 +997,280 @@ style="height:15cm" alt="Tabela de Conversão de Dados" />
 
 # 10 Modulo 27 - **TRIGGER** (Gatilho) **DML** (Data Manipulation Language)
 
-# 11 Observações
+# 11 Categorias de comandos
 
-## 11.1 Problemas para fazer *login* o **SSMS**
+## 11.1 **DML** - *Data Manipulation Language* (Linguagem de Manipulação de Dados)
+
+É um conjunto de instruções usada nas consultas e modificações dos dados
+armazenados nas tabelas do banco de dados.  
+
+-   **SELECT**  
+    -   Recupera linhas do banco de dados e permite a seleção de uma ou
+        várias linhas ou colunas de uma ou várias tabelas.  
+    -   Projeção do que quer ter de visualização na tela.  
+    -   Sintexa:  
+        **SELECT** \*  
+        **FROM** *tabela*  
+        **GO**  
+-   **INSERT**  
+    -   Adiciona registros numa tabela.  
+    -   Sintaxe:  
+        **INSERT INTO** *nome_da_tabela*  
+        **VALUES**  
+        (*valor_na_coluna_1\_registro1*,
+        *valor_na_coluna_2\_registro1*,…),  
+        (*valor_na_coluna_1\_registro2*,
+        *valor_na_coluna_2\_registro2*,…),  
+        …  
+        **GO**  
+-   **UPDATE**  
+    -   Altera os dados de um ou mais registros em uma tabela.  
+    -   Sintaxe:  
+        **UPDATE** *tabela* **SET** *coluna_a\_atualizar* **=**
+        *valor_atualizado*  
+        **WHERE** *condição* **=** *valor*  
+        **GO**  
+-   **DELETE**  
+    -   Remove um ou mais registros de uma tabela.  
+    -   Sintaxe:  
+        **DELETE** **FROM** *tabela*  
+        **WHERE** *criterio_do_que_se_quer_deletar* **=** *valor*  
+        **GO**  
+-   **BULK INSERT\* **  
+    -   Importa um arquivo de dados em uma tabela ou exibição do banco
+        de dados em um formato especificado pelo usuário.  
+    -   Sintaxe:  
+        **BULK INSERT** *tabela_importação*  
+        **FROM** ‘*caminho*’  
+        **WITH**(  
+        **FIRSTROW** = 2,  
+        **DATAFILETYPE** = ‘*char*’,  
+        **FIELDTERMINATOR** = ‘\\t’,  
+        **ROWTERMINATOR** = ‘\\n’  
+        )  
+        **GO**  
+        \* Mais detalhes no “*Modulo 26 PARTE 4 - Importação de arquivo
+        de dados*”.  
+
+## 11.2 **DDL** - *Data Definition Language* (Linguagem de definição de dados)
+
+É um conjunto de instruções usado para criar e modificar as estruturas
+dos objetos armazenados no banco de dados.  
+
+-   **CREATE**  
+    Utilizada para construir um novo banco de dados, tabela, índice ou
+    consulta armazenada.  
+
+    -   **DATABESE**  
+        -   Criação de banco de dados.  
+        -   Sintaxe:  
+            **CREATE** **DATABASE** *nome_banco_de_dados*  
+            **GO**  
+    -   **TABLE**  
+        -   Criação de tabela.  
+        -   Sintaxe:  
+            **CREATE** **TABLE** *nome_tabela* (  
+            *coluna1* *tipo* *regra* *retrições*,  
+            *coluna2* *tipo* *regra* *retrições*,  
+            …  
+            )  
+            **GO**  
+
+-   **DROP**  
+    Remove um banco de dados, tabela, índice ou visão existente.  
+
+    -   **DATABESE**  
+        -   Remove banco de dados.  
+        -   Sintaxe:  
+            **DROP** **DATABASE** *nome_do_banco_de_dados*  
+            **GO**  
+    -   **TABLE**  
+        -   Remove tabela.  
+        -   Sintaxe:  
+            **DROP** **TABLE** *nome_da_tabela*  
+            **GO**  
+
+-   **ALTER**  
+
+    -   Modifica um objeto existente do banco de dados.  
+
+    -   É possível incluir, eliminar e alterar colunas.  
+
+    -   Para alterar uma tabela existente, é necessario que os registros
+        existentes já sejam compativeis com a alteração.  
+
+        -   **ALTER COLUMN**  
+            -   Altera o *tipo* e *regras* de uma coluna/campo.  
+            -   Sintaxe:  
+                **ALTER TABLE** *nome_tabela*  
+                **ALTER COLUMN** *nome_coluna* *modificação_tipo*  
+                **GO**  
+        -   **ADD**  
+            -   Adiciona chaves (primaria ou estrangeira) a uma
+                coluna.  
+
+            -   Não é possivel adicionar “*auto_increment*”.  
+
+            -   Sintaxe:  
+                **ALTER** **TABLE** *tabela*  
+                **ADD** **PRIMARY KEY**(*coluna*)  
+                **GO**  
+                ou  
+                **ALTER** **TABLE** *tabela*  
+                **ADD** **FOREING KEY**(*coluna_da_tabela*)  
+                **REFERENCES**
+                (*coluna_chave_primaria_de_outra_tabela*)  
+                **GO**  
+
+            -   O comando **ADD** funciona para adicionar nova coluna.  
+                Sintaxe:  
+                **ALTER** **TABLE** *tabela*  
+                **ADD** *nova_coluna* *tipo*  
+                **GO**  
+        -   **DROP COLUMN**  
+            -   Deleta uma determinada coluna de uma tabela.  
+            -   Sintaxe:  
+                **ALTER TABLE** \[nome_database.\]*nome_tabela*  
+                **DROP COLUMN** *nome_coluna*  
+                **GO**  
+        -   **ALTER DATABASE**  
+            -   Alterar nome de uma database.  
+            -   Sintaxe:  
+                **ALTER DATABASE** *nome_database*  
+                **MODIFY NAME** = *novo_nome_database*  
+                **GO**  
+
+-   **SP_RENAME**  
+
+    -   Mudar nome da tabela e/ou coluna.  
+    -   Sintaxe:  
+        -   Mudar nome da *tabela*:  
+            **SP_RENAME** ‘*NomeTabelaAntigo*’, ‘*NomeTabelaNovo*’  
+            **GO**  
+            ou  
+        -   Mudar nome da *coluna*:  
+            **SP_RENAME** ‘*NomeTabela.NomeColunaAntigo*’,
+            ‘*NovoNomeColuna*’, ‘*COLUMN*’  
+            **GO**  
+
+-   **TRUNCATE**  
+
+    -   Esvazia imediatamente todo o conteúdo de uma tabela ou objeto
+        que contenha dados.  
+    -   É muito mais rápido que um comando DELETE, pois, ao contrário
+        deste, não armazena os dados sendo removidos no log de
+        transações. Por esse motivo, em vários SGBDs é um comando
+        não-transacional e irrecuperável, não sendo possível desfazê-lo
+        com **ROLLBACK**.  
+    -   Sintaxe:  
+        **TRUNCATE** **TABLE** *nome_tabela*  
+        **GO**  
+
+## 11.3 **DCL** - *Data Control Language* (Linguagem de Controle de Dados)
+
+São usados para controle de acesso e gerenciamento de permissões para
+usuários em no banco de dados. Com eles, pode facilmente permitir ou
+negar algumas ações para usuários nas tabelas ou registros (segurança de
+nível de linha).  
+
+-   USER - usuário  
+
+    -   **CREATE USER**  
+        -   Comando para criação de usuários.  
+        -   Determina user = usuário, host = local (IP do servidor ou
+            *localhost* - maquina local) e password = senha.  
+        -   Sintaxe:  
+            **CREATE USER** ‘*user*’@‘*host*’ **IDENTIFIED BY**
+            ‘*password*’;  
+    -   Listar usuários:  
+        **SELECT** **user** **FROM** **mysql.user**;  
+    -   Mostrar usuário conectado atual:  
+        **SELECT** **user()**;  
+    -   Removendo usuários:  
+        **DROP USER** ‘*exemplo*’@‘*host*’;  
+    -   Conectando ao MySQL por um usuário:  
+        mysql -u *nome_usuário* -p *password*  
+
+-   **GRANT**  
+
+    -   Permitir que usuários especificados realizem tarefas
+        especificadas.  
+    -   Tambem permite gerenciar permissão para realizar tarefas
+        especificas em database e/ou tabelas especificas.  
+    -   Sintaxe:  
+        **GRANT** *tipo_de_permissão* **ON**
+        *nome_database*.*nome_tabela* **TO**
+        ‘*username*’@‘*localhost*’;  
+        ou para dar permissão de root:  
+        **GRANT** **ALL PRIVILEGES** **ON** \* . \* **TO**
+        ‘*newuser*’@‘*localhost*’;  
+    -   Carregar/atualizar permissões:  
+        **FLUSH PRIVILEGES**;  
+    -   Revisar as permissões atuais de um usuário:  
+        **SHOW GRANTS** **FOR** ‘*username*’@‘*localhost*’;  
+
+-   **REVOKE**  
+
+    -   Cancela/revoga permissões previamente concedidas.  
+    -   Sintaxe:  
+        **REVOKE** *tipo_de_permissão* **ON**
+        *nome_database*.*nome_tabela* **FROM**
+        ‘*username*’@‘*localhost*’;  
+        Obs.: Note que no **REVOKE** é usado **FROM** e no **GRANT** é
+        usado **TO**.  
+
+-   Privilégios que podem ser CONCEDIDOS à ou REVOCADOS de um usuário:  
+
+    -   **ALL PRIVILEGES** — como vimos anteriormente, isso garante ao
+        usuário do MySQL acesso completo a um banco de dados (ou, se
+        nenhum banco de dados for selecionado, acesso global a todo o
+        sistema).  
+    -   **CREATE** — permite criar novas tabelas ou bancos de dados.  
+    -   **DROP** — permite deletar tabelas ou bancos de dados.  
+    -   **DELETE** — permite excluir linhas de tabelas.  
+    -   **INSERT** — permite inserir linhas em tabelas.  
+    -   **SELECT** - permite usar o comando SELECT para ler os bancos de
+        dados.  
+    -   **UPDATE** — permite atualizar linhas de tabelas.  
+    -   **GRANT OPTION** — permite conceder ou remover privilégios de
+        outros usuários.  
+
+    Outras instruções:  
+
+    -   **CONNECT**  
+    -   **EXECUTE**  
+    -   **USAGE**  
+
+## 11.4 **TCL** - *Tool Command Language* (Linguagem de Comandos de Ferramentas)
+
+São usados para gerenciar as mudanças feitas por instruções DML. Ele
+permite que as declarações a serem agrupadas em transações lógicas.  
+
+-   **START TRANSACTION**  
+    -   O comando garante que diversas instruções sejam executadas,
+        porem se alguma for mal sucedida todas falham.  
+    -   É possivel avaliar o processo de implementação das instruções e
+        seus resultados e caso necessario regredir ao estado anterior as
+        instruções ou confirmar sua implementação.  
+    -   Principais instruções que são comuns de serem usadas na
+        transação são as **DML** (**INSERT**, **UPDATE** e **DELETE**). 
+    -   Sintaxe:  
+        **START TRANSACTION**;  
+-   **BACKROLL**  
+    -   Regressão para o estado anterior ao inicio da transação (**START
+        TRANSACTION**).  
+    -   Sintaxe:  
+        **BACKROLL**;  
+-   **COMMIT**  
+    -   Confirmação de que as instruções da transação (**START
+        TRANSACTION**) podem ser implementadas sem problemas.  
+    -   Sintaxe:  
+        **COMMIT**  
+        **GO**  
+
+# 12 Observações
+
+## 12.1 Problemas para fazer *login* o **SSMS**
 
 -   Caso o **SSMS** não identifique o usuário “sa” e senha como deveria,
     seguir os seguintes passos:  
@@ -963,7 +1283,7 @@ style="height:15cm" alt="Tabela de Conversão de Dados" />
     -   Ao final da reparação, abrir o **SSMS** novamente e fazer o
         *login*.  
 
-## 11.2 Abreviações do nome de restrições (**CONSTRAINTS**) no dicionario de dados - sistema (boas práticas)
+## 12.2 Abreviações do nome de restrições (**CONSTRAINTS**) no dicionario de dados - sistema (boas práticas)
 
 -   Padronização do nome das restrições salvas no sistema.  
 -   Abreviações do nome das restrições (**CONSTRAINTS**), para salvar no
@@ -973,13 +1293,13 @@ style="height:15cm" alt="Tabela de Conversão de Dados" />
     -   ‘**UQ**’ é abreviação de “**UNIQUE**”  
     -   ‘**CK**’ é abreviação de “**CHECK**”  
 
-## 11.3 Formato da data no sistema
+## 12.3 Formato da data no sistema
 
 “aaaa-mm-dd hh:mm:ss.mmm”  
 (ano-mês-dia hora:minuto:segundos.milisegundos)  
 
-# 12 Andamento dos Estudos
+# 13 Andamento dos Estudos
 
-## 12.1 Assunto em andamento
+## 13.1 Assunto em andamento
 
 Atualmente estou estudando Módulo 27 - AULA 107 e 108.  
