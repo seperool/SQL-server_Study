@@ -1198,12 +1198,12 @@ nível de linha).
     -   Tambem permite gerenciar permissão para realizar tarefas
         especificas em database e/ou tabelas especificas.  
     -   Sintaxe:  
-        **GRANT** *tipo_de_permissão* **ON**
-        *nome_database*.*nome_tabela* **TO**
-        ‘*username*’@‘*localhost*’;  
+        **GRANT** *lista_de_privilégios* **ON**
+        \[*nome_database*.\]*nome_tabela* **TO** *nome_usuário*  
+        **GO**  
         ou para dar permissão de root:  
-        **GRANT** **ALL PRIVILEGES** **ON** \* . \* **TO**
-        ‘*newuser*’@‘*localhost*’;  
+        **GRANT** **ALL** **ON** \* . \* **TO** *nome_usuário*  
+        **GO**
     -   Carregar/atualizar permissões:  
         **FLUSH PRIVILEGES**;  
     -   Revisar as permissões atuais de um usuário:  
@@ -1213,40 +1213,42 @@ nível de linha).
 
     -   Cancela/revoga permissões previamente concedidas.  
     -   Sintaxe:  
-        **REVOKE** *tipo_de_permissão* **ON**
-        *nome_database*.*nome_tabela* **FROM**
-        ‘*username*’@‘*localhost*’;  
+        **REVOKE** *lista_de_privilégios* **ON**
+        \[*nome_database*.\]*nome_tabela* **FROM** *nome_usuário*  
+        **GO**  
         Obs.: Note que no **REVOKE** é usado **FROM** e no **GRANT** é
         usado **TO**.  
 
+-   **DENY**  
+
+    -   O comando é usado para impedir explicitamente que um usuário
+        receba uma permissão específica.  
+
 -   Privilégios que podem ser CONCEDIDOS à ou REVOCADOS de um usuário:  
 
-    -   **ALL PRIVILEGES** — como vimos anteriormente, isso garante ao
-        usuário do MySQL acesso completo a um banco de dados (ou, se
-        nenhum banco de dados for selecionado, acesso global a todo o
-        sistema).  
+    -   **ALL** — ALL não concede todas as permissões para a tabela. Em
+        vez disso, ele concede as permissões ANSI-92 que são **SELECT**,
+        **INSERT**, **UPDATE**, **DELETE** e **REFERENCES**.  
     -   **CREATE** — permite criar novas tabelas ou bancos de dados.  
+    -   **SELECT** - permite usar o comando SELECT para ler os bancos de
+        dados.  
     -   **DROP** — permite deletar tabelas ou bancos de dados.  
     -   **DELETE** — permite excluir linhas de tabelas.  
     -   **INSERT** — permite inserir linhas em tabelas.  
-    -   **SELECT** - permite usar o comando SELECT para ler os bancos de
-        dados.  
     -   **UPDATE** — permite atualizar linhas de tabelas.  
+    -   **REFERENCES** - Capacidade de criar uma restrição que se refere
+        à tabela.  
+    -   **ALTER** - Capacidade de executar instruções **ALTER TABLE**
+        para alterar a definição da tabela.  
     -   **GRANT OPTION** — permite conceder ou remover privilégios de
         outros usuários.  
-
-    Outras instruções:  
-
-    -   **CONNECT**  
-    -   **EXECUTE**  
-    -   **USAGE**  
 
 ## 11.4 **TCL** - *Tool Command Language* (Linguagem de Comandos de Ferramentas)
 
 São usados para gerenciar as mudanças feitas por instruções DML. Ele
 permite que as declarações a serem agrupadas em transações lógicas.  
 
--   **START TRANSACTION**  
+-   **BEGIN TRANSACTION**  
     -   O comando garante que diversas instruções sejam executadas,
         porem se alguma for mal sucedida todas falham.  
     -   É possivel avaliar o processo de implementação das instruções e
@@ -1255,14 +1257,15 @@ permite que as declarações a serem agrupadas em transações lógicas.
     -   Principais instruções que são comuns de serem usadas na
         transação são as **DML** (**INSERT**, **UPDATE** e **DELETE**). 
     -   Sintaxe:  
-        **START TRANSACTION**;  
+        **BEGIN TRANSACTION** (ou apenas, **BEGIN**)  
 -   **BACKROLL**  
-    -   Regressão para o estado anterior ao inicio da transação (**START
+    -   Regressão para o estado anterior ao inicio da transação (**BEGIN
         TRANSACTION**).  
     -   Sintaxe:  
-        **BACKROLL**;  
+        **BACKROLL**  
+        **GO**  
 -   **COMMIT**  
-    -   Confirmação de que as instruções da transação (**START
+    -   Confirmação de que as instruções da transação (**BEGIN
         TRANSACTION**) podem ser implementadas sem problemas.  
     -   Sintaxe:  
         **COMMIT**  
