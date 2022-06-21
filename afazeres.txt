@@ -3,13 +3,15 @@ ESCRITO EM 20/6/22
 PARA 21/6/22
 ---
 Subir github:
-	- TCL
+	
 Estudar:
 	- Modulo 27 - AULA 109
 afazeres:
 	- Revisar para SQL Server:
 		- Categoria de comandos
-		DCL
+		DCL: CREATE USER e GRANT
+		Adicionar DENY
+		Ver video aula salva, "assistir mais tarde".
 	- Escrever AULA 107 e 108 
 		- TRIGGER
 	- Conectar os dois bancos
