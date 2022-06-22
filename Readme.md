@@ -1173,8 +1173,101 @@ usuários em no banco de dados. Com eles, pode facilmente permitir ou
 negar algumas ações para usuários nas tabelas ou registros (segurança de
 nível de linha).  
 
--   USER - usuário  
+### 11.3.1 Login
 
+-   **CREATE LOGIN**  
+    -   A instrução **CREATE LOGIN** cria uma identidade usada para se
+        conectar a uma instância do SQL Server.  
+
+    -   O login é então mapeado para um usuário do banco de dados
+        (portanto, antes de criar um usuário no SQL Server, você deve
+        primeiro criar um login).  
+
+    -   Quatro tipos de logons que você pode criar no SQL Server:  
+
+        -   Pode-se criar um login usando a autenticação do
+            **Windows**.  
+            **CREATE LOGIN** *test_domain/techonthenet*  
+            **FROM** **WINDOWS**  
+            **GO**  
+            Obs.: Este exemplo de **CREATE LOGIN** criaria um novo Login
+            chamado *test_domain/techonthenet* que usa a autenticação do
+            Windows.  
+
+        -   Pode-se criar um login usando a autenticação do **SQL
+            Server**.  
+            **CREATE LOGIN** *nome_login*  
+            **WITH PASSWORD** = ‘*senha*’  
+            **GO**  
+
+        -   Pode-se criar um Login a partir de um **certificate**.  
+            **CREATE LOGIN** *nome_login*  
+            **FROM CERTIFICATE** *nome_certificação*  
+            **GO**  
+
+        -   Pode-se criar um Login a partir de um **asymmetric key**.  
+            **CREATE LOGIN** *nome_login*  
+            **FROM ASYMMETRIC KEY** *nome_asym_key*  
+            **GO**  
+-   **ALTER LOGIN**  
+    -   A instrução **ALTER LOGIN** modifica uma identidade usada para
+        se conectar a uma instância do **SQL Server**.  
+    -   Você pode usar a instrução **ALTER LOGIN** para:  
+        -   Alterar uma senha  
+            **ALTER LOGIN** *nome_login*  
+            **WITH PASSWORD** = ‘*nova_senha*’  
+            **GO**  
+
+        -   Forçar uma alteração de senha  
+            **ALTER LOGIN** *nome_login*  
+            **WITH PASSWORD** = ‘*nova_senha*’ **MUST_CHANGE**, 
+            **CHECK_EXPIRATION** = **ON**  
+            **GO**  
+            Obs.: Força a alteração da senha após o primeiro logon
+            usando a instrução **ALTER LOGIN** no **SQL Server**
+            (Transact-SQL).  
+
+        -   Desabilitar um login  
+            **ALTER LOGIN** *nome_login* **DISABLE**  
+            **GO**  
+
+        -   Habilitar um login  
+            **ALTER LOGIN** *nome_login* **ENABLE**  
+            **GO**  
+
+        -   Desbloquear um login  
+            **ALTER LOGIN** *nome_login*  
+            **WITH PASSWORD** = ‘*senha*’  
+            **UNLOCK**  
+            **GO**  
+
+        -   Renomear um login  
+            **ALTER LOGIN** *nome_login*  
+            **WITH NAME** = *novo_nome*  
+            **GO**  
+
+        -   Etc.  
+-   **DROP LOGIN**  
+    -   A instrução **DROP LOGIN** é usada para remover uma identidade
+        (ou seja: Login) usada para conectar a uma instância do **SQL
+        Server**.  
+    -   Sintaxe:  
+        **DROP LOGIN** *nome_login*  
+        **GO**  
+-   *Find logins* no **SQL Server**  
+    -   No SQL Server, há uma exibição de catálogo (ou seja: exibição do
+        sistema) chamada sys.sql_logins.  
+    -   Você pode executar uma consulta nessa exibição do sistema que
+        retorna todos os logins que foram criados no **SQL Server**, bem
+        como informações sobre esses logins.  
+    -   Sintaxe:  
+        **SELECT** \*  
+        **FROM** *master.sys.sql_logins*  
+        **GO**  
+
+### 11.3.2 USER - Usuário
+
+-   USER - usuário  
     -   **CREATE USER**  
         -   Comando para criação de usuários.  
         -   Determina user = usuário, host = local (IP do servidor ou
@@ -1190,6 +1283,8 @@ nível de linha).
         **DROP USER** ‘*exemplo*’@‘*host*’;  
     -   Conectando ao MySQL por um usuário:  
         mysql -u *nome_usuário* -p *password*  
+
+### 11.3.3 Permissões
 
 -   **GRANT**  
 
