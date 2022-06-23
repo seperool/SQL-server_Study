@@ -1267,22 +1267,47 @@ nível de linha).
 
 ### 11.3.2 USER - Usuário
 
--   USER - usuário  
-    -   **CREATE USER**  
-        -   Comando para criação de usuários.  
-        -   Determina user = usuário, host = local (IP do servidor ou
-            *localhost* - maquina local) e password = senha.  
-        -   Sintaxe:  
-            **CREATE USER** ‘*user*’@‘*host*’ **IDENTIFIED BY**
-            ‘*password*’;  
-    -   Listar usuários:  
-        **SELECT** **user** **FROM** **mysql.user**;  
-    -   Mostrar usuário conectado atual:  
-        **SELECT** **user()**;  
-    -   Removendo usuários:  
-        **DROP USER** ‘*exemplo*’@‘*host*’;  
-    -   Conectando ao MySQL por um usuário:  
-        mysql -u *nome_usuário* -p *password*  
+-   **CREATE USER**  
+    -   A instrução CREATE USER cria um usuário de banco de dados para
+        fazer logon no SQL Server.  
+    -   Um usuário de banco de dados é mapeado para um **LOGIN**, que é
+        uma identidade usada para se conectar a uma instância do SQL
+        Server.  
+    -   Comando para criação de usuários.  
+    -   Sintaxe:  
+        **CREATE USER** *user_nome* **FOR** **LOGIN** *login_nome*  
+        **GO**  
+        -   *user_nome*  
+            O nome do usuário do banco de dados que você deseja criar.  
+
+        -   *login_nome*  
+            O **Login** usado para se conectar à instância do SQL
+            Server.  
+-   Listar usuários:  
+    -   No SQL Server, há uma exibição do sistema chamada
+        *sys.database_principals*. Você pode executar uma consulta nessa
+        exibição do sistema que retorna todos os usuários que foram
+        criados no SQL Server, bem como informações sobre esses
+        usuários.  
+    -   Sintaxe:  
+        **SELECT** \*  
+        **FROM** *master.sys.database_principals*  
+        **GO**  
+-   Mostrar usuário conectado atual:  
+    -   Função **SUSER_NAME**().  
+    -   Função que retorna o usuario logado no banco de dados no
+        momento.  
+    -   Útil para usar dentro de **TRIGGERS** para salvar o usuario
+        reponsavel por alguma alteração numa tabela (audutoria).  
+    -   Sintaxe:  
+        **SELECT** **SUSER_NAME**()  
+        **GO**  
+-   Removendo usuários:  
+    -   A instrução **DROP USER** é usada para remover um usuário do
+        banco de dados SQL Server.  
+    -   Sintaxe:  
+        **DROP USER** *user_nome*  
+        **GO**  
 
 ### 11.3.3 Permissões
 
