@@ -1,6 +1,6 @@
-ESCRITO EM 22/6/22
+ESCRITO EM 23/6/22
 ---
-PARA 23/6/22
+PARA 24/6/22
 ---
 Subir github:
 
@@ -9,7 +9,7 @@ Estudar:
 afazeres:
 	- Revisar para SQL Server:
 		- Categoria de comandos
-		DCL: USER e GRANT
+		DCL: GRANT
 		Adicionar DENY
 		Ver video aula salva, "assistir mais tarde".
 	- Escrever AULA 107 e 108 
