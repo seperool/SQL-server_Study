@@ -1,17 +1,12 @@
-ESCRITO EM 23/6/22
+ESCRITO EM 24/6/22
 ---
-PARA 24/6/22
+PARA 25/6/22
 ---
 Subir github:
 
 Estudar:
 	- Modulo 27 - AULA 109
 afazeres:
-	- Revisar para SQL Server:
-		- Categoria de comandos
-		DCL: GRANT
-		Adicionar DENY
-		Ver video aula salva, "assistir mais tarde".
 	- Escrever AULA 107 e 108 
 		- TRIGGER
 	- Conectar os dois bancos
