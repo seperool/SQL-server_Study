@@ -1324,10 +1324,26 @@ nível de linha).
         ou para dar permissão de root:  
         **GRANT** **ALL** **ON** \* . \* **TO** *nome_usuário*  
         **GO**
-    -   Carregar/atualizar permissões:  
-        **FLUSH PRIVILEGES**;  
     -   Revisar as permissões atuais de um usuário:  
-        **SHOW GRANTS** **FOR** ‘*username*’@‘*localhost*’;  
+        -   Para obter informações sobre as permissões dos usuários ou
+            funções, você pode consultar a exibição do catálogo do
+            sistema sys.database_principals.  
+        -   Esta será uma lista enorme. Você também pode personalizar
+            essa consulta para obter as permissões associadas a um
+            usuário ou função adicionando a condição WHERE.  
+        -   Sintaxe:  
+            **SELECT**  *pri.name* **As** *Username*,  
+            *pri.type_desc* **AS** \[*User Type*\],  
+            *permit.permission_name* **AS** \[*Permission*\],  
+            *permit.state_desc* **AS** \[*Permission State*\],  
+            *permit.class_desc* **Class**,  
+            *object_name*(*permit.major_id*) **AS** \[*Object Name*\]  
+            **FROM** *sys.database_principals* *pri*  
+            **LEFT JOIN** *sys.database_permissions* *permit*  
+            **ON** *permit.grantee_principal_id* **=**
+            *pri.principal_id*  
+            \[**WHERE** *name* **=** ‘*nome_usuário*’\]  
+            **GO**  
 
 -   **REVOKE**  
 
@@ -1343,6 +1359,23 @@ nível de linha).
 
     -   O comando é usado para impedir explicitamente que um usuário
         receba uma permissão específica.  
+    -   A instrução **DENY** impede que os usuários executem ações. Isso
+        significa que a instrução remove as permissões existentes das
+        contas de usuário ou impede que os usuários obtenham permissões
+        por meio de sua associação de grupo/função que pode ser
+        concedida no futuro.  
+    -   Todas as opções da instrução **DENY** têm o mesmo significado
+        lógico que as opções com o mesmo nome na instrução **GRANT**.  
+    -   **DENY** tem uma opção adicional, *CASCADE*, que especifica que
+        as permissões serão negadas ao usuário A e a qualquer outro
+        usuário para quem o usuário A passou essa permissão. (Se a opção
+        CASCADE não for especificada na instrução DENY e a permissão de
+        objeto correspondente tiver sido concedida com **WITH GRANT
+        OPTION**, um erro será retornado).  
+    -   Sintaxe:  
+        **DENY** *lista_privilegios* **ON** *objeto::database.tabela*
+        **TO** *usuário*  
+        **GO**  
 
 -   Privilégios que podem ser CONCEDIDOS à ou REVOCADOS de um usuário:  
 
