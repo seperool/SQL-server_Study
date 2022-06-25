@@ -1,6 +1,6 @@
-ESCRITO EM 24/6/22
+ESCRITO EM 25/6/22
 ---
-PARA 25/6/22
+PARA 26/6/22
 ---
 Subir github:
 
@@ -8,7 +8,10 @@ Estudar:
 	- Modulo 27 - AULA 109
 afazeres:
 	- Escrever AULA 107 e 108 
-		- TRIGGER
+		- TRIGGER:
+			- CREATE TRIGGER
+			- ALTER TRIGGER
+			- DROP TRIGGER
 	- Conectar os dois bancos
 	- Modulo 27
 pull:
