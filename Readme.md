@@ -997,6 +997,12 @@ style="height:15cm" alt="Tabela de Conversão de Dados" />
 
 # 10 Modulo 27 - **TRIGGER** (Gatilho) **DML** (Data Manipulation Language)
 
+## 10.1 CREATE TRIGGER
+
+## 10.2 ALTER TRIGGER
+
+## 10.3 DROP TRIGGER
+
 # 11 Categorias de comandos
 
 ## 11.1 **DML** - *Data Manipulation Language* (Linguagem de Manipulação de Dados)
