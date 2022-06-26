@@ -4,21 +4,21 @@ subtitle: "Readme.rmd"
 author: "Sergio Pedro R Oliveira"
 date: "`r Sys.Date()`"
 output:
-  md_document:
-    number_sections: true
-    variant: markdown_github
-  html_document:
-    number_sections: true
-    df_print: paged
-  github_document: default
-  word_document:
-    toc: TRUE
-    number_sections: true
-  odt_document:
-    number_sections: true
   pdf_document:
     number_sections: true
     toc: TRUE
+  odt_document:
+    number_sections: true
+  github_document: default
+  md_document:
+    number_sections: true
+    variant: markdown_github
+  word_document:
+    toc: TRUE
+    number_sections: true
+  html_document:
+    number_sections: true
+    df_print: paged
 ---
 
 \newpage
@@ -874,12 +874,73 @@ Tabela_ASCII
 \newpage
 
 # Modulo 27 - **TRIGGER** (Gatilho) **DML** (Data Manipulation Language)
+- A **TRIGGER** é um gatilho de programação, que dispara toda vez que algo predeterminado acontecer.\
 
-## CREATE TRIGGER
+- Exemplos de gatilhos disparadores de uma **TRIGGER** são:\
+  - **INSERT**\
+  - **UPDATE**\
+  - **DELETE**\
 
-## ALTER TRIGGER
+- Após os gatilhos (**TRIGGERS**) disparados, são executados blocos de programação.\
 
-## DROP TRIGGER
+- Os comandos a seguir são de *criação* (**CREATE TRIGGER**), *modificação* (**ALTER TRIGGER**) e *pagar* (**DROP TRIGGER**) **TRIGGERS**.\
+
+## Conceitos Préliminares - Argumentos temporais (INSERTED/DELETED) e Declaração de variáveis (DECLARE)
+
+### Argumentos temporais - **INSERTED** e **DELETED**
+
+- São áreas do sistema que guardam dados.\
+- Comparando com MySQL:\
+  - **INSERTED** = **AFTER** (depois)\
+  - **DELETED** = **BEFORE** (antes)\
+
+#### **INSERTED**
+
+- A área **INSERTED** guarda os dados novos inseridos, ou seja, ao usar o **INSERTED** pega os novos dados ("depois" de) inseridos na tabela.\
+- Os **DML** que se valem desse artificio, normalmente, são:\
+  - **INSERT**\
+  Usado normalmente para guardar os novos dados inseridos na tabela, guarda os dados "depois" de inseridos.\
+  - **UPDATE**\
+  Usado para guardar os novos dados modificados na tabela, guarda os dados "depois" de modificados.\
+
+#### **DELETED**
+
+- A área **DELETED** guarda os dados antigos, ou seja, ao usar o **DELETED** pega os antigos dados ("antes" de) modificados na tabela.\
+- Os **DML** que se valem desse artificio, normalmente, são:\
+  - **DELETE**\
+  Usado normalmente para guardar os antigos dados, "antes" de deletados da tabela.\
+  - **UPDATE**\
+  Usado para guardar os antigos dados modificados na tabela, guarda os dados "antes" de modifica-los.\
+
+\newpage
+
+### Declaração de variáveis - **DECLARE**
+
+
+
+\newpage
+
+## **CREATE TRIGGER**
+
+## **ALTER TRIGGER**
+
+## **DROP TRIGGER**
+
+## Boas Práticas
+
+### Blocos de Programação
+
+- São os blocos de programação (instruções **SQL**) dentro do **TRIGGER**.\
+
+#### Primeiro Bloco - declaração de variaveis (**DECLARE**)
+
+- Usado para declarar todas as variáveis que serão usadas dentro do **TRIGGER**.\
+
+#### Segundo Bloco - INSERT via SELECT
+
+#### Terceiro Bloco - INSERT via funções
+
+#### Mensagem ao usuário - Print
 
 \newpage
 

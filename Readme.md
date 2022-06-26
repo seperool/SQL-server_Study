@@ -997,11 +997,66 @@ style="height:15cm" alt="Tabela de Conversão de Dados" />
 
 # 10 Modulo 27 - **TRIGGER** (Gatilho) **DML** (Data Manipulation Language)
 
-## 10.1 CREATE TRIGGER
+-   A **TRIGGER** é um gatilho de programação, que dispara toda vez que
+    algo predeterminado acontecer.  
 
-## 10.2 ALTER TRIGGER
+-   Exemplos de gatilhos disparadores de uma **TRIGGER** são:  
 
-## 10.3 DROP TRIGGER
+    -   **INSERT**  
+    -   **UPDATE**  
+    -   **DELETE**  
+
+-   Após os gatilhos (**TRIGGERS**) disparados, são executados blocos de
+    programação.  
+
+-   Os comandos a seguir são de *criação* (**CREATE TRIGGER**),
+    *modificação* (**ALTER TRIGGER**) e *pagar* (**DROP TRIGGER**)
+    **TRIGGERS**.  
+
+## 10.1 Conceitos Préliminares - Argumentos temporais (INSERTED/DELETED) e Declaração de variáveis (DECLARE)
+
+### 10.1.1 Argumentos temporais - **INSERTED** e **DELETED**
+
+-   São áreas do sistema que guardam dados.  
+-   Comparando com MySQL:  
+    -   **INSERTED** = **AFTER** (depois)  
+    -   **DELETED** = **BEFORE** (antes)  
+
+#### 10.1.1.1 **INSERTED**
+
+-   A área **INSERTED** guarda os dados novos inseridos, ou seja, ao
+    usar o **INSERTED** pega os novos dados (“depois” de) inseridos na
+    tabela.  
+-   Os **DML** que se valem desse artificio, normalmente, são:  
+    -   **INSERT**  
+        Usado normalmente para guardar os novos dados inseridos na
+        tabela, guarda os dados “depois” de inseridos.  
+    -   **UPDATE**  
+        Usado para guardar os novos dados modificados na tabela, guarda
+        os dados “depois” de modificados.  
+
+#### 10.1.1.2 **DELETED**
+
+-   A área **DELETED** guarda os dados antigos, ou seja, ao usar o
+    **DELETED** pega os antigos dados (“antes” de) modificados na
+    tabela.  
+-   Os **DML** que se valem desse artificio, normalmente, são:  
+    -   **DELETE**  
+        Usado normalmente para guardar os antigos dados, “antes” de
+        deletados da tabela.  
+    -   **UPDATE**  
+        Usado para guardar os antigos dados modificados na tabela,
+        guarda os dados “antes” de modifica-los.  
+
+### 10.1.2 Declaração de variáveis - **DECLARE**
+
+## 10.2 **CREATE TRIGGER**
+
+## 10.3 **ALTER TRIGGER**
+
+## 10.4 **DROP TRIGGER**
+
+## 10.5 Boas Práticas
 
 # 11 Categorias de comandos
 
