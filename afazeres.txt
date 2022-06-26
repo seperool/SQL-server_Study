@@ -1,6 +1,6 @@
-ESCRITO EM 25/6/22
+ESCRITO EM 26/6/22
 ---
-PARA 26/6/22
+PARA 27/6/22
 ---
 Subir github:
 
@@ -9,6 +9,7 @@ Estudar:
 afazeres:
 	- Escrever AULA 107 e 108 
 		- TRIGGER:
+			- DECLARE
 			- CREATE TRIGGER
 			- ALTER TRIGGER
 			- DROP TRIGGER
