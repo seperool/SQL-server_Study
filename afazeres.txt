@@ -3,7 +3,8 @@ ESCRITO EM 26/6/22
 PARA 27/6/22
 ---
 Subir github:
-
+	- TRIGGER:
+		- Boas Práticas
 Estudar:
 	- Modulo 27 - AULA 109
 afazeres:
