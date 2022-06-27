@@ -1058,6 +1058,63 @@ style="height:15cm" alt="Tabela de Conversão de Dados" />
 
 ## 10.5 Boas Práticas
 
+### 10.5.1 Blocos de Programação
+
+-   São os blocos de programação (instruções **SQL**) dentro do
+    **TRIGGER**.  
+
+#### 10.5.1.1 Primeiro Bloco - declaração de variaveis (**DECLARE**)
+
+-   Espaço usado para declarar todas as variáveis que serão usadas
+    dentro do **TRIGGER**.  
+-   Sintaxe:  
+    **DECLARE** *@nome_variavel1* *tipo*  
+    **DECLARE** *@nome_variavel2* *tipo*  
+    …  
+
+#### 10.5.1.2 Segundo Bloco - Atribuindo valor em variáveis via **SELECT**
+
+-   Insere nas variáveis valores vindos de tabelas, que são inseridos
+    pelo comando “**SELECT**”.  
+-   Sintaxe:  
+    **SELECT** *@nome_variavel1* = *nome_coluna/campo* **FROM**
+    **INSERTED** (ou **DELETED**)  
+    …  
+
+#### 10.5.1.3 Terceiro Bloco - Atribuindo valor em variáveis via funções
+
+-   Insere nas variáveis valores vindos de funções ou literais, que são
+    inseridos pelo comando “**SET**”.  
+-   Sintaxe:  
+    **SET** *@nome_variavel1* = *função_qualquer*()  
+    **SET** *@nome_variavel2* = ‘*texto*’  
+    …  
+    Obs.: *texto* inserido dentro de variável atraves de aspas
+    simples.  
+
+#### 10.5.1.4 Quarto Bloco - INSERT dados na tabela do **TRIGGER**
+
+-   Inserindo dados das variáveis na tabela de armazenamento do
+    **TRIGGER**, tabela normalmente de auditoria dos dados.  
+-   Sintaxe:  
+    **INSERT INTO** *tabela_auditoria*  
+    (*coluna1*, *coluna2*, *coluna3*, *coluna4*, *coluna5*, *coluna6*,
+    *coluna7*)  
+    **VALUES**  
+    (*@nome_variavel1*, *@nome_variavel2*, *@nome_variavel3*,
+    *@nome_variavel4*, *@nome_variavel5*, *@nome_variavel6*,
+    *@nome_variavel7*)  
+
+#### 10.5.1.5 Mensagem ao usuário - **PRINT**
+
+-   A função **PRINT** imprime uma mensagem na tela.  
+-   Este é o espaço no bloco de programação para deixar alguma mensagem
+    para o usuário ao final da aplicação da **TRIGGER**.  
+-   A mensagem a ser passada pela função **PRINT**, fica entre aspas
+    simples(’’), aspas duplas retorna **ERRO**.  
+-   Sintaxe:  
+    **PRINT** ‘*TRIGGER EXECUTADO COM SUCESSO*’  
+
 # 11 Categorias de comandos
 
 ## 11.1 **DML** - *Data Manipulation Language* (Linguagem de Manipulação de Dados)

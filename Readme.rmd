@@ -4,21 +4,21 @@ subtitle: "Readme.rmd"
 author: "Sergio Pedro R Oliveira"
 date: "`r Sys.Date()`"
 output:
+  md_document:
+    number_sections: true
+    variant: markdown_github
+  html_document:
+    number_sections: true
+    df_print: paged
+  github_document: default
   pdf_document:
     number_sections: true
     toc: TRUE
   odt_document:
     number_sections: true
-  github_document: default
-  md_document:
-    number_sections: true
-    variant: markdown_github
   word_document:
     toc: TRUE
     number_sections: true
-  html_document:
-    number_sections: true
-    df_print: paged
 ---
 
 \newpage
@@ -926,6 +926,8 @@ Tabela_ASCII
 
 ## **DROP TRIGGER**
 
+\newpage
+
 ## Boas Práticas
 
 ### Blocos de Programação
@@ -934,13 +936,41 @@ Tabela_ASCII
 
 #### Primeiro Bloco - declaração de variaveis (**DECLARE**)
 
-- Usado para declarar todas as variáveis que serão usadas dentro do **TRIGGER**.\
+- Espaço usado para declarar todas as variáveis que serão usadas dentro do **TRIGGER**.\
+- Sintaxe:\
+**DECLARE** *\@nome_variavel1* *tipo*\
+**DECLARE** *\@nome_variavel2* *tipo*\
+... \
 
-#### Segundo Bloco - INSERT via SELECT
+#### Segundo Bloco - Atribuindo valor em variáveis via **SELECT**
+- Insere nas variáveis valores vindos de tabelas, que são inseridos pelo comando "**SELECT**".\
+- Sintaxe:\
+**SELECT** *\@nome_variavel1*  = *nome_coluna/campo* **FROM** **INSERTED** (ou **DELETED**)\
+... \
 
-#### Terceiro Bloco - INSERT via funções
+#### Terceiro Bloco - Atribuindo valor em variáveis via funções
+- Insere nas variáveis valores vindos de funções ou literais, que são inseridos pelo comando "**SET**".\
+- Sintaxe:\
+**SET** *\@nome_variavel1* = *função_qualquer*()\
+**SET** *\@nome_variavel2* = '*texto*'\
+...\
+Obs.: *texto* inserido dentro de variável atraves de aspas simples.\
 
-#### Mensagem ao usuário - Print
+#### Quarto Bloco - INSERT dados na tabela do **TRIGGER**
+- Inserindo dados das variáveis na tabela de armazenamento do **TRIGGER**, tabela normalmente de auditoria dos dados.\
+- Sintaxe:\
+**INSERT INTO** *tabela_auditoria*\
+(*coluna1*, *coluna2*, *coluna3*, *coluna4*, *coluna5*, *coluna6*, *coluna7*)\
+**VALUES**\
+(*\@nome_variavel1*, *\@nome_variavel2*, *\@nome_variavel3*, *\@nome_variavel4*, *\@nome_variavel5*, *\@nome_variavel6*, *\@nome_variavel7*)\
+
+
+#### Mensagem ao usuário - **PRINT**
+- A função **PRINT** imprime uma mensagem na tela.\
+- Este é o espaço no bloco de programação para deixar alguma mensagem para o usuário ao final da aplicação da **TRIGGER**.\
+- A mensagem a ser passada pela função **PRINT**, fica entre aspas simples(''), aspas duplas retorna **ERRO**.\
+- Sintaxe:\
+**PRINT** '*TRIGGER EXECUTADO COM SUCESSO*'\
 
 \newpage
 
