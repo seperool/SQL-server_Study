@@ -1,12 +1,13 @@
-ESCRITO EM 27/6/22
+ESCRITO EM 28/6/22
 ---
-PARA 28/6/22
+PARA 29/6/22
 ---
 Subir github:
 
 Estudar:
 	- Modulo 27 - AULA 109
 afazeres:
+	- tipos de dados
 	- Escrever AULA 107 e 108 
 		- TRIGGER:
 			- DECLARE
