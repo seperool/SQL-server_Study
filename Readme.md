@@ -310,9 +310,120 @@ sqlcmd -S localhost -U SA
         ser salvo dentro de um grupo de arquivos criado anteriormente,
         podendo ser um grupo diferente do tópico anterior.  
 
-# 5 Modulo 26 PARTE 1 - Comandos básicos, **CONSTRAINTS** e descrição de tabelas
+# 5 Tipos de dados
 
-## 5.1 Comandos básicos
+## 5.1 Numéricos exatos
+
+-   *bigint*  
+    -   Inteiro, porem com espaço de armazenamento dobrado do *int*,
+        8bytes.  
+-   *numeric*  
+    -   *float* com números exatos, sem arredondamento.  
+    -   Recebe como argumentos, tamanho total do numero e o numero de
+        casas decimais.  
+    -   Sintaxe:  
+        *numeric*(*n_total*,*n_deci*)  
+-   *bit*  
+    -   Valores de cadeias de caracteres ‘**TRUE**’ e ‘**FALSE**’, podem
+        ser convertidas em bit.  
+    -   1 (ou qualquer valor diferente de 0) é **TRUE**.  
+    -   0 é **FALSE**.  
+-   *smallint*  
+    -   Inteiro, porem com espaço de armazenamento pela metade do *int*,
+        2bytes.  
+-   *decimal*  
+    -   Igual a *numeric*.  
+-   *int*  
+    -   Número inteiro.  
+    -   Espaço de armazenamento de 4bytes.  
+-   *tinyint*  
+    -   Inteiro num intervalo de 0 a 255.  
+    -   Usado para armazenar idade de pessoas.  
+-   *money*  
+    -   Apresenta valores monetários.  
+    -   Não é muito útil, melhor usar outro tipo em situação normal.  
+
+## 5.2 Numéricos aproximados
+
+-   *float*  
+    -   Dado do tipo “ponto flutuante”, são valores aproximados.  
+    -   Varia entre precisão de 7 a 15 digitos, dependendo do valor de
+        “n” especificado (variando entre 1 a 24 para 7 digitos e 25 a 53
+        para 15 digitos.).  
+-   *real*  
+    -   Igual a *float*(24).  
+
+## 5.3 Data e hora
+
+-   *date*  
+    -   Usado para armazenar datas.  
+    -   No formato: “AAAA-MM-DD”.  
+-   *datetimeoffset*  
+    -   Com as vantagens do *datetime2*, somado ao reconhecimento de
+        fuso horário com base no UTC.  
+    -   No formato: “AAAA-MM-DD hh:mm:ss.nnnnn +/-hh:mm”.  
+-   *datetime2*  
+    -   Apresenta um intervalo de datas maior que *datetime*.  
+    -   Uma precisão fracionada padrão dos segundo maior que
+        *datetime*.  
+    -   Precisão opcional especificada pelo usuário. Podendo usar menos
+        armazenamento.  
+-   *smalldatetime*  
+    -   Arredonda *datetime*.  
+    -   Usa o mesmo formato que *datetime*.  
+-   *datetime*  
+    -   Usado para armazenar data e horário.  
+    -   No formato: “AAAA-MM-DD hh:mm:ss.nnnnn”.  
+-   *time*  
+    -   Usado para armazenar horário.  
+    -   No formato: “hh:mm:ss.nnnnn”.  
+
+## 5.4 Cadeias de caracteres
+
+-   *char*  
+    -   Aceita somente determinado número de caracteres estabelecidos,
+        tamanho fixo.  
+    -   Sintaxe:  
+        char(3)  
+-   *varchar*  
+    -   Aceita número de caracteres variável, determinar tamanho
+        máximo.  
+    -   Sintaxe:  
+        varchar(50)  
+-   *text*  
+    -   *text* é usado para grandes pedaços de dados de *string*. Se o
+        comprimento do texto exceder um determinado limite, o texto será
+        armazenado fora da linha.  
+    -   Usado se precisar armazenar textos grandes no seu banco de
+        dados.  
+    -   Sintaxe:  
+        *text* (*tamanho_max_string*)  
+
+## 5.5 Cadeias de caracteres Unicode
+
+-   *nchar*  
+-   *nvarchar*  
+-   *ntext*  
+
+## 5.6 Cadeia de caracteres binária
+
+-   *binary*  
+-   *varbinary*  
+-   *imagem*  
+
+## 5.7 Outros tipos de dados
+
+-   *cursor*  
+-   *rowversion*  
+-   *hierarchyid*  
+-   *uniqueidentifier*  
+-   *sql_variant*  
+-   *xml*  
+-   *table*  
+
+# 6 Modulo 26 PARTE 1 - Comandos básicos, **CONSTRAINTS** e descrição de tabelas
+
+## 6.1 Comandos básicos
 
 -   **CREATE DATABASE**  
     -   Criação de banco de dados.  
@@ -390,14 +501,14 @@ sqlcmd -S localhost -U SA
         **WHERE** *condição*  
         **GO**  
 
-## 5.2 Regras/Restrições - **CONSTRAINTS**
+## 6.2 Regras/Restrições - **CONSTRAINTS**
 
 -   Uma boa prática é criar as **CONSTRAINTS** por fora da tabela, para
     ter o controle dos nomes das *restrições* que ficaram salvas no
     dicionario de dados (sistema).  
     -   Normalmente com uso de **ALTER TABLE**.  
 
-### 5.2.1 **IDENTITY**
+### 6.2.1 **IDENTITY**
 
 -   Exerce a mesma função que **AUTO_INCREMENT** no **MySQL**,
     incrementar automaticamente a coluna determinada.  
@@ -420,7 +531,7 @@ sqlcmd -S localhost -U SA
 -   Observação: A *coluna1* começa em 100 e recebe o incremento de 10 em
     10 a cada novo dado.  
 
-### 5.2.2 **CONSTRAINTS**
+### 6.2.2 **CONSTRAINTS**
 
 -   **PRIMARY KEY** (**PK**)  
     -   Toda tabela necessita de pelo menos um campo que identifique
@@ -470,14 +581,14 @@ sqlcmd -S localhost -U SA
         **UNIQUE** (*coluna_recebe_UQ*)  
         **GO**  
 
-## 5.3 Comandos de descrição tabelas - **SP\_**
+## 6.3 Comandos de descrição tabelas - **SP\_**
 
 -   No **SQL Server** a descriação de uma tabela é atraves de
     **PROCEDURES** (funções).  
 -   **PROCEDURES** já criadas e armazenadas no sistema, “**STORAGE
     PROCEDURES**” (**SP**).  
 
-### 5.3.1 **SP_COLUMNS**
+### 6.3.1 **SP_COLUMNS**
 
 -   **SP_COLUMNS** é igual a **DESC**, no **MySQL**.  
 -   Faz uma descrição da tabela:  
@@ -489,7 +600,7 @@ sqlcmd -S localhost -U SA
     **SP_COLUMNS** *nome_tabela*  
     **GO**  
 
-### 5.3.2 **SP_HELP**
+### 6.3.2 **SP_HELP**
 
 -   **SP_HELP** é igual ao **SHOW CREATE TABLE**, no **MySQL**.  
 -   Faz uma descrição mais detalha da tabela que **SP_COLUMNS**:  
@@ -501,11 +612,11 @@ sqlcmd -S localhost -U SA
     **SP_HELP** *nome_tabela*  
     **GO**  
 
-# 6 Modulo 26 PARTE 2 - Funções, Projeções, Seleções e Junções
+# 7 Modulo 26 PARTE 2 - Funções, Projeções, Seleções e Junções
 
-## 6.1 Funções
+## 7.1 Funções
 
-### 6.1.1 Funções usuais
+### 7.1.1 Funções usuais
 
 -   **ISNULL**()  
     -   Trata os valores **nulos**, na coluna especificada, na
@@ -538,7 +649,7 @@ sqlcmd -S localhost -U SA
         **PRINT** ‘*TRIGGER EXECUTADO COM SUCESSO*’  
         **GO**  
 
-### 6.1.2 Funções de auditoria
+### 7.1.2 Funções de auditoria
 
 -   **SUSER_NAME**()  
     -   Função que retorna o usuario logado no banco de dados no
@@ -558,7 +669,7 @@ sqlcmd -S localhost -U SA
         **SELECT** **GETDATE**()  
         **GO**  
 
-### 6.1.3 Funções de datas
+### 7.1.3 Funções de datas
 
 -   **GETDATE**()  
     -   Pega a data no sistema (data e horário).  
@@ -621,11 +732,11 @@ sqlcmd -S localhost -U SA
     -   Sintaxe:  
         **YEAR**(*data*)  
 
-## 6.2 Projeção, seleção e Junção - **SELECT**, **WHERE** e **JOIN**
+## 7.2 Projeção, seleção e Junção - **SELECT**, **WHERE** e **JOIN**
 
 Principais passos de uma consulta.  
 
-### 6.2.1 PROJEÇÃO
+### 7.2.1 PROJEÇÃO
 
 -   O primeiro passo de uma consulta é montar o que quer ver na tela -
     **SELECT**.  
@@ -649,7 +760,7 @@ Principais passos de uma consulta.
 
 Obs.: o que esta entre parênteses é comentario.  
 
-### 6.2.2 SELEÇÃO
+### 7.2.2 SELEÇÃO
 
 -   O segundo passo de uma consulta é a seleção dos dados de uma
     consulta - **WHERE**.  
@@ -663,9 +774,9 @@ Obs.: o que esta entre parênteses é comentario.
     **GO**  
     Obs.: o que esta entre parênteses é comentario.  
 
-### 6.2.3 JUNÇÃO
+### 7.2.3 JUNÇÃO
 
-#### 6.2.3.1 Junção forma errada - gambiarra
+#### 7.2.3.1 Junção forma errada - gambiarra
 
 -   Usa seleção como uma forma de juntar tabelas.  
 -   Como conseguencia:  
@@ -689,7 +800,7 @@ Obs.: o que esta entre parênteses é comentario.
     **GO**  
     Obs.: o que esta entre parênteses é comentario.  
 
-#### 6.2.3.2 Junção forma certa - **JOIN**
+#### 7.2.3.2 Junção forma certa - **JOIN**
 
 -   Junção **JOIN**, junta duas ou mais tabelas apartir das colunas de
     *chaves primarias* e *chaves estrangeiras*.  
@@ -725,7 +836,7 @@ Obs.: o que esta entre parênteses é comentario.
         **WHERE** *criterio* **=** *valor* (SELEÇÃO)  
         **GO**  
 
-#### 6.2.3.3 Cláusulas ambíguas e Ponteiramento
+#### 7.2.3.3 Cláusulas ambíguas e Ponteiramento
 
 -   Consulta com mais de duas tabelas.  
     -   Pode apresentar colunas/campos com o mesmo nome, de tabelas
@@ -766,9 +877,9 @@ Obs.: o que esta entre parênteses é comentario.
         **WHERE** *criterio* **=** *valor*  
         **GO**  
 
-# 7 Modulo 26 PARTE 3 - Conversão de tipo de dados
+# 8 Modulo 26 PARTE 3 - Conversão de tipo de dados
 
-## 7.1 Conversão de dados automatica pelo sistema
+## 8.1 Conversão de dados automatica pelo sistema
 
 -   Conversões de *TIPO* que o **SQL Serve** faz automaticamente pelo
     sistema.  
@@ -781,7 +892,7 @@ Obs.: o que esta entre parênteses é comentario.
         **GO**  
         (Retorno ‘11’)  
 
-## 7.2 Tabela de conversões de dados automatico pelo sistema
+## 8.2 Tabela de conversões de dados automatico pelo sistema
 
 <img src="./Imagens/Tabela_conversao_de_dados_sqlserver.png"
 style="height:15cm" alt="Tabela de Conversão de Dados" />  
@@ -791,7 +902,7 @@ style="height:15cm" alt="Tabela de Conversão de Dados" />
 -   *Conversão explicita*.  
     -   São conversões por meio de funções. (Ex.: **CAST**())  
 
-## 7.3 Funções de conversão
+## 8.3 Funções de conversão
 
 -   **CAST**()  
     -   A função **CAST**() converte um valor (de qualquer tipo) em um
@@ -852,9 +963,9 @@ style="height:15cm" alt="Tabela de Conversão de Dados" />
         **FROM** *tabela*  
         **GO**  
 
-# 8 Modulo 26 PARTE 4 - Importação de arquivo de dados
+# 9 Modulo 26 PARTE 4 - Importação de arquivo de dados
 
-## 8.1 Aspacetos importantes da importação de Arquivos
+## 9.1 Aspacetos importantes da importação de Arquivos
 
 -   Além da função de importação de arquivo (**BULK INSERT**), é
     necessario antes, montar uma estrutura preparada para receber os
@@ -893,7 +1004,7 @@ style="height:15cm" alt="Tabela de Conversão de Dados" />
 
 \* É uma barra invertida só.  
 
-## 8.2 Função de importação de arquivos **BULK INSERT**
+## 9.2 Função de importação de arquivos **BULK INSERT**
 
 -   A função **BULK INSERT** serve para importação dos dados, de um
     arquivo qualquer, para dentro do **SQL Server**.  
@@ -943,7 +1054,7 @@ style="height:15cm" alt="Tabela de Conversão de Dados" />
         Usar o caracter de comando da tabela ASCII.  
         O caracter de comando é entre aspas simples ’’.  
 
-# 9 Modulo 26 PARTE 5 - Técnica de “flag-ar” coluna (**SELECT**)
+# 10 Modulo 26 PARTE 5 - Técnica de “flag-ar” coluna (**SELECT**)
 
 -   Técnica usada para criar, numa consulta (**SELECT**), uma espécie de
     tabela verdade com os resultados possiveis de uma coluna.  
@@ -995,7 +1106,7 @@ style="height:15cm" alt="Tabela de Conversão de Dados" />
         -   agrupando os dados pela coluna *CONTA* e ordenando pela
             coluna *CONTA*.  
 
-# 10 Modulo 27 - **TRIGGER** (Gatilho) **DML** (Data Manipulation Language)
+# 11 Modulo 27 - **TRIGGER** (Gatilho) **DML** (Data Manipulation Language)
 
 -   A **TRIGGER** é um gatilho de programação, que dispara toda vez que
     algo predeterminado acontecer.  
@@ -1013,16 +1124,16 @@ style="height:15cm" alt="Tabela de Conversão de Dados" />
     *modificação* (**ALTER TRIGGER**) e *pagar* (**DROP TRIGGER**)
     **TRIGGERS**.  
 
-## 10.1 Conceitos Préliminares - Argumentos temporais (INSERTED/DELETED) e Declaração de variáveis (DECLARE)
+## 11.1 Conceitos Préliminares - Argumentos temporais (INSERTED/DELETED) e Declaração de variáveis (DECLARE)
 
-### 10.1.1 Argumentos temporais - **INSERTED** e **DELETED**
+### 11.1.1 Argumentos temporais - **INSERTED** e **DELETED**
 
 -   São áreas do sistema que guardam dados.  
 -   Comparando com MySQL:  
     -   **INSERTED** = **AFTER** (depois)  
     -   **DELETED** = **BEFORE** (antes)  
 
-#### 10.1.1.1 **INSERTED**
+#### 11.1.1.1 **INSERTED**
 
 -   A área **INSERTED** guarda os dados novos inseridos, ou seja, ao
     usar o **INSERTED** pega os novos dados (“depois” de) inseridos na
@@ -1035,7 +1146,7 @@ style="height:15cm" alt="Tabela de Conversão de Dados" />
         Usado para guardar os novos dados modificados na tabela, guarda
         os dados “depois” de modificados.  
 
-#### 10.1.1.2 **DELETED**
+#### 11.1.1.2 **DELETED**
 
 -   A área **DELETED** guarda os dados antigos, ou seja, ao usar o
     **DELETED** pega os antigos dados (“antes” de) modificados na
@@ -1048,22 +1159,35 @@ style="height:15cm" alt="Tabela de Conversão de Dados" />
         Usado para guardar os antigos dados modificados na tabela,
         guarda os dados “antes” de modifica-los.  
 
-### 10.1.2 Declaração de variáveis - **DECLARE**
+### 11.1.2 Declaração de variáveis - **DECLARE**
 
-## 10.2 **CREATE TRIGGER**
+-   As variáveis são declaradas no corpo de uma **PROCEDURE**, ou
+    **TRIGGER**, com a instrução **DECLARE** e valores são atribuidos
+    com uma instrução **SET** ou **SELECT**.  
 
-## 10.3 **ALTER TRIGGER**
+-   Depois da declaração, todas as variáveis são inicializada com
+    **NULL**, a menos que um valor seja fornecido como parte da
+    declaração.  
 
-## 10.4 **DROP TRIGGER**
+-   Os nomes de variáveis devem começar com uma arroba ‘@’.  
 
-## 10.5 Boas Práticas
+-   Sintaxe:  
+    **DECLARE** *@variavel_local* *tipo* (= *valor_inicialização*)  
 
-### 10.5.1 Blocos de Programação
+## 11.2 **CREATE TRIGGER**
+
+## 11.3 **ALTER TRIGGER**
+
+## 11.4 **DROP TRIGGER**
+
+## 11.5 Boas Práticas
+
+### 11.5.1 Blocos de Programação
 
 -   São os blocos de programação (instruções **SQL**) dentro do
     **TRIGGER**.  
 
-#### 10.5.1.1 Primeiro Bloco - declaração de variaveis (**DECLARE**)
+#### 11.5.1.1 Primeiro Bloco - declaração de variaveis (**DECLARE**)
 
 -   Espaço usado para declarar todas as variáveis que serão usadas
     dentro do **TRIGGER**.  
@@ -1072,16 +1196,16 @@ style="height:15cm" alt="Tabela de Conversão de Dados" />
     **DECLARE** *@nome_variavel2* *tipo*  
     …  
 
-#### 10.5.1.2 Segundo Bloco - Atribuindo valor em variáveis via **SELECT**
+#### 11.5.1.2 Segundo Bloco - Atribuindo valor em variáveis via **SELECT**
 
 -   Insere nas variáveis valores vindos de tabelas, que são inseridos
     pelo comando “**SELECT**”.  
 -   Sintaxe:  
-    **SELECT** *@nome_variavel1* = *nome_coluna/campo* **FROM**
-    **INSERTED** (ou **DELETED**)  
+    **SELECT** *@nome_variavel1* = *nome_coluna* **FROM** **INSERTED**
+    (ou **DELETED**)  
     …  
 
-#### 10.5.1.3 Terceiro Bloco - Atribuindo valor em variáveis via funções
+#### 11.5.1.3 Terceiro Bloco - Atribuindo valor em variáveis via funções
 
 -   Insere nas variáveis valores vindos de funções ou literais, que são
     inseridos pelo comando “**SET**”.  
@@ -1092,7 +1216,7 @@ style="height:15cm" alt="Tabela de Conversão de Dados" />
     Obs.: *texto* inserido dentro de variável atraves de aspas
     simples.  
 
-#### 10.5.1.4 Quarto Bloco - INSERT dados na tabela do **TRIGGER**
+#### 11.5.1.4 Quarto Bloco - INSERT dados na tabela do **TRIGGER**
 
 -   Inserindo dados das variáveis na tabela de armazenamento do
     **TRIGGER**, tabela normalmente de auditoria dos dados.  
@@ -1105,7 +1229,7 @@ style="height:15cm" alt="Tabela de Conversão de Dados" />
     *@nome_variavel4*, *@nome_variavel5*, *@nome_variavel6*,
     *@nome_variavel7*)  
 
-#### 10.5.1.5 Mensagem ao usuário - **PRINT**
+#### 11.5.1.5 Mensagem ao usuário - **PRINT**
 
 -   A função **PRINT** imprime uma mensagem na tela.  
 -   Este é o espaço no bloco de programação para deixar alguma mensagem
@@ -1115,9 +1239,9 @@ style="height:15cm" alt="Tabela de Conversão de Dados" />
 -   Sintaxe:  
     **PRINT** ‘*TRIGGER EXECUTADO COM SUCESSO*’  
 
-# 11 Categorias de comandos
+# 12 Categorias de comandos
 
-## 11.1 **DML** - *Data Manipulation Language* (Linguagem de Manipulação de Dados)
+## 12.1 **DML** - *Data Manipulation Language* (Linguagem de Manipulação de Dados)
 
 É um conjunto de instruções usada nas consultas e modificações dos dados
 armazenados nas tabelas do banco de dados.  
@@ -1170,7 +1294,7 @@ armazenados nas tabelas do banco de dados.
         \* Mais detalhes no “*Modulo 26 PARTE 4 - Importação de arquivo
         de dados*”.  
 
-## 11.2 **DDL** - *Data Definition Language* (Linguagem de definição de dados)
+## 12.2 **DDL** - *Data Definition Language* (Linguagem de definição de dados)
 
 É um conjunto de instruções usado para criar e modificar as estruturas
 dos objetos armazenados no banco de dados.  
@@ -1284,14 +1408,14 @@ dos objetos armazenados no banco de dados.
         **TRUNCATE** **TABLE** *nome_tabela*  
         **GO**  
 
-## 11.3 **DCL** - *Data Control Language* (Linguagem de Controle de Dados)
+## 12.3 **DCL** - *Data Control Language* (Linguagem de Controle de Dados)
 
 São usados para controle de acesso e gerenciamento de permissões para
 usuários em no banco de dados. Com eles, pode facilmente permitir ou
 negar algumas ações para usuários nas tabelas ou registros (segurança de
 nível de linha).  
 
-### 11.3.1 Login
+### 12.3.1 Login
 
 -   **CREATE LOGIN**  
     -   A instrução **CREATE LOGIN** cria uma identidade usada para se
@@ -1383,7 +1507,7 @@ nível de linha).
         **FROM** *master.sys.sql_logins*  
         **GO**  
 
-### 11.3.2 USER - Usuário
+### 12.3.2 USER - Usuário
 
 -   **CREATE USER**  
     -   A instrução CREATE USER cria um usuário de banco de dados para
@@ -1427,7 +1551,7 @@ nível de linha).
         **DROP USER** *user_nome*  
         **GO**  
 
-### 11.3.3 Permissões
+### 12.3.3 Permissões
 
 -   **GRANT**  
 
@@ -1514,7 +1638,7 @@ nível de linha).
     -   **GRANT OPTION** — permite conceder ou remover privilégios de
         outros usuários.  
 
-## 11.4 **TCL** - *Tool Command Language* (Linguagem de Comandos de Ferramentas)
+## 12.4 **TCL** - *Tool Command Language* (Linguagem de Comandos de Ferramentas)
 
 São usados para gerenciar as mudanças feitas por instruções DML. Ele
 permite que as declarações a serem agrupadas em transações lógicas.  
@@ -1542,9 +1666,9 @@ permite que as declarações a serem agrupadas em transações lógicas.
         **COMMIT**  
         **GO**  
 
-# 12 Observações
+# 13 Observações
 
-## 12.1 Problemas para fazer *login* o **SSMS**
+## 13.1 Problemas para fazer *login* o **SSMS**
 
 -   Caso o **SSMS** não identifique o usuário “sa” e senha como deveria,
     seguir os seguintes passos:  
@@ -1557,7 +1681,7 @@ permite que as declarações a serem agrupadas em transações lógicas.
     -   Ao final da reparação, abrir o **SSMS** novamente e fazer o
         *login*.  
 
-## 12.2 Abreviações do nome de restrições (**CONSTRAINTS**) no dicionario de dados - sistema (boas práticas)
+## 13.2 Abreviações do nome de restrições (**CONSTRAINTS**) no dicionario de dados - sistema (boas práticas)
 
 -   Padronização do nome das restrições salvas no sistema.  
 -   Abreviações do nome das restrições (**CONSTRAINTS**), para salvar no
@@ -1567,13 +1691,13 @@ permite que as declarações a serem agrupadas em transações lógicas.
     -   ‘**UQ**’ é abreviação de “**UNIQUE**”  
     -   ‘**CK**’ é abreviação de “**CHECK**”  
 
-## 12.3 Formato da data no sistema
+## 13.3 Formato da data no sistema
 
 “aaaa-mm-dd hh:mm:ss.mmm”  
 (ano-mês-dia hora:minuto:segundos.milisegundos)  
 
-# 13 Andamento dos Estudos
+# 14 Andamento dos Estudos
 
-## 13.1 Assunto em andamento
+## 14.1 Assunto em andamento
 
 Atualmente estou estudando Módulo 27 - AULA 107 e 108.  

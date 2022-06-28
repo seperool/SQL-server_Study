@@ -7,18 +7,18 @@ output:
   md_document:
     number_sections: true
     variant: markdown_github
-  html_document:
+  word_document:
+    toc: TRUE
     number_sections: true
-    df_print: paged
   github_document: default
   pdf_document:
     number_sections: true
     toc: TRUE
   odt_document:
     number_sections: true
-  word_document:
-    toc: TRUE
+  html_document:
     number_sections: true
+    df_print: paged
 ---
 
 \newpage
@@ -254,6 +254,120 @@ sqlcmd -S localhost -U SA\
   - Dentro de "Identidade", em "Nome" podemos alterar o nome da tabela.\
   - Dentro de "Designer de tabela", dentro de "Especificação de Espaço de Dados Regular", em "Nome do Esquema de Partição ou Grupo de Arquivos" podemos selecionar um grupo de arquivos criado anteriormente para enviar a tabela.\
   - Dentro de "Designer de tabela", em "Grupo de Arquivos de Texto/Imagem" caso o banco de dados salve arquivos do tipo texto (.doc ou .odt) e imagem (pdf, jpeg ou .png) pode direcionar para ser salvo dentro de um grupo de arquivos criado anteriormente, podendo ser um grupo diferente do tópico anterior.\
+
+\newpage
+
+# Tipos de dados
+
+## Numéricos exatos
+
+- *bigint*\
+  - Inteiro, porem com espaço de armazenamento dobrado do *int*, 8bytes.\
+
+- *numeric*\
+  - *float* com números exatos, sem arredondamento.\
+  - Recebe como argumentos, tamanho total do numero e o numero de casas decimais.\
+  - Sintaxe:\
+  *numeric*(*n_total*,*n_deci*)\
+  
+- *bit*\
+  - Valores de cadeias de caracteres '**TRUE**' e '**FALSE**', podem ser convertidas em bit.\
+  - 1 (ou qualquer valor diferente de 0) é **TRUE**.\
+  - 0 é **FALSE**.\
+
+- *smallint*\
+  - Inteiro, porem com espaço de armazenamento pela metade do *int*, 2bytes.\
+  
+- *decimal*\
+  - Igual a *numeric*.\
+
+- *int*\
+  - Número inteiro.\
+  - Espaço de armazenamento de 4bytes.\
+  
+- *tinyint*\
+  - Inteiro num intervalo de 0 a 255.\
+  - Usado para armazenar idade de pessoas.\
+
+- *money*\
+  - Apresenta valores monetários.\
+  - Não é muito útil, melhor usar outro tipo em situação normal.\
+
+## Numéricos aproximados
+
+- *float*\
+  - Dado do tipo "ponto flutuante", são valores aproximados.\
+  - Varia entre precisão de 7 a 15 digitos, dependendo do valor de "n" especificado (variando entre 1 a 24 para 7 digitos e 25 a 53 para 15 digitos.).\
+  
+- *real*\
+  - Igual a *float*(24).\
+
+## Data e hora
+
+- *date*\
+  - Usado para armazenar datas.\
+  - No formato: "AAAA-MM-DD".\
+  
+- *datetimeoffset*\
+  - Com as vantagens do *datetime2*, somado ao reconhecimento de fuso horário com base no UTC.\
+  - No formato: "AAAA-MM-DD hh:mm:ss.nnnnn +/-hh:mm".\
+
+- *datetime2*\
+  - Apresenta um intervalo de datas maior que *datetime*.\
+  - Uma precisão fracionada padrão dos segundo maior que *datetime*.\
+  - Precisão opcional especificada pelo usuário. Podendo usar menos armazenamento.\
+
+- *smalldatetime*\
+  - Arredonda *datetime*.\
+  - Usa o mesmo formato que *datetime*.\
+
+- *datetime*\
+  - Usado para armazenar data e horário.\
+  - No formato: "AAAA-MM-DD hh:mm:ss.nnnnn".\
+
+- *time*\
+  - Usado para armazenar horário.\
+  - No formato: "hh:mm:ss.nnnnn".\
+
+## Cadeias de caracteres
+
+- *char*\
+  - Aceita somente determinado número de caracteres estabelecidos, tamanho fixo.\
+  - Sintaxe:\
+  char(3)\
+  
+- *varchar*\
+  - Aceita número de caracteres variável, determinar tamanho máximo.\
+  - Sintaxe:\
+  varchar(50)\
+  
+- *text*\
+  - *text* é usado para grandes pedaços de dados de *string*. Se o comprimento do texto exceder um determinado limite, o texto será armazenado fora da linha.\
+  - Usado se precisar armazenar textos grandes no seu banco de dados.\
+  - Sintaxe:\
+  *text* (*tamanho_max_string*)\
+
+## Cadeias de caracteres Unicode
+
+- *nchar*\
+- *nvarchar*\
+- *ntext*\
+
+## Cadeia de caracteres binária
+
+- *binary*\
+- *varbinary*\
+- *imagem*\
+
+## Outros tipos de dados
+
+- *cursor*\
+- *rowversion*\
+- *hierarchyid*\
+- *uniqueidentifier*\
+- *sql_variant*\
+- *xml*\
+- *table*\
 
 \newpage
 
@@ -916,7 +1030,14 @@ Tabela_ASCII
 
 ### Declaração de variáveis - **DECLARE**
 
+- As variáveis são declaradas no corpo de uma **PROCEDURE**, ou **TRIGGER**, com a instrução **DECLARE** e valores são atribuidos com uma instrução **SET** ou **SELECT**.\
 
+- Depois da declaração, todas as variáveis são inicializada com **NULL**, a menos que um valor seja fornecido como parte da declaração.\
+
+- Os nomes de variáveis devem começar com uma arroba '\@'.\
+
+- Sintaxe:\
+**DECLARE** *\@variavel_local* *tipo* (= *valor_inicialização*)\
 
 \newpage
 
@@ -945,7 +1066,7 @@ Tabela_ASCII
 #### Segundo Bloco - Atribuindo valor em variáveis via **SELECT**
 - Insere nas variáveis valores vindos de tabelas, que são inseridos pelo comando "**SELECT**".\
 - Sintaxe:\
-**SELECT** *\@nome_variavel1*  = *nome_coluna/campo* **FROM** **INSERTED** (ou **DELETED**)\
+**SELECT** *\@nome_variavel1*  = *nome_coluna* **FROM** **INSERTED** (ou **DELETED**)\
 ... \
 
 #### Terceiro Bloco - Atribuindo valor em variáveis via funções
