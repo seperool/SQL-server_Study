@@ -1176,6 +1176,92 @@ style="height:15cm" alt="Tabela de Conversão de Dados" />
 
 ## 11.2 **CREATE TRIGGER**
 
+-   Comando usado para criação de **TRIGGER**.  
+
+-   *DML* (*Data Manipulation Language* - Linguagem de Manipulação de
+    Dados), no contexto que é usado no **TRIGGER**, pode ser substituido
+    por algum comando como **INSERT**, **UPDATE** ou **DELETE**.
+    Definindo assim qual o comando que dispara o **TRIGGER**
+    (gatilho).  
+
+### 11.2.1 **TRIGGER** de modificação especificada da tabela
+
+-   Sintaxe:  
+    **CREATE TRIGGER** *nome_TRIGGER*  
+    **ON** *DBO.tabela*  
+    **FOR** *DML*  
+    **AS**  
+
+    -   Primeiro Bloco - declaração de variaveis (**DECLARE**)  
+        **DECLARE** *@variavel_local* *tipo* (= *valor_inicialização*)  
+
+    -   Segundo Bloco - Atribuindo valor em variáveis via **SELECT**  
+        **SELECT** *@variável_recebe_select* = *coluna_tabela* **FROM**
+        **INSERTED** (ou **DELETED**)  
+
+    -   Terceiro Bloco - Atribuindo valor em variáveis via funções  
+        **SET** *@variável_função* = **GETDATE**()  
+        **SET** *@variável_mensagem* = ‘*VALOR INSERIDO PELA TRIGGER
+        TRG_ATUALIZA_PRECO*’  
+
+    -   Quarto Bloco - INSERT dados na tabela do **TRIGGER**  
+        **INSERT INTO** *tabela_auditoria*  
+        (*PRODUTO*, *CATEGORIA*, *PRECOANTIGO*, *PRECONOVO*, *DATA*,
+        *USUARIO*, *MENSAGEM*)  
+        **VALUES**  
+        (@PRODUTO, @CATEGORIA, @PRECO, @PRECONOVO, @DATA, @USUARIO,
+        @ACAO)  
+
+    -   Bloco de mensagem ao usuário - **PRINT**  
+        **PRINT** ‘*TRIGGER EXECUTADO COM SUCESSO*’  
+
+**GO**  
+
+### 11.2.2 **TRIGGER** olhando uma modificação especifa de uma coluna
+
+-   O comando “**IF** *DML*(*coluna*)”, seguido de **BEGIN** *bloco de
+    comandos* **END**, define qual comando *DML* em respeito a uma
+    coluna, em especificada, despara o **TRIGGER**.  
+
+-   Ou seja, não dispara o **TRIGGER** em qualquer coluna, mesmo que
+    seja o *DML* especificado.  
+
+-   Lembrar de ao usar **IF**, identar depois do **BEGIN**. E terminar o
+    **IF** com **END**.  
+
+-   Sintaxe:  
+    **CREATE TRIGGER** *nome_TRIGGER*  
+    **ON** *DBO.tabela*  
+    **FOR** *DML* **AS**  
+    **IF** *DML*(*coluna*)  
+    **BEGIN**  
+
+    -   Primeiro Bloco - declaração de variaveis (**DECLARE**)  
+        **DECLARE** *@variavel_local* *tipo* (= *valor_inicialização*)  
+
+    -   Segundo Bloco - Atribuindo valor em variáveis via **SELECT**  
+        **SELECT** *@variável_recebe_select* = *coluna_tabela* **FROM**
+        **INSERTED** (ou **DELETED**)  
+
+    -   Terceiro Bloco - Atribuindo valor em variáveis via funções  
+        **SET** *@variável_função* = **GETDATE**()  
+        **SET** *@variável_mensagem* = ‘*VALOR INSERIDO PELA TRIGGER
+        TRG_ATUALIZA_PRECO*’  
+
+    -   Quarto Bloco - INSERT dados na tabela do **TRIGGER**  
+        **INSERT INTO** *tabela_auditoria*  
+        (*PRODUTO*, *CATEGORIA*, *PRECOANTIGO*, *PRECONOVO*, *DATA*,
+        *USUARIO*, *MENSAGEM*)  
+        **VALUES**  
+        (@PRODUTO, @CATEGORIA, @PRECO, @PRECONOVO, @DATA, @USUARIO,
+        @ACAO)  
+
+    -   Bloco de mensagem ao usuário - **PRINT**  
+        **PRINT** ‘*TRIGGER EXECUTADO COM SUCESSO*’  
+
+**END**  
+**GO**  
+
 ## 11.3 **ALTER TRIGGER**
 
 ## 11.4 **DROP TRIGGER**
