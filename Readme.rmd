@@ -7,14 +7,14 @@ output:
   md_document:
     number_sections: true
     variant: markdown_github
-  word_document:
-    toc: TRUE
+  odt_document:
     number_sections: true
   github_document: default
   pdf_document:
     number_sections: true
     toc: TRUE
-  odt_document:
+  word_document:
+    toc: TRUE
     number_sections: true
   html_document:
     number_sections: true
@@ -999,6 +999,34 @@ Tabela_ASCII
 
 - Os comandos a seguir são de *criação* (**CREATE TRIGGER**), *modificação* (**ALTER TRIGGER**) e *pagar* (**DROP TRIGGER**) **TRIGGERS**.\
 
+- É uso comum do **TRIGGER** salvar modificação de dados (**INSERT**, **UPDATE** e **DELETE**) em uma tabela que sirva de *backup* dos dados, e/ou uma tabela que sirva para auditoria das modificações desses dados.\
+  - Logo, se faz necessario preparar antes da criação do **TRIGGER** (**CREATE TRIGGER**), a tabela para receber os dados enviados pelo **TRIGGER** (**CREATE TABLE**).\
+
+\newpage
+
+## Principais fatores a serem auditados por um **TRIGGER**
+- Usuário responsável pela modificação.\
+*SUSER_NAME*()\
+- Data da modificação.\
+*GETDATE*()\
+- *STRING* (ou *CHAR*) que define o tipo de ação de modificação executada.\
+  - **SET** \@ACAO = 'VALOR MODIFICADO *DML* PELA TRIGGER *nome_TRIGGER* [NA *nome_coluna*]'\
+  - **SET** \@ACAO = 'INS/UPD/DEL'\
+- Salvar dados do registro/linha que não foram alterados.\
+- Caso **INSERT**:\
+  - Dados inseridos na tabela, **INSERTED**.\
+  **SELECT** *\@variável_recebe_select* = *coluna_tabela* **FROM** **INSERTED**\
+- Caso **UPDATE**:\
+  - Dados antigos (antes da modificação), **DELETED**.\
+  **SELECT** *\@variável_recebe_select* = *coluna_tabela* **FROM** **DELETED**\
+  - Dados novos (depois da modificação), **INSERTED**.\
+  **SELECT** *\@variável_recebe_select* = *coluna_tabela* **FROM** **INSERTED**\
+- Caso **DELETE**:\
+  - Dados apagados da tabela (antes do apagamento), **DELETED**.\
+  **SELECT** *\@variável_recebe_select* = *coluna_tabela* **FROM** **DELETED**\
+
+\newpage
+
 ## Conceitos Préliminares - Argumentos temporais (INSERTED/DELETED) e Declaração de variáveis (DECLARE)
 
 ### Argumentos temporais - **INSERTED** e **DELETED**
@@ -1030,7 +1058,11 @@ Tabela_ASCII
 
 ### Declaração de variáveis - **DECLARE**
 
-- As variáveis são declaradas no corpo de uma **PROCEDURE**, ou **TRIGGER**, com a instrução **DECLARE** e valores são atribuidos com uma instrução **SET** ou **SELECT**.\
+- As variáveis são declaradas no corpo de uma **PROCEDURE**, ou **TRIGGER**, com a instrução **DECLARE**.\
+
+- Valores são atribuidos as variáveis com as instrução **SELECT** ou **SET**.\
+  - Sendo **SELECT**, valores vindos de tabelas.\
+  - Sendo **SET**, valores vindos de funções, ou valores literais.\
 
 - Depois da declaração, todas as variáveis são inicializada com **NULL**, a menos que um valor seja fornecido como parte da declaração.\
 
@@ -1044,6 +1076,11 @@ Tabela_ASCII
 ## **CREATE TRIGGER**
 
 - Comando usado para criação de **TRIGGER**.\
+
+- Argumentos do **TRIGGER**:
+  - *nome_TRIGGER* é o nome do **TRIGGER** que deseja criar, ver "boas praticas \- Nome do **TRIGGER**".\
+  - **ON** especifica a tabela ou **VIEW** na qual o gatilho (**TRIGGER**) é criado.\
+  - **FOR** indica quando o gatilho deve ser acionado quando um evento acontece (**INSERT**, **UPDATE** ou **DELETE**).\
 
 - *DML* (*Data Manipulation Language* \- Linguagem de Manipulação de Dados), no contexto que é usado no **TRIGGER**, pode ser substituido por algum comando como **INSERT**, **UPDATE** ou **DELETE**. Definindo assim qual o comando que dispara o **TRIGGER** (gatilho).\
 
@@ -1117,11 +1154,45 @@ Tabela_ASCII
 
 ## **ALTER TRIGGER**
 
+- Modifica um **TRIGGER** existente.\
+
+- Argumentos do **TRIGGER**:
+  - *nome_TRIGGER* é o nome do TRIGGER que deseja alterar.\
+  - **ON** especifica a tabela ou **VIEW** na qual o gatilho (**TRIGGER**) é criado.\
+  - **FOR** indica quando o gatilho deve ser acionado quando um evento acontece (**INSERT**, **UPDATE** ou **DELETE**).\
+
+- Sintaxe:\
+**ALTER TRIGGER** *nome_TRIGGER*\
+**ON** *DBO.tabela*\
+**FOR** *DML* **AS**\
+[*Comandos SQL*] \
+**GO**\
+
+
 ## **DROP TRIGGER**
+
+- Apaga/deleta o **TRIGGER**.\
+
+- Sintaxe:\
+**DROP TRIGGER** *nome_TRIGGER*\
+**GO**\
+ou\
+**DROP TRIGGER** *dbo.nome_TRIGGER*\
+**GO**\
 
 \newpage
 
 ## Boas Práticas
+
+### Nome do TRIGGER
+
+- Para normalizar os nomes, diferenciando dos demais, é indicado usar:\
+"TR_"(ou "TRG_")+*DML*+"_"+*tabela/campo_ou_coluna*\
+
+- *DML*:\
+  - **INSERT**\
+  - **UPDATE**\
+  - **DELETE**\
 
 ### Blocos de Programação
 

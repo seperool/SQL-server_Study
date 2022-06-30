@@ -1124,16 +1124,53 @@ style="height:15cm" alt="Tabela de Conversão de Dados" />
     *modificação* (**ALTER TRIGGER**) e *pagar* (**DROP TRIGGER**)
     **TRIGGERS**.  
 
-## 11.1 Conceitos Préliminares - Argumentos temporais (INSERTED/DELETED) e Declaração de variáveis (DECLARE)
+-   É uso comum do **TRIGGER** salvar modificação de dados (**INSERT**,
+    **UPDATE** e **DELETE**) em uma tabela que sirva de *backup* dos
+    dados, e/ou uma tabela que sirva para auditoria das modificações
+    desses dados.  
 
-### 11.1.1 Argumentos temporais - **INSERTED** e **DELETED**
+    -   Logo, se faz necessario preparar antes da criação do **TRIGGER**
+        (**CREATE TRIGGER**), a tabela para receber os dados enviados
+        pelo **TRIGGER** (**CREATE TABLE**).  
+
+## 11.1 Principais fatores a serem auditados por um **TRIGGER**
+
+-   Usuário responsável pela modificação.  
+    *SUSER_NAME*()  
+-   Data da modificação.  
+    *GETDATE*()  
+-   *STRING* (ou *CHAR*) que define o tipo de ação de modificação
+    executada.  
+    -   **SET** @ACAO = ‘VALOR MODIFICADO *DML* PELA TRIGGER
+        *nome_TRIGGER* \[NA *nome_coluna*\]’  
+    -   **SET** @ACAO = ‘INS/UPD/DEL’  
+-   Salvar dados do registro/linha que não foram alterados.  
+-   Caso **INSERT**:  
+    -   Dados inseridos na tabela, **INSERTED**.  
+        **SELECT** *@variável_recebe_select* = *coluna_tabela* **FROM**
+        **INSERTED**  
+-   Caso **UPDATE**:  
+    -   Dados antigos (antes da modificação), **DELETED**.  
+        **SELECT** *@variável_recebe_select* = *coluna_tabela* **FROM**
+        **DELETED**  
+    -   Dados novos (depois da modificação), **INSERTED**.  
+        **SELECT** *@variável_recebe_select* = *coluna_tabela* **FROM**
+        **INSERTED**  
+-   Caso **DELETE**:  
+    -   Dados apagados da tabela (antes do apagamento), **DELETED**.  
+        **SELECT** *@variável_recebe_select* = *coluna_tabela* **FROM**
+        **DELETED**  
+
+## 11.2 Conceitos Préliminares - Argumentos temporais (INSERTED/DELETED) e Declaração de variáveis (DECLARE)
+
+### 11.2.1 Argumentos temporais - **INSERTED** e **DELETED**
 
 -   São áreas do sistema que guardam dados.  
 -   Comparando com MySQL:  
     -   **INSERTED** = **AFTER** (depois)  
     -   **DELETED** = **BEFORE** (antes)  
 
-#### 11.1.1.1 **INSERTED**
+#### 11.2.1.1 **INSERTED**
 
 -   A área **INSERTED** guarda os dados novos inseridos, ou seja, ao
     usar o **INSERTED** pega os novos dados (“depois” de) inseridos na
@@ -1146,7 +1183,7 @@ style="height:15cm" alt="Tabela de Conversão de Dados" />
         Usado para guardar os novos dados modificados na tabela, guarda
         os dados “depois” de modificados.  
 
-#### 11.1.1.2 **DELETED**
+#### 11.2.1.2 **DELETED**
 
 -   A área **DELETED** guarda os dados antigos, ou seja, ao usar o
     **DELETED** pega os antigos dados (“antes” de) modificados na
@@ -1159,11 +1196,16 @@ style="height:15cm" alt="Tabela de Conversão de Dados" />
         Usado para guardar os antigos dados modificados na tabela,
         guarda os dados “antes” de modifica-los.  
 
-### 11.1.2 Declaração de variáveis - **DECLARE**
+### 11.2.2 Declaração de variáveis - **DECLARE**
 
 -   As variáveis são declaradas no corpo de uma **PROCEDURE**, ou
-    **TRIGGER**, com a instrução **DECLARE** e valores são atribuidos
-    com uma instrução **SET** ou **SELECT**.  
+    **TRIGGER**, com a instrução **DECLARE**.  
+
+-   Valores são atribuidos as variáveis com as instrução **SELECT** ou
+    **SET**.  
+
+    -   Sendo **SELECT**, valores vindos de tabelas.  
+    -   Sendo **SET**, valores vindos de funções, ou valores literais.  
 
 -   Depois da declaração, todas as variáveis são inicializada com
     **NULL**, a menos que um valor seja fornecido como parte da
@@ -1174,9 +1216,18 @@ style="height:15cm" alt="Tabela de Conversão de Dados" />
 -   Sintaxe:  
     **DECLARE** *@variavel_local* *tipo* (= *valor_inicialização*)  
 
-## 11.2 **CREATE TRIGGER**
+## 11.3 **CREATE TRIGGER**
 
 -   Comando usado para criação de **TRIGGER**.  
+
+-   Argumentos do **TRIGGER**:
+
+    -   *nome_TRIGGER* é o nome do **TRIGGER** que deseja criar, ver
+        “boas praticas - Nome do **TRIGGER**”.  
+    -   **ON** especifica a tabela ou **VIEW** na qual o gatilho
+        (**TRIGGER**) é criado.  
+    -   **FOR** indica quando o gatilho deve ser acionado quando um
+        evento acontece (**INSERT**, **UPDATE** ou **DELETE**).  
 
 -   *DML* (*Data Manipulation Language* - Linguagem de Manipulação de
     Dados), no contexto que é usado no **TRIGGER**, pode ser substituido
@@ -1184,7 +1235,7 @@ style="height:15cm" alt="Tabela de Conversão de Dados" />
     Definindo assim qual o comando que dispara o **TRIGGER**
     (gatilho).  
 
-### 11.2.1 **TRIGGER** de modificação especificada da tabela
+### 11.3.1 **TRIGGER** de modificação especificada da tabela
 
 -   Sintaxe:  
     **CREATE TRIGGER** *nome_TRIGGER*  
@@ -1217,7 +1268,7 @@ style="height:15cm" alt="Tabela de Conversão de Dados" />
 
 **GO**  
 
-### 11.2.2 **TRIGGER** olhando uma modificação especifa de uma coluna
+### 11.3.2 **TRIGGER** olhando uma modificação especifa de uma coluna
 
 -   O comando “**IF** *DML*(*coluna*)”, seguido de **BEGIN** *bloco de
     comandos* **END**, define qual comando *DML* em respeito a uma
@@ -1262,18 +1313,56 @@ style="height:15cm" alt="Tabela de Conversão de Dados" />
 **END**  
 **GO**  
 
-## 11.3 **ALTER TRIGGER**
+## 11.4 **ALTER TRIGGER**
 
-## 11.4 **DROP TRIGGER**
+-   Modifica um **TRIGGER** existente.  
 
-## 11.5 Boas Práticas
+-   Argumentos do **TRIGGER**:
 
-### 11.5.1 Blocos de Programação
+    -   *nome_TRIGGER* é o nome do TRIGGER que deseja alterar.  
+    -   **ON** especifica a tabela ou **VIEW** na qual o gatilho
+        (**TRIGGER**) é criado.  
+    -   **FOR** indica quando o gatilho deve ser acionado quando um
+        evento acontece (**INSERT**, **UPDATE** ou **DELETE**).  
+
+-   Sintaxe:  
+    **ALTER TRIGGER** *nome_TRIGGER*  
+    **ON** *DBO.tabela*  
+    **FOR** *DML* **AS**  
+    \[*Comandos SQL*\]  
+    **GO**  
+
+## 11.5 **DROP TRIGGER**
+
+-   Apaga/deleta o **TRIGGER**.  
+
+-   Sintaxe:  
+    **DROP TRIGGER** *nome_TRIGGER*  
+    **GO**  
+    ou  
+    **DROP TRIGGER** *dbo.nome_TRIGGER*  
+    **GO**  
+
+## 11.6 Boas Práticas
+
+### 11.6.1 Nome do TRIGGER
+
+-   Para normalizar os nomes, diferenciando dos demais, é indicado
+    usar:  
+    “TR\_”(ou “TRG\_”)+*DML*+“\_“+*tabela/campo_ou_coluna*  
+
+-   *DML*:  
+
+    -   **INSERT**  
+    -   **UPDATE**  
+    -   **DELETE**  
+
+### 11.6.2 Blocos de Programação
 
 -   São os blocos de programação (instruções **SQL**) dentro do
     **TRIGGER**.  
 
-#### 11.5.1.1 Primeiro Bloco - declaração de variaveis (**DECLARE**)
+#### 11.6.2.1 Primeiro Bloco - declaração de variaveis (**DECLARE**)
 
 -   Espaço usado para declarar todas as variáveis que serão usadas
     dentro do **TRIGGER**.  
@@ -1282,7 +1371,7 @@ style="height:15cm" alt="Tabela de Conversão de Dados" />
     **DECLARE** *@nome_variavel2* *tipo*  
     …  
 
-#### 11.5.1.2 Segundo Bloco - Atribuindo valor em variáveis via **SELECT**
+#### 11.6.2.2 Segundo Bloco - Atribuindo valor em variáveis via **SELECT**
 
 -   Insere nas variáveis valores vindos de tabelas, que são inseridos
     pelo comando “**SELECT**”.  
@@ -1291,7 +1380,7 @@ style="height:15cm" alt="Tabela de Conversão de Dados" />
     (ou **DELETED**)  
     …  
 
-#### 11.5.1.3 Terceiro Bloco - Atribuindo valor em variáveis via funções
+#### 11.6.2.3 Terceiro Bloco - Atribuindo valor em variáveis via funções
 
 -   Insere nas variáveis valores vindos de funções ou literais, que são
     inseridos pelo comando “**SET**”.  
@@ -1302,7 +1391,7 @@ style="height:15cm" alt="Tabela de Conversão de Dados" />
     Obs.: *texto* inserido dentro de variável atraves de aspas
     simples.  
 
-#### 11.5.1.4 Quarto Bloco - INSERT dados na tabela do **TRIGGER**
+#### 11.6.2.4 Quarto Bloco - INSERT dados na tabela do **TRIGGER**
 
 -   Inserindo dados das variáveis na tabela de armazenamento do
     **TRIGGER**, tabela normalmente de auditoria dos dados.  
@@ -1315,7 +1404,7 @@ style="height:15cm" alt="Tabela de Conversão de Dados" />
     *@nome_variavel4*, *@nome_variavel5*, *@nome_variavel6*,
     *@nome_variavel7*)  
 
-#### 11.5.1.5 Mensagem ao usuário - **PRINT**
+#### 11.6.2.5 Mensagem ao usuário - **PRINT**
 
 -   A função **PRINT** imprime uma mensagem na tela.  
 -   Este é o espaço no bloco de programação para deixar alguma mensagem
