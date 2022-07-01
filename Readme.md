@@ -1414,9 +1414,106 @@ style="height:15cm" alt="Tabela de Conversão de Dados" />
 -   Sintaxe:  
     **PRINT** ‘*TRIGGER EXECUTADO COM SUCESSO*’  
 
-# 12 Categorias de comandos
+# 12 **SCHEMAS**
 
-## 12.1 **DML** - *Data Manipulation Language* (Linguagem de Manipulação de Dados)
+-   **SCHEMA** é um “*Divisor logico de banco de dados*”.  
+
+-   Os **SCHEMAS** são uma coleção de objetos dentro de um determinado
+    database (banco de dados), servem para agrupar objetos (tabelas, …)
+    no nível de aplicação como também para simplesmente fazer divisões
+    departamentais.  
+
+-   **SCHEMAS** são bastante utilizados em padrões de sistema de banco
+    de dados.  
+
+-   São muito importantes para a performance e segurança.  
+
+    -   Podendo receber ou ser retirada permissões dos **SCHEMAS**, por
+        consequência os objetos que ela contém (tabelas) herdam essas
+        características.  
+    -   Facilitando assim dar permissões em certas tabelas a
+        determinados usuários, permitindo ao usuário acesso a
+        determinado **SCHEMA**.  
+
+-   Aparece no nome da tabela no banco de dados. Cada tabela pertence a
+    um **SCHEMA**.  
+    \[nome\_**SCHEMA**.\]*nome_tabela*  
+
+-   Todo **SCHEMA** tem um dono.  
+
+    -   Caso o dono não seja especificado, o dono é o usuário que criou
+        o **SCHEMA**.  
+
+-   Todos os **SCHEMAS** do banco de dados (**DATABASE**) ficam salvos
+    nas pastas do **SQL Server** do banco de dados: “*Security* \>
+    *Schemas*”.  
+
+<img src="./Imagens/SCHEMA.jpg" style="height:8cm" />
+
+## 12.1 **SCHEMA** padrão do sistema - *dbo*
+
+-   O padrão do sistema é o **SCHEMA** *dbo*, ou seja, se você criar uma
+    tabela ou fazer uma inserção em uma tabela e não fazer referencia a
+    um **SCHEMA**, ela será criada ou o dado será inserido no **SCHEMA**
+    *dbo* (padrão).  
+
+## 12.2 Criação de **SCHEMA**
+
+-   **CREATE SCHEMA**  
+    Cria um schema com determinado nome no sistema.  
+
+-   **AUTHORIZATION**  
+    Dá determinada permissão ao SCHEMA.  
+
+-   Sintaxe:  
+    **CREATE SCHEMA** *nome_SCHEMA*  
+    **AUTHORIZATION** *dbo* \[exemplo de autorização\]  
+
+## 12.3 Criação de um **SCHEMA** no **SSMS**
+
+-   Para criar um **SCHEMA**:  
+
+    -   No Pesquisador de Objetos, expanda a pasta Bancos de Dados.  
+
+    -   Expanda o banco de dados no qual o novo esquema (**SCHEMA**) de
+        banco de dados será criado.  
+
+    -   Clique com o botão direito do mouse na pasta Segurança , aponte
+        para Novo e selecione Esquema (**SCHEMA**).  
+
+    -   Na caixa de diálogo Esquema – Novo , na página Geral , insira um
+        nome do novo esquema na caixa Nome do esquema (**SCHEMA**).  
+
+    -   Na caixa Proprietário do esquema , digite o nome de um usuário
+        de banco de dados ou função para ser o proprietário da
+        propriedade do esquema (**SCHEMA**). Como alternativa, clique em
+        Pesquisar para abrir a caixa de diálogo Pesquisar Funções e
+        Usuários.  
+
+    -   Clique em OK.  
+
+## 12.4 Adicionando uma tabela a um **SCHEMA**
+
+-   Para adicionar uma determinar tabela a um **SCHEMA**, basta na
+    criação da tabela (**CREATE TABLE**) identificar o **SCHEMA** qual
+    ela vai pertencer.  
+
+-   A identificação do **SCHEMA** vai junto ao nome da tabela.  
+
+-   Sintaxe:  
+    **CREATE TABLE** *nome_SCHEMA*.*nome_tabela* (  
+    …  
+    )  
+    **GO**  
+
+-   Se uma tabela for colocada num esquema (**SCHEMA**) que não seja o
+    *dbo*, sempre que ela for nomeada, lembrar de especificar o esquema
+    junto com o nome.  
+    *nome_SCHEMA*.*nome_tabela*  
+
+# 13 Categorias de comandos
+
+## 13.1 **DML** - *Data Manipulation Language* (Linguagem de Manipulação de Dados)
 
 É um conjunto de instruções usada nas consultas e modificações dos dados
 armazenados nas tabelas do banco de dados.  
@@ -1469,7 +1566,7 @@ armazenados nas tabelas do banco de dados.
         \* Mais detalhes no “*Modulo 26 PARTE 4 - Importação de arquivo
         de dados*”.  
 
-## 12.2 **DDL** - *Data Definition Language* (Linguagem de definição de dados)
+## 13.2 **DDL** - *Data Definition Language* (Linguagem de definição de dados)
 
 É um conjunto de instruções usado para criar e modificar as estruturas
 dos objetos armazenados no banco de dados.  
@@ -1583,14 +1680,14 @@ dos objetos armazenados no banco de dados.
         **TRUNCATE** **TABLE** *nome_tabela*  
         **GO**  
 
-## 12.3 **DCL** - *Data Control Language* (Linguagem de Controle de Dados)
+## 13.3 **DCL** - *Data Control Language* (Linguagem de Controle de Dados)
 
 São usados para controle de acesso e gerenciamento de permissões para
 usuários em no banco de dados. Com eles, pode facilmente permitir ou
 negar algumas ações para usuários nas tabelas ou registros (segurança de
 nível de linha).  
 
-### 12.3.1 Login
+### 13.3.1 Login
 
 -   **CREATE LOGIN**  
     -   A instrução **CREATE LOGIN** cria uma identidade usada para se
@@ -1682,7 +1779,7 @@ nível de linha).
         **FROM** *master.sys.sql_logins*  
         **GO**  
 
-### 12.3.2 USER - Usuário
+### 13.3.2 USER - Usuário
 
 -   **CREATE USER**  
     -   A instrução CREATE USER cria um usuário de banco de dados para
@@ -1726,7 +1823,7 @@ nível de linha).
         **DROP USER** *user_nome*  
         **GO**  
 
-### 12.3.3 Permissões
+### 13.3.3 Permissões
 
 -   **GRANT**  
 
@@ -1813,7 +1910,7 @@ nível de linha).
     -   **GRANT OPTION** — permite conceder ou remover privilégios de
         outros usuários.  
 
-## 12.4 **TCL** - *Tool Command Language* (Linguagem de Comandos de Ferramentas)
+## 13.4 **TCL** - *Tool Command Language* (Linguagem de Comandos de Ferramentas)
 
 São usados para gerenciar as mudanças feitas por instruções DML. Ele
 permite que as declarações a serem agrupadas em transações lógicas.  
@@ -1841,9 +1938,9 @@ permite que as declarações a serem agrupadas em transações lógicas.
         **COMMIT**  
         **GO**  
 
-# 13 Observações
+# 14 Observações
 
-## 13.1 Problemas para fazer *login* o **SSMS**
+## 14.1 Problemas para fazer *login* o **SSMS**
 
 -   Caso o **SSMS** não identifique o usuário “sa” e senha como deveria,
     seguir os seguintes passos:  
@@ -1856,7 +1953,7 @@ permite que as declarações a serem agrupadas em transações lógicas.
     -   Ao final da reparação, abrir o **SSMS** novamente e fazer o
         *login*.  
 
-## 13.2 Abreviações do nome de restrições (**CONSTRAINTS**) no dicionario de dados - sistema (boas práticas)
+## 14.2 Abreviações do nome de restrições (**CONSTRAINTS**) no dicionario de dados - sistema (boas práticas)
 
 -   Padronização do nome das restrições salvas no sistema.  
 -   Abreviações do nome das restrições (**CONSTRAINTS**), para salvar no
@@ -1866,13 +1963,13 @@ permite que as declarações a serem agrupadas em transações lógicas.
     -   ‘**UQ**’ é abreviação de “**UNIQUE**”  
     -   ‘**CK**’ é abreviação de “**CHECK**”  
 
-## 13.3 Formato da data no sistema
+## 14.3 Formato da data no sistema
 
 “aaaa-mm-dd hh:mm:ss.mmm”  
 (ano-mês-dia hora:minuto:segundos.milisegundos)  
 
-# 14 Andamento dos Estudos
+# 15 Andamento dos Estudos
 
-## 14.1 Assunto em andamento
+## 15.1 Assunto em andamento
 
 Atualmente estou estudando Módulo 27 - AULA 107 e 108.  

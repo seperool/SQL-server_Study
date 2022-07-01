@@ -7,14 +7,14 @@ output:
   md_document:
     number_sections: true
     variant: markdown_github
-  odt_document:
-    number_sections: true
-  github_document: default
   pdf_document:
     number_sections: true
     toc: TRUE
+  github_document: default
   word_document:
     toc: TRUE
+    number_sections: true
+  odt_document:
     number_sections: true
   html_document:
     number_sections: true
@@ -1235,6 +1235,81 @@ Obs.: *texto* inserido dentro de variável atraves de aspas simples.\
 - A mensagem a ser passada pela função **PRINT**, fica entre aspas simples(''), aspas duplas retorna **ERRO**.\
 - Sintaxe:\
 **PRINT** '*TRIGGER EXECUTADO COM SUCESSO*'\
+
+\newpage
+
+# **SCHEMAS**
+
+- **SCHEMA** é um "*Divisor logico de banco de dados*".\
+
+- Os **SCHEMAS** são uma coleção de objetos dentro de um determinado database (banco de dados), servem para agrupar objetos (tabelas, ...) no nível de aplicação como também para simplesmente fazer divisões departamentais.\
+
+- **SCHEMAS** são bastante utilizados em padrões de sistema de banco de dados.\
+
+- São muito importantes para a performance e segurança.\
+  - Podendo receber ou ser retirada permissões dos **SCHEMAS**, por consequência os objetos que ela contém (tabelas) herdam essas características.\
+  - Facilitando assim dar permissões em certas tabelas a determinados usuários, permitindo ao usuário acesso a determinado **SCHEMA**.\
+
+- Aparece no nome da tabela no banco de dados. Cada tabela pertence a um **SCHEMA**.\
+[nome_**SCHEMA**.]*nome_tabela*\
+
+- Todo **SCHEMA** tem um dono.\
+  - Caso o dono não seja especificado, o dono é o usuário que criou o **SCHEMA**.\
+
+- Todos os **SCHEMAS** do banco de dados (**DATABASE**) ficam salvos nas pastas do **SQL Server** do banco de dados: "*Security* > *Schemas*".\
+
+![](./Imagens/SCHEMA.jpg){height=8cm}
+
+\newpage
+
+## **SCHEMA** padrão do sistema - *dbo*
+
+- O padrão do sistema é o **SCHEMA** *dbo*, ou seja, se você criar uma tabela ou fazer uma inserção em uma tabela e não fazer referencia a um **SCHEMA**, ela será criada ou o dado será inserido no **SCHEMA** *dbo* (padrão).\
+
+## Criação de **SCHEMA**
+
+- **CREATE SCHEMA**\
+Cria um schema com determinado nome no sistema.\
+
+- **AUTHORIZATION**\
+Dá determinada permissão ao SCHEMA.\
+
+- Sintaxe:\
+**CREATE SCHEMA** *nome_SCHEMA*\
+**AUTHORIZATION** *dbo* [exemplo de autorização] \
+
+## Criação de um **SCHEMA** no **SSMS**
+
+- Para criar um **SCHEMA**:\
+
+  - No Pesquisador de Objetos, expanda a pasta Bancos de Dados.\
+  
+  - Expanda o banco de dados no qual o novo esquema (**SCHEMA**) de banco de dados será criado.\
+  
+  - Clique com o botão direito do mouse na pasta Segurança , aponte para Novo e selecione Esquema (**SCHEMA**).\
+  
+  - Na caixa de diálogo Esquema – Novo , na página Geral , insira um nome do novo esquema na caixa Nome do esquema (**SCHEMA**).\
+
+  - Na caixa Proprietário do esquema , digite o nome de um usuário de banco de dados ou função para ser o proprietário da propriedade do esquema (**SCHEMA**). Como alternativa, clique em Pesquisar para abrir a caixa de diálogo Pesquisar Funções e Usuários.\
+  
+  - Clique em OK.\
+  
+\newpage
+
+## Adicionando uma tabela a um **SCHEMA**
+
+- Para adicionar uma determinar tabela a um **SCHEMA**, basta na criação da tabela (**CREATE TABLE**) identificar o **SCHEMA** qual ela vai pertencer.\
+
+- A identificação do **SCHEMA** vai junto ao nome da tabela.\
+
+- Sintaxe:\
+**CREATE TABLE** *nome_SCHEMA*.*nome_tabela* (\
+...\
+)\
+**GO**\
+
+- Se uma tabela for colocada num esquema (**SCHEMA**) que não seja o *dbo*, sempre que ela for nomeada, lembrar de especificar o esquema junto com o nome.\
+*nome_SCHEMA*.*nome_tabela*\
 
 \newpage
 
