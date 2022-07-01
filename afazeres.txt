@@ -1,11 +1,9 @@
-ESCRITO EM 30/6/22
+ESCRITO EM 01/7/22
 ---
-PARA 01/7/22
+PARA 02/7/22
 ---
 Subir github:
-	- SCHEMA:
-		- SCHEMA
-		- CREATE SCHEMA
+
 Estudar:
 	- Modulo 27 - AULA 109
 afazeres:
