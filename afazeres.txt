@@ -3,14 +3,13 @@ ESCRITO EM 01/7/22
 PARA 02/7/22
 ---
 Subir github:
-
+	- SCHEMA:
+		- Permissões SCHEMA
+		- ALTER SCHEMA
 Estudar:
 	- Modulo 27 - AULA 109
 afazeres:
-	- SCHEMA:
-		- Opções adicionais
-		- schema_owner
-	- tipos de dados
+	- tipo de dados
 	- Conectar os dois bancos
 	- Modulo 27
 pull:
