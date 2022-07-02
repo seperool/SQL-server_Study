@@ -11,14 +11,14 @@ output:
     number_sections: true
     toc: TRUE
   github_document: default
-  word_document:
-    toc: TRUE
-    number_sections: true
   odt_document:
     number_sections: true
   html_document:
     number_sections: true
     df_print: paged
+  word_document:
+    toc: TRUE
+    number_sections: true
 ---
 
 \newpage
@@ -1240,7 +1240,7 @@ Obs.: *texto* inserido dentro de variável atraves de aspas simples.\
 
 # **SCHEMAS**
 
-- **SCHEMA** é um "*Divisor logico de banco de dados*".\
+- **SCHEMA** é um "*Divisor lógico de banco de dados*".\
 
 - Os **SCHEMAS** são uma coleção de objetos dentro de um determinado database (banco de dados), servem para agrupar objetos (tabelas, ...) no nível de aplicação como também para simplesmente fazer divisões departamentais.\
 
@@ -1248,7 +1248,8 @@ Obs.: *texto* inserido dentro de variável atraves de aspas simples.\
 
 - São muito importantes para a performance e segurança.\
   - Podendo receber ou ser retirada permissões dos **SCHEMAS**, por consequência os objetos que ela contém (tabelas) herdam essas características.\
-  - Facilitando assim dar permissões em certas tabelas a determinados usuários, permitindo ao usuário acesso a determinado **SCHEMA**.\
+  - Facilitando dar permissões em certas tabelas a determinados usuários, permitindo ao usuário acesso a determinado **SCHEMA**.\
+  - A propriedade dos objetos contidos pelo esquema pode ser transferida para qualquer entidade de segurança no nível de banco de dados, mas o proprietário do esquema sempre retém a permissão *CONTROL* nos objetos do esquema.\
 
 - Aparece no nome da tabela no banco de dados. Cada tabela pertence a um **SCHEMA**.\
 [nome_**SCHEMA**.]*nome_tabela*\
@@ -1258,7 +1259,7 @@ Obs.: *texto* inserido dentro de variável atraves de aspas simples.\
 
 - Todos os **SCHEMAS** do banco de dados (**DATABASE**) ficam salvos nas pastas do **SQL Server** do banco de dados: "*Security* > *Schemas*".\
 
-![](./Imagens/SCHEMA.jpg){height=8cm}
+![](./Imagens/SCHEMA.jpg){height=5cm}
 
 \newpage
 
@@ -1268,15 +1269,17 @@ Obs.: *texto* inserido dentro de variável atraves de aspas simples.\
 
 ## Criação de **SCHEMA**
 
+- Para especificar outro usuário como o proprietário do esquema que está sendo criado, o chamador deve ter a permissão *IMPERSONATE* no usuário em questão. Se uma função de banco de dados for especificada como o proprietário, o chamador deverá atender a um dos critérios a seguir: associação na função ou a permissão ALTER na função.\
+
 - **CREATE SCHEMA**\
 Cria um schema com determinado nome no sistema.\
 
 - **AUTHORIZATION**\
-Dá determinada permissão ao SCHEMA.\
+Define quem é o proprietario do **SCHEMA** criado.\
 
 - Sintaxe:\
 **CREATE SCHEMA** *nome_SCHEMA*\
-**AUTHORIZATION** *dbo* [exemplo de autorização] \
+**AUTHORIZATION** *nome_usuário*\
 
 ## Criação de um **SCHEMA** no **SSMS**
 
@@ -1288,7 +1291,7 @@ Dá determinada permissão ao SCHEMA.\
   
   - Clique com o botão direito do mouse na pasta Segurança , aponte para Novo e selecione Esquema (**SCHEMA**).\
   
-  - Na caixa de diálogo Esquema – Novo , na página Geral , insira um nome do novo esquema na caixa Nome do esquema (**SCHEMA**).\
+  - Na caixa de diálogo Esquema \- Novo , na página Geral , insira um nome do novo esquema na caixa Nome do esquema (**SCHEMA**).\
 
   - Na caixa Proprietário do esquema , digite o nome de um usuário de banco de dados ou função para ser o proprietário da propriedade do esquema (**SCHEMA**). Como alternativa, clique em Pesquisar para abrir a caixa de diálogo Pesquisar Funções e Usuários.\
   
@@ -1310,6 +1313,51 @@ Dá determinada permissão ao SCHEMA.\
 
 - Se uma tabela for colocada num esquema (**SCHEMA**) que não seja o *dbo*, sempre que ela for nomeada, lembrar de especificar o esquema junto com o nome.\
 *nome_SCHEMA*.*nome_tabela*\
+
+## Permissões do **SCHEMA**
+
+- Comandos auxiliares para dar ou revogar permissões atraves do SCHEMA.\
+
+- Para dar dar ou revogar privilegios a outros usuarios por esta forma, o dono do **SCHEMA** precisa ter esse privelgio.\
+
+- Sintaxe:\
+**CREATE SCHEMA** *nome_SCHEMA* **AUTHORIZATION** *nome_usuário_dono*\
+  **GRANT** *lista_privilegios* **ON** *[SCHEMA::database.]tabela* **TO** *[outro_]usuário*\
+  **REVOKE**  *lista_privilegios* **ON** *[SCHEMA::database.]tabela* **FROM** *[outro_]usuário*\
+  **DENY** *lista_privilegios* **ON** *[SCHEMA::database.]tabela* **TO** *[outro_]usuário*\
+**GO**\
+
+- Sobre permissões:\
+  - **GRANT**\
+  Consede permissões, se o criador tiver essa autorização do sistema.\
+  - **REVOKE**\
+  Cancela permissões.\
+  - **DENY**\
+  Impedi explicitamente que um usuário receba uma permissão específica, mesmo herdando ela de alguma forma.\
+
+- Note que **REVOKE** usa **FROM** ao inves de **TO**.\
+
+- Para mais detalhes ver capitulo "Categorias de comandos \- **DCL**"
+
+## **ALTER SCHEMA**
+
+- Permite apenas transferir propriedade de uma tabela, ou seja, transferir uma tabela de um **SCHEMA** para outro.\
+
+- Sintaxe:\
+  - Transferir tabela entre SCHEMAS:\
+  **ALTER SCHEMA** *novo_schema* **TRANSFER** *antigo_schema.tabela*\
+  **GO**\
+  - Transferir do dbo para um novo_schema:\
+  **ALTER SCHEMA** *novo_schema* **TRANSFER** **OBJECT**::*dbo.tabela*\  
+  **GO**\
+
+## Listar todos os **SCHEMAS** do banco de dados
+
+- Comando para listar todos os **SCHEMAS** contidos no banco de dados.\
+
+- Sintaxe:\
+**SELECT** \* **FROM** *sys.schemas*\
+**GO**\
 
 \newpage
 

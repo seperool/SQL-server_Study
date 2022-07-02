@@ -1416,7 +1416,7 @@ style="height:15cm" alt="Tabela de Conversão de Dados" />
 
 # 12 **SCHEMAS**
 
--   **SCHEMA** é um “*Divisor logico de banco de dados*”.  
+-   **SCHEMA** é um “*Divisor lógico de banco de dados*”.  
 
 -   Os **SCHEMAS** são uma coleção de objetos dentro de um determinado
     database (banco de dados), servem para agrupar objetos (tabelas, …)
@@ -1431,9 +1431,13 @@ style="height:15cm" alt="Tabela de Conversão de Dados" />
     -   Podendo receber ou ser retirada permissões dos **SCHEMAS**, por
         consequência os objetos que ela contém (tabelas) herdam essas
         características.  
-    -   Facilitando assim dar permissões em certas tabelas a
-        determinados usuários, permitindo ao usuário acesso a
-        determinado **SCHEMA**.  
+    -   Facilitando dar permissões em certas tabelas a determinados
+        usuários, permitindo ao usuário acesso a determinado
+        **SCHEMA**.  
+    -   A propriedade dos objetos contidos pelo esquema pode ser
+        transferida para qualquer entidade de segurança no nível de
+        banco de dados, mas o proprietário do esquema sempre retém a
+        permissão *CONTROL* nos objetos do esquema.  
 
 -   Aparece no nome da tabela no banco de dados. Cada tabela pertence a
     um **SCHEMA**.  
@@ -1448,7 +1452,7 @@ style="height:15cm" alt="Tabela de Conversão de Dados" />
     nas pastas do **SQL Server** do banco de dados: “*Security* \>
     *Schemas*”.  
 
-<img src="./Imagens/SCHEMA.jpg" style="height:8cm" />
+<img src="./Imagens/SCHEMA.jpg" style="height:5cm" />
 
 ## 12.1 **SCHEMA** padrão do sistema - *dbo*
 
@@ -1459,15 +1463,21 @@ style="height:15cm" alt="Tabela de Conversão de Dados" />
 
 ## 12.2 Criação de **SCHEMA**
 
+-   Para especificar outro usuário como o proprietário do esquema que
+    está sendo criado, o chamador deve ter a permissão *IMPERSONATE* no
+    usuário em questão. Se uma função de banco de dados for especificada
+    como o proprietário, o chamador deverá atender a um dos critérios a
+    seguir: associação na função ou a permissão ALTER na função.  
+
 -   **CREATE SCHEMA**  
     Cria um schema com determinado nome no sistema.  
 
 -   **AUTHORIZATION**  
-    Dá determinada permissão ao SCHEMA.  
+    Define quem é o proprietario do **SCHEMA** criado.  
 
 -   Sintaxe:  
     **CREATE SCHEMA** *nome_SCHEMA*  
-    **AUTHORIZATION** *dbo* \[exemplo de autorização\]  
+    **AUTHORIZATION** *nome_usuário*  
 
 ## 12.3 Criação de um **SCHEMA** no **SSMS**
 
@@ -1481,7 +1491,7 @@ style="height:15cm" alt="Tabela de Conversão de Dados" />
     -   Clique com o botão direito do mouse na pasta Segurança , aponte
         para Novo e selecione Esquema (**SCHEMA**).  
 
-    -   Na caixa de diálogo Esquema – Novo , na página Geral , insira um
+    -   Na caixa de diálogo Esquema - Novo , na página Geral , insira um
         nome do novo esquema na caixa Nome do esquema (**SCHEMA**).  
 
     -   Na caixa Proprietário do esquema , digite o nome de um usuário
@@ -1510,6 +1520,64 @@ style="height:15cm" alt="Tabela de Conversão de Dados" />
     *dbo*, sempre que ela for nomeada, lembrar de especificar o esquema
     junto com o nome.  
     *nome_SCHEMA*.*nome_tabela*  
+
+## 12.5 Permissões do **SCHEMA**
+
+-   Comandos auxiliares para dar ou revogar permissões atraves do
+    SCHEMA.  
+
+-   Para dar dar ou revogar privilegios a outros usuarios por esta
+    forma, o dono do **SCHEMA** precisa ter esse privelgio.  
+
+-   Sintaxe:  
+    **CREATE SCHEMA** *nome_SCHEMA* **AUTHORIZATION**
+    *nome_usuário_dono*  
+    **GRANT** *lista_privilegios* **ON** *\[SCHEMA::database.\]tabela*
+    **TO** *\[outro\_\]usuário*  
+    **REVOKE** *lista_privilegios* **ON** *\[SCHEMA::database.\]tabela*
+    **FROM** *\[outro\_\]usuário*  
+    **DENY** *lista_privilegios* **ON** *\[SCHEMA::database.\]tabela*
+    **TO** *\[outro\_\]usuário*  
+    **GO**  
+
+-   Sobre permissões:  
+
+    -   **GRANT**  
+        Consede permissões, se o criador tiver essa autorização do
+        sistema.  
+    -   **REVOKE**  
+        Cancela permissões.  
+    -   **DENY**  
+        Impedi explicitamente que um usuário receba uma permissão
+        específica, mesmo herdando ela de alguma forma.  
+
+-   Note que **REVOKE** usa **FROM** ao inves de **TO**.  
+
+-   Para mais detalhes ver capitulo “Categorias de comandos - **DCL**”
+
+## 12.6 **ALTER SCHEMA**
+
+-   Permite apenas transferir propriedade de uma tabela, ou seja,
+    transferir uma tabela de um **SCHEMA** para outro.  
+
+-   Sintaxe:  
+
+    -   Transferir tabela entre SCHEMAS:  
+        **ALTER SCHEMA** *novo_schema* **TRANSFER**
+        *antigo_schema.tabela*  
+        **GO**  
+    -   Transferir do dbo para um novo_schema:  
+        **ALTER SCHEMA** *novo_schema* **TRANSFER**
+        **OBJECT**::*dbo.tabela*  **GO**  
+
+## 12.7 Listar todos os **SCHEMAS** do banco de dados
+
+-   Comando para listar todos os **SCHEMAS** contidos no banco de
+    dados.  
+
+-   Sintaxe:  
+    **SELECT** \* **FROM** *sys.schemas*  
+    **GO**  
 
 # 13 Categorias de comandos
 
