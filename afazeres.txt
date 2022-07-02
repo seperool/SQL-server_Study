@@ -1,11 +1,9 @@
-ESCRITO EM 01/7/22
+ESCRITO EM 02/7/22
 ---
-PARA 02/7/22
+PARA 03/7/22
 ---
 Subir github:
-	- SCHEMA:
-		- Permissões SCHEMA
-		- ALTER SCHEMA
+
 Estudar:
 	- Modulo 27 - AULA 109
 afazeres:
