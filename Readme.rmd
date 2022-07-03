@@ -7,18 +7,18 @@ output:
   md_document:
     number_sections: true
     variant: markdown_github
-  pdf_document:
-    number_sections: true
-    toc: TRUE
-  github_document: default
-  odt_document:
-    number_sections: true
   html_document:
     number_sections: true
     df_print: paged
+  github_document: default
   word_document:
     toc: TRUE
     number_sections: true
+  odt_document:
+    number_sections: true
+  pdf_document:
+    number_sections: true
+    toc: TRUE
 ---
 
 \newpage
@@ -349,15 +349,23 @@ sqlcmd -S localhost -U SA\
 
 ## Cadeias de caracteres Unicode
 
-- *nchar*\
-- *nvarchar*\
+- *nchar*(n)\
+  - O valor "n" é referente a quantidade de bytes necessarios para o armazenamento, de valor fixo.\
+
+- *nvarchar*(n)\
+  - O valor "n" é referente a quantidade de bytes necessarios para o armazenamento, de valor variável.\
+
 - *ntext*\
+  - Usado se precisar armazenar textos grandes no seu banco de dados.\
+  - "n" é referente a quantidade de bytes necessarios para o armazenamento.\
 
 ## Cadeia de caracteres binária
 
 - *binary*\
 - *varbinary*\
 - *imagem*\
+  - Dados binarios de comprimento variavel.\
+  - Salva imagem.\
 
 ## Outros tipos de dados
 

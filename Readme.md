@@ -401,15 +401,25 @@ sqlcmd -S localhost -U SA
 
 ## 5.5 Cadeias de caracteres Unicode
 
--   *nchar*  
--   *nvarchar*  
+-   *nchar*(n)  
+    -   O valor “n” é referente a quantidade de bytes necessarios para o
+        armazenamento, de valor fixo.  
+-   *nvarchar*(n)  
+    -   O valor “n” é referente a quantidade de bytes necessarios para o
+        armazenamento, de valor variável.  
 -   *ntext*  
+    -   Usado se precisar armazenar textos grandes no seu banco de
+        dados.  
+    -   “n” é referente a quantidade de bytes necessarios para o
+        armazenamento.  
 
 ## 5.6 Cadeia de caracteres binária
 
 -   *binary*  
 -   *varbinary*  
 -   *imagem*  
+    -   Dados binarios de comprimento variavel.  
+    -   Salva imagem.  
 
 ## 5.7 Outros tipos de dados
 
