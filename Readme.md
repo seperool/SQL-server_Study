@@ -340,8 +340,9 @@ sqlcmd -S localhost -U SA
     -   Inteiro num intervalo de 0 a 255.  
     -   Usado para armazenar idade de pessoas.  
 -   *money*  
-    -   Apresenta valores monetários.  
-    -   Não é muito útil, melhor usar outro tipo em situação normal.  
+    -   Apresenta valores monetários, duas casas decimais.  
+    -   Não é muito útil, melhor usar outro tipo em situação normal
+        (*numeric* ou *float*).  
 
 ## 5.2 Numéricos aproximados
 
@@ -416,7 +417,11 @@ sqlcmd -S localhost -U SA
 ## 5.6 Cadeia de caracteres binária
 
 -   *binary*  
+    -   Usado para armazenar valores binarios de valor fixo.  
+    -   “n” é o numero de bytes.  
 -   *varbinary*  
+    -   Usado para armazenar valores binarios de valor variável.  
+    -   “n” é o numero de bytes.  
 -   *imagem*  
     -   Dados binarios de comprimento variavel.  
     -   Salva imagem.  
@@ -2050,4 +2055,4 @@ permite que as declarações a serem agrupadas em transações lógicas.
 
 ## 15.1 Assunto em andamento
 
-Atualmente estou estudando Módulo 27 - AULA 107 e 108.  
+Atualmente estou estudando Módulo 27 - AULA 110.  
