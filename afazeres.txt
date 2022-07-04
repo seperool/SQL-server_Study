@@ -1,14 +1,16 @@
-ESCRITO EM 03/7/22
+ESCRITO EM 04/7/22
 ---
-PARA 04/7/22
+PARA 05/7/22
 ---
 Subir github:
 
 Estudar:
-	- Modulo 27 - AULA 109
+	- Modulo 27 - AULA 110
 afazeres:
 	- tipo de dados
 	- Conectar os dois bancos
 	- Modulo 27
+		- Escrever AULA 109
+		- SQL SERVER AULA 109
 pull:
 	- Ubuntu
