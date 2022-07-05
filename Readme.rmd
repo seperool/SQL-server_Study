@@ -4,21 +4,21 @@ subtitle: "Readme.rmd"
 author: "Sergio Pedro R Oliveira"
 date: "`r Sys.Date()`"
 output:
+  pdf_document:
+    number_sections: true
+    toc: TRUE
   md_document:
     number_sections: true
     variant: markdown_github
+  github_document: default
   word_document:
     toc: TRUE
     number_sections: true
-  github_document: default
   odt_document:
     number_sections: true
   html_document:
     number_sections: true
     df_print: paged
-  pdf_document:
-    number_sections: true
-    toc: TRUE
 ---
 
 \newpage
@@ -1001,7 +1001,7 @@ Tabela_ASCII
     
 \newpage
 
-# Modulo 27 - **TRIGGER** (Gatilho) **DML** (Data Manipulation Language)
+# Modulo 27 PARTE 1 - **TRIGGER** (Gatilho) **DML** (Data Manipulation Language)
 - A **TRIGGER** é um gatilho de programação, que dispara toda vez que algo predeterminado acontecer.\
 
 - Exemplos de gatilhos disparadores de uma **TRIGGER** são:\
@@ -1249,6 +1249,16 @@ Obs.: *texto* inserido dentro de variável atraves de aspas simples.\
 - A mensagem a ser passada pela função **PRINT**, fica entre aspas simples(''), aspas duplas retorna **ERRO**.\
 - Sintaxe:\
 **PRINT** '*TRIGGER EXECUTADO COM SUCESSO*'\
+
+\newpage
+
+# Modulo 27 PARTE 2 - Simplificando **TRIGGER** (Gatilho) e Bloco Anônimo
+
+## Bloco Anônimo
+
+## Simplificando **TRIGGERS**
+
+### Ponteiramento para **DELETED** e **INSERTED**
 
 \newpage
 
