@@ -1,15 +1,18 @@
-ESCRITO EM 05/7/22
+ESCRITO EM 06/7/22
 ---
-PARA 06/7/22
+PARA 07/7/22
 ---
 Subir github:
 
 Estudar:
-	- Modulo 27 - AULA 110
+	- Modulo 27 - AULA 109 e 110
 afazeres:
 	- tipo de dados
 	- Conectar os dois bancos
 	- Modulo 27
-		- Escrever AULA 109
+		- Escrever AULA 109 - Modulo 27 PARTE 2
+		- Escrever AULA 110 - Modulo 27 PARTE 3
+	- Testar codigo:
+		- AULA 110
 pull:
 	- Ubuntu
