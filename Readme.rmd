@@ -7,18 +7,18 @@ output:
   pdf_document:
     number_sections: true
     toc: TRUE
-  md_document:
-    number_sections: true
-    variant: markdown_github
-  github_document: default
-  word_document:
-    toc: TRUE
-    number_sections: true
   odt_document:
     number_sections: true
+  github_document: default
   html_document:
     number_sections: true
     df_print: paged
+  word_document:
+    toc: TRUE
+    number_sections: true
+  md_document:
+    number_sections: true
+    variant: markdown_github
 ---
 
 \newpage
@@ -1259,6 +1259,27 @@ Obs.: *texto* inserido dentro de variável atraves de aspas simples.\
 ## Simplificando **TRIGGERS**
 
 ### Ponteiramento para **DELETED** e **INSERTED**
+
+\newpage
+
+# Modulo 27 PARTE 3 - **TRIGGER** (Gatilho), TRANSAÇÃO (**TRANSACTION**) e **ERRO**
+
+## **ERRO**
+
+- "ERRO DE USUÁRIO"\
+Código (NIVEL 16, ESTADO 1)\
+
+- Função especifica para **PRINT** de **ERRO**.\
+  - **RAISERROR**('*mensagem*',*numero_código*[*Nivel*, *Estado*])\
+  Função que serve para escrever um **ERRO** e dar um **PRINT** dele na tela do usuário.\
+
+## TRANSACTION (Transação)
+
+### Teoria (LOG)
+
+### Confirmar e eliminar LOG
+
+## TRIGGER ERRO E RESTRIÇÃO DE REGRA DE NEGÓCIO
 
 \newpage
 
