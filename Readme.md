@@ -1433,6 +1433,37 @@ style="height:15cm" alt="Tabela de Conversão de Dados" />
 
 ## 12.1 Bloco Anônimo
 
+-   Quando não tem cabeçalho de nomeação de bloco (anônimo), logo não
+    persiste no sistema (não é salvo no sistema).  
+
+-   Será executado apenas uma vez.  
+
+-   Muito utilizado para testes, justamente por ser executado apenas uma
+    vez.  
+
+-   No caso de **TRIGGER**, se assemelha ao bloco de programação do
+    **TRIGGER**, sem o cabeçalho (sem a nomeação do **TRIGGER**).  
+
+    -   Por conta disto, é usado como teste para **TRIGGER**.  
+    -   Ou um modelo de **TRIGGER** simplificado.  
+
+-   Sintaxe (exemplo):  
+    **DECLARE** *@variavel* *INT*  
+    **SET** *@variavel* = ((**SELECT** 50 + 50))  
+    **INSERT INTO** *tabela* **VALUES** (*@variavel*)  
+    **PRINT** ‘*VALOR INSERIDO *’ + **CAST**(*@variavel* **AS**
+    *VARCHAR*)  
+    **GO**  
+
+    -   O uso da função **PRINT** imprime a mensagem e o valor da
+        variavel na tela.  
+    -   O uso da função **CAST** para modar o tipo da variavel
+        *@variavel* PARA *VARCHAR* e imprimir na tela junto da
+        mensagem. 
+
+-   No caso de armazenar valores atraves da instrução **SELECT**,
+    lembrar de usar parenteses duas vezes.  
+
 ## 12.2 Simplificando **TRIGGERS**
 
 ### 12.2.1 Ponteiramento para **DELETED** e **INSERTED**
