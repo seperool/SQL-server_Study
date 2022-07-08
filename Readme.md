@@ -1468,18 +1468,28 @@ style="height:15cm" alt="Tabela de Conversão de Dados" />
 
 ### 12.2.1 Ponteiramento para **DELETED** e **INSERTED**
 
-# 13 Modulo 27 PARTE 3 - **TRIGGER** (Gatilho), TRANSAÇÃO (**TRANSACTION**) e **ERRO**
+# 13 Modulo 27 PARTE 3 - **TRIGGER** (Gatilho), TRANSAÇÃO (**TRANSACTION**) e **ERROR**
 
-## 13.1 **ERRO**
+## 13.1 **ERROR** e **RAISERROR**
 
--   “ERRO DE USUÁRIO”  
-    Código (NIVEL 16, ESTADO 1)  
+-   No **SQL Server** o **ERROR** vem acompanhado de um código, onde o
+    “*NIVEL*” e o “*ESTADO*” determinam o tipo do **ERROR**.  
 
--   Função especifica para **PRINT** de **ERRO**.  
+    -   “ERROR DE USUÁRIO”  
+        Código (NIVEL 16, ESTADO 1)  
+
+-   O “**ERROR** de usuário” é util pois determina que o foi um
+    **ERROR** devido alguma ação do usuário.  
+
+-   Pode ser usado o código do “**ERROR** de usuário” na função
+    **RAISERROR** para mostrar uma mensagem ao usuário onde errou, no
+    uso de alguma função construida (**PROCEDURE**) ou **TRIGGER**.  
+
+-   Função especifica para **PRINT** de **ERROR**.  
 
     -   **RAISERROR**(‘*mensagem*’,*numero_código*\[*Nivel*,
         *Estado*\])  
-        Função que serve para escrever um **ERRO** e dar um **PRINT**
+        A função que serve para escrever um **ERROR** e dar um **PRINT**
         dele na tela do usuário.  
 
 ## 13.2 TRANSACTION (Transação)

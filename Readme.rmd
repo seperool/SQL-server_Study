@@ -4,21 +4,21 @@ subtitle: "Readme.rmd"
 author: "Sergio Pedro R Oliveira"
 date: "`r Sys.Date()`"
 output:
-  pdf_document:
-    number_sections: true
-    toc: TRUE
-  word_document:
-    toc: TRUE
-    number_sections: true
-  github_document: default
   md_document:
     number_sections: true
     variant: markdown_github
   html_document:
     number_sections: true
     df_print: paged
+  github_document: default
+  word_document:
+    toc: TRUE
+    number_sections: true
   odt_document:
     number_sections: true
+  pdf_document:
+    number_sections: true
+    toc: TRUE
 ---
 
 \newpage
@@ -1282,16 +1282,21 @@ Obs.: *texto* inserido dentro de variável atraves de aspas simples.\
 
 \newpage
 
-# Modulo 27 PARTE 3 - **TRIGGER** (Gatilho), TRANSAÇÃO (**TRANSACTION**) e **ERRO**
+# Modulo 27 PARTE 3 - **TRIGGER** (Gatilho), TRANSAÇÃO (**TRANSACTION**) e **ERROR**
 
-## **ERRO**
+## **ERROR** e **RAISERROR**
 
-- "ERRO DE USUÁRIO"\
-Código (NIVEL 16, ESTADO 1)\
+- No **SQL Server** o **ERROR** vem acompanhado de um código, onde o "*NIVEL*" e o "*ESTADO*" determinam o tipo do **ERROR**.\
+  - "ERROR DE USUÁRIO"\
+  Código (NIVEL 16, ESTADO 1)\
 
-- Função especifica para **PRINT** de **ERRO**.\
+- O "**ERROR** de usuário" é util pois determina que o foi um **ERROR** devido alguma ação do usuário.\
+
+- Pode ser usado o código do "**ERROR** de usuário" na função **RAISERROR** para mostrar uma mensagem ao usuário onde errou, no uso de alguma função construida (**PROCEDURE**) ou **TRIGGER**.\
+
+- Função especifica para **PRINT** de **ERROR**.\
   - **RAISERROR**('*mensagem*',*numero_código*[*Nivel*, *Estado*])\
-  Função que serve para escrever um **ERRO** e dar um **PRINT** dele na tela do usuário.\
+  A função que serve para escrever um **ERROR** e dar um **PRINT** dele na tela do usuário.\
 
 ## TRANSACTION (Transação)
 
