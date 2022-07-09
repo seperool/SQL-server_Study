@@ -1466,7 +1466,47 @@ style="height:15cm" alt="Tabela de Conversão de Dados" />
 
 ## 12.2 Simplificando **TRIGGERS**
 
-### 12.2.1 Ponteiramento para **DELETED** e **INSERTED**
+### 12.2.1 **TRIGGERS** simplificados
+
+### 12.2.2 Ponteiramento para **DELETED** e **INSERTED**
+
+-   Dentro da **TRIGGER** é possivel fazer o ponteiramento para as áreas
+    **DELETED** e **INSERTED** para pegar os valores “antes” e “depois”
+    da **DML** de modificação.  
+
+-   Sintaxe:  
+    **CREATE TRIGGER** *TRG_nome*  
+    **ON** *DBO.tabela*  
+    **FOR** *DML* **AS**  
+    **IF** *DML*(*campo*)  
+    **BEGIN**  
+    **INSERT INTO** *tabela_auditoria*  
+    (IDEMPREGADO, NOME, ANTIGOSAL, NOVOSAL, DATA)  
+    **SELECT** *D.IDEMP*, *I.NOME*, *D.SALARIO*, *I.SALARIO*,
+    **GETDATE**()  
+    **FROM** *DELETED* *D*, *INSERTED* *I*  
+    **WHERE** *D.IDEMP* = *I.IDEMP*  
+    **END**  
+    **GO**  
+
+-   O **SELECT** com ponteiramento, garante que seja inserido
+    (**INSERT**), na tabela de auditoria, os valores da tabela observada
+    pelo **TRIGGER** (cabeçalho) “antes” e “depois” do **DML**.  
+
+    -   Basta colocar o ponteiramento apontoando para **DELETED** e
+        **INSERTED**, segundo a tabela observada pelo **TRIGGER**
+        (cabeçalho), os valores estão armazenados lá, dado uma
+        modificação *DML*.  
+
+-   A instrução **WHERE** garante que seja o mesmo campo *ID* (**PRIMARY
+    KEY**), logo o mesmo registro, que sofreu uma modificado.  
+
+    -   Muito usado em caso de **UPDATE**.  
+
+-   O uso da instrução **SELECT** se dá por conta de boas práticas em
+    **TRIGGERS**:  
+    “Insere nas variáveis valores vindos de tabelas, que são inseridos
+    pelo comando”**SELECT**”.”  
 
 # 13 Modulo 27 PARTE 3 - **TRIGGER** (Gatilho), TRANSAÇÃO (**TRANSACTION**) e **ERROR**
 
