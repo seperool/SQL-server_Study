@@ -1512,6 +1512,32 @@ style="height:15cm" alt="Tabela de Conversão de Dados" />
 
 ## 13.1 **ERROR** e **RAISERROR**
 
+### 13.1.1 ERROR
+
+-   A instrução **@@ERROR** retorna o número do erro da última instrução
+    Transact-SQL executada.  
+
+-   A instrução **@@ERROR** pode ser usado em conjunto com **TCL**
+    **IF** e transação (**TRANSACTION**) para impedir que um **ERROR**
+    passe das instruções (*LOG*) para os dados (sistema).  
+
+-   Valor do **@@ERROR**:  
+
+    -   Se **@@ERROR** igual a “0”, não houve **ERROR**.  
+    -   Se **@@ERROR** diferente de “0”, algum **ERROR** aconteceu. Ver
+        o número que retornou para determinar o tipo do **ERROR**.  
+
+-   Sintaxe:  
+    **BEGIN TRANSACTION**  
+    \[*bloco de instruções SQL*\]  
+    **IF** (*@@ERROR* \> 0)  
+    **ROLLBACK TRANSACTION**  
+    **ELSE**  
+    **COMMIT TRANSACTION**  
+    **GO**  
+
+### 13.1.2 RAISERROR
+
 -   No **SQL Server** o **ERROR** vem acompanhado de um código, onde o
     “*NIVEL*” e o “*ESTADO*” determinam o tipo do **ERROR**.  
 
@@ -1527,8 +1553,8 @@ style="height:15cm" alt="Tabela de Conversão de Dados" />
 
 -   Função especifica para **PRINT** de **ERROR**.  
 
-    -   **RAISERROR**(‘*mensagem*’,*numero_código*\[*Nivel*,
-        *Estado*\])  
+    -   **RAISERROR**(‘*mensagem*’,*numero_código_Nivel*,
+        *numero_código_Estado*)  
         A função que serve para escrever um **ERROR** e dar um **PRINT**
         dele na tela do usuário.  
 
@@ -1536,7 +1562,69 @@ style="height:15cm" alt="Tabela de Conversão de Dados" />
 
 ### 13.2.1 Teoria (LOG)
 
-### 13.2.2 Confirmar e eliminar LOG
+-   Todo banco de dados do SQL Server tem um *LOG* de transações que
+    registra todas as transações e as modificações de banco de dados
+    feitas por cada transação.  
+
+-   O *LOG* de transações é um componente crítico do banco de dados. Se
+    houver uma falha no sistema, você precisará que o *LOG* retorne o
+    seu banco de dados a um estado consistente.  
+
+-   O *LOG* são conjuntos de instruções feitos ao sistema, eles são
+    armazenados no sistema, antes de serem enviados suas modificações
+    para os dados.  
+
+-   Para efeito de um melhor desenvolvimento do banco de dados, é
+    possivel confirmar (**COMMIT**) ou eleminar (**ROLLBACK**) um *LOG*
+    antes de dele implicar em modificações nos dados em definitivo, isto
+    é uma transação (**TRANSACTION**).  
+
+    -   Testa o *LOG* para ver se dá **ERROR**, antes de enviar para o
+        sistema a modificação nos dados.  
+
+### 13.2.2 Confirmar (**COMMIT**) e eliminar (**ROLLBACK**) LOG
+
+-   A estrutura de uma transação consiste:  
+
+    -   Inicialização da transação (**BEGIN TRANSACTION**/**BEGIN
+        TRAN**/**BEGIN**).  
+    -   O bloco de programação da transação.  
+    -   Confirmação de uma transação bem sucedida, aplicando assim o
+        *LOG* no sistema e por consequencia nos dados (**COMMIT**).  
+    -   Descartar o *LOG* da transação e voltar ao estado inicial,
+        reverte as modificações feitas por uma transação, transação mal
+        sucedida (**ROLLBACK**).  
+    -   No caso de for iniciado apenas por **BEGIN** deve terminar com
+        **END**.  
+
+-   Lembrando que os resultados da transação podem ser vistos ao longo
+    que as instruções são feitas. Porem podem ser desfeitas
+    (**ROLLBACK**) ou confirmadas (**COMMIT**), não são definitivas ate
+    então.  
+
+-   **TRANSACTION**/**COMMIT**/**ROLLBACK** são muito util para testar o
+    codigo antes de aplica-lo em definitivo no sistema. Procurando
+    alguma incidencia de **ERROR** ou resultado não esperado.  
+
+-   Sintaxe exemplo **ERROR**:  
+    **IF** (*@variavel1* \< *@Variavel2*)  
+    **BEGIN**  
+    **RAISERROR** (‘SALARIO MENOR QUE O PISO’,16,1)  
+    **ROLLBACK TRANSACTION**  
+    **END**  
+    **IF** (*@variavel1* \> *@variavel3*)  
+    **BEGIN**  
+    **RAISERROR**(‘*SALARIO MAIOR QUE O TETO*’,16,1)  
+    **ROLLBACK TRANSACTION**  
+    **END**  
+    ou  
+    **BEGIN TRANSACTION**  
+    \[*Bloco de instruções SQL*\]  
+    **IF** (*@@ERROR* \> 0)  
+    **ROLLBACK TRANSACTION**  
+    **ELSE**  
+    **COMMIT TRANSACTION**  
+    **GO**  
 
 ## 13.3 TRIGGER ERRO E RESTRIÇÃO DE REGRA DE NEGÓCIO
 
