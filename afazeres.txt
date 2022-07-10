@@ -1,6 +1,6 @@
-ESCRITO EM 09/07/22
+ESCRITO EM 10/07/22
 ---
-PARA 10/07/22
+PARA 11/07/22
 ---
 Subir github:
 
@@ -14,6 +14,7 @@ afazeres:
 			- TRIGGER SIMPLIFICADO
 		- Escrever AULA 110 - Modulo 27 PARTE 3
 			- TRANSACTION
+				- revisar (acho que dá pra melhorar)
 			- TRIGGER ERROR E RESTRIÇÃO DE REGRA DE NEGÓCIO
 	- Testar codigo:
 		- AULA 110
