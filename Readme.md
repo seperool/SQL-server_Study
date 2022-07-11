@@ -2254,4 +2254,4 @@ permite que as declarações a serem agrupadas em transações lógicas.
 
 ## 17.1 Assunto em andamento
 
-Atualmente estou estudando Módulo 27 - AULA 110.  
+Atualmente estou estudando Módulo 27 - AULA 109 e 110.  
