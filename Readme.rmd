@@ -7,18 +7,18 @@ output:
   md_document:
     number_sections: true
     variant: markdown_github
-  word_document:
-    toc: TRUE
-    number_sections: true
-  github_document: default
   pdf_document:
     number_sections: true
     toc: TRUE
-  odt_document:
-    number_sections: true
+  github_document: default
   html_document:
     number_sections: true
     df_print: paged
+  word_document:
+    toc: TRUE
+    number_sections: true
+  odt_document:
+    number_sections: true
 ---
 
 \newpage
@@ -1281,6 +1281,8 @@ Obs.: *texto* inserido dentro de variável atraves de aspas simples.\
 ## Simplificando **TRIGGERS**
 
 ### **TRIGGERS** simplificados
+
+
 
 ### Ponteiramento para **DELETED** e **INSERTED**
 
