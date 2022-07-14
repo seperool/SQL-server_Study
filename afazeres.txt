@@ -1,6 +1,6 @@
-ESCRITO EM 12/07/22
+ESCRITO EM 13/07/22
 ---
-PARA 13/07/22
+PARA 14/07/22
 ---
 Subir github:
 
@@ -11,7 +11,7 @@ afazeres:
 	- Conectar os dois bancos
 	- Modulo 27
 		- Escrever AULA 109 - Modulo 27 PARTE 2
-			- TRIGGER SIMPLIFICADO
+			- TRIGGER SIMPLIFICADO (revisar)
 		- Escrever AULA 110 - Modulo 27 PARTE 3
 			- TRIGGER ERROR E RESTRIÇÃO DE REGRA DE NEGÓCIO
 	- Testar codigo:
