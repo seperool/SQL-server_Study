@@ -1,6 +1,6 @@
-ESCRITO EM 13/07/22
+ESCRITO EM 14/07/22
 ---
-PARA 14/07/22
+PARA 15/07/22
 ---
 Subir github:
 
@@ -10,11 +10,9 @@ afazeres:
 	- tipo de dados
 	- Conectar os dois bancos
 	- Modulo 27
-		- Escrever AULA 109 - Modulo 27 PARTE 2
-			- TRIGGER SIMPLIFICADO (revisar)
 		- Escrever AULA 110 - Modulo 27 PARTE 3
 			- TRIGGER ERROR E RESTRIÇÃO DE REGRA DE NEGÓCIO
 	- Testar codigo:
-		- AULA 110
+		- AULA 109 e 110
 pull:
 	- Ubuntu
