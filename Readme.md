@@ -627,6 +627,28 @@ sqlcmd -S localhost -U SA
     **SP_HELP** *nome_tabela*  
     **GO**  
 
+### 6.3.3 **SP_HELPTEXT**
+
+-   Exibe a definição de uma regra definida pelo usuário.  
+
+    -   **TRIGGERS**  
+    -   **PROCEDURES**  
+    -   **VIEWS**  
+    -   **FUNCTIONS**  
+
+-   É utilizada para podermos visualizar códigos criados dentro da base
+    de dados.  
+
+-   O código é exibido no formato, cada linha é um registro.  
+
+-   Sintaxe:  
+    **SP_HELPTEXT** ‘\[*schema.*\]*nome_objeto*’  
+    **GO**  
+
+    -   Objeto é o nome da regra definida pelo usuário (**TRIGGER**,
+        **PROCEDURES**,**VIEWS**, **FUNCTIONS**, …).  
+    -   Colocar entre aspas simples o nome do objeto.  
+
 # 7 Modulo 26 PARTE 2 - Funções, Projeções, Seleções e Junções
 
 ## 7.1 Funções
@@ -1677,6 +1699,23 @@ style="height:15cm" alt="Tabela de Conversão de Dados" />
     **GO**  
 
 ## 13.3 TRIGGER ERRO E RESTRIÇÃO DE REGRA DE NEGÓCIO
+
+esqueleto inicio
+
+-   Criação de tabela com regras de negocio.  
+
+-   usar a trigger para estabelecer se retrições quanto a regra de
+    negocio.  
+
+-   a trigger só funciona se a regra for atendida.  
+
+-   impede caso a regra não tenha sido atendida.  
+
+-   sintaxe exemplo explicado.  
+
+-   “SP_HELPTEXT”, explicar e colocar em outro lugar também.  
+
+fim
 
 # 14 **SCHEMAS**
 
