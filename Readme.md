@@ -1468,6 +1468,56 @@ style="height:15cm" alt="Tabela de Conversão de Dados" />
 
 ### 12.2.1 **TRIGGERS** simplificados
 
+-   A simplificação da **TRIGGER** tem haver com o uso menos formal da
+    estruturação, e deixar mais parecido com *bloco anônimo*, porem com
+    cabeçalho (para que possa ser guardado pelo sistema).  
+
+-   Outra diferença é o uso do **SELECT** e/ou **SET**, dentro de um
+    **INSERT**, mas principalmente o **SELECT**, para fazer uma consulta
+    que já inserindo os dados na tabela do **TRIGGER**.  
+
+-   O uso de ponteiramento é uma ferramenta poderosa para esse tipo de
+    **TRIGGER** (discutido na proxima seção).  
+
+-   Sintaxe:  
+    **CREATE TRIGGER** *TRG_nome*  
+    **ON** *DBO.tabela*  
+    **FOR** *DML* **AS**  
+    **IF** *DML*(*campo*)  
+    **BEGIN**  
+    **INSERT INTO** *tabela_auditoria*  
+    (IDEMPREGADO, NOME, ANTIGOSAL, NOVOSAL, DATA)  
+    **SELECT** *D.IDEMP*, *I.NOME*, *D.SALARIO*, *I.SALARIO*,
+    **GETDATE**()  
+    **FROM** *DELETED* *D*, *INSERTED* *I*  
+    **WHERE** *D.IDEMP* = *I.IDEMP*  
+    **END**  
+    **GO**  
+
+    -   O **BEGIN** e o **END** definem o começo e o fim de um bloco de
+        programação (instruções), **TCL**.  
+
+    -   O **INSERT** define qual a tabela do **TRIGGER** (tabela de
+        auditora normalmente) vai receber os dados e a ordem dos campos
+        em que vai receber.  
+
+    -   Neste caso, o **SELECT** faz uma projeção/consulta dos dados que
+        vão para a tabela do **TRIGGER** (tabela de auditora
+        normalmente), e por consequencia do **INSERT**, os dados
+        consultados são inseridos na tabela do **TRIGGER**.  
+
+    -   O **FROM** ao inves de apontar para a tabela observada pela
+        **TRIGGER**, situação que já esta explicitado no cabeçalho, pode
+        servir para apontar, no caso de uma modificação **DML**, para as
+        áreas onde vão parar os dados modificados, regiões **DELETED** e
+        **INSERTED** (ponteiramento nesse caso é importante), pegando os
+        dados direto dessas regiões, “antes” e “depois” de
+        modificados.  
+
+    -   A instrução **WHERE** garante que quando muitos dados são
+        modificados ao mesmo tempo, o **TRIGGER** perceba caso a caso as
+        modificações de cada registro.  
+
 ### 12.2.2 Ponteiramento para **DELETED** e **INSERTED**
 
 -   Dentro da **TRIGGER** é possivel fazer o ponteiramento para as áreas
