@@ -1,17 +1,15 @@
-ESCRITO EM 14/07/22
+ESCRITO EM 15/07/22
 ---
-PARA 15/07/22
+PARA 16/07/22
 ---
 Subir github:
-
+	- Modulo 27 PARTE 3 - AULA 110
+		- TRIGGER ERROR E RESTRIÇÃO DE REGRA DE NEGÓCIO
 Estudar:
 	- Modulo 27 - AULA 109 e 110
 afazeres:
 	- tipo de dados
-	- Conectar os dois bancos
-	- Modulo 27
-		- Escrever AULA 110 - Modulo 27 PARTE 3
-			- TRIGGER ERROR E RESTRIÇÃO DE REGRA DE NEGÓCIO
+	- Conectar os dois bancos			
 	- Testar codigo:
 		- AULA 109 e 110
 pull:
