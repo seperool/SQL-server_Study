@@ -4,21 +4,21 @@ subtitle: "Readme.rmd"
 author: "Sergio Pedro R Oliveira"
 date: "`r Sys.Date()`"
 output:
-  md_document:
-    number_sections: true
-    variant: markdown_github
   pdf_document:
     number_sections: true
     toc: TRUE
-  github_document: default
-  html_document:
+  odt_document:
     number_sections: true
-    df_print: paged
+  github_document: default
   word_document:
     toc: TRUE
     number_sections: true
-  odt_document:
+  md_document:
     number_sections: true
+    variant: markdown_github
+  html_document:
+    number_sections: true
+    df_print: paged
 ---
 
 \newpage
@@ -1449,24 +1449,61 @@ ou\
 
 \newpage
 
-## TRIGGER ERRO E RESTRIÇÃO DE REGRA DE NEGÓCIO
+## **TRIGGER** com restrição de regra de negócio e **ERROR**
 
-esqueleto 
-inicio
+- O **TRIGGER** com restrição de regra de negócio e **ERROR** funciona de forma a estabelecer uma determinar regra de negócio e impedir, com uso de **ERROR**, que a regra seja descumprida.\
 
-- Criação de tabela com regras de negocio.\
+- Uma das formas de estabelecer um regra de negócio com uso de **TRIGGER** é criar uma tabela com os valores chaves a serem cumpridos (minimos, maximos e valores estabelecidos pelo negócio).\
 
-- usar a trigger para estabelecer se retrições quanto a regra de negocio.\
+- Depois criar um **TRIGGER** que atraves de **TCL** (**IF**'s, operadores lógicos e **ERROR**) impeça modificação de dados para estados que funjam da regra (os valores estabelecidos na tabela criada anteriormente).\
 
-- a trigger só funciona se a regra for atendida.\
+- No caso de **ERROR** da regra de negócio, o **TRIGGER** desfaz a transação (**ROLLBACK**), impedindo assim modificações (**DML**) nos dados que fujam da regra de negócio.\
 
-- impede caso a regra não tenha sido atendida.\
+- Ou seja, o **TRIGGER** só deixa a modificação (**DML**) funcionar para dados que estejam em conformidade com as regras de negócio.\
 
-- sintaxe exemplo explicado.\
+- Sintaxe exemplo, comentários entre chaves:\
 
-- "SP_HELPTEXT", explicar e colocar em outro lugar também.\
+[TABELA DE RESTRIÇÃO DA REGRA DE NEGÓCIO]\
+**CREATE TABLE** *SALARIO_RANGE*(\
+*MINSAL* **MONEY**,\
+*MAXSAL* **MONEY**\
+)\
+**GO**\
 
-fim
+[ INSERINDO VALORES DA RESTRIÇÃO DA REGRA DE NEGÓCIO]\
+**INSERT INTO** *SALARIO_RANGE* **VALUES**\
+(2000.00, 6000.00)\
+**GO**\
+
+[TRIGGER DE RESTRIÇÃO DA REGRA DE NEGÓCIO]\
+**CREATE TRIGGER** *TRG_RANGE* [NOME DA TRIGGER]\
+**ON** *DBO.EMPREGADO* [TABELA]\
+**FOR** **INSERT**, **UPDATE** [DML]\
+**AS**\
+
+[DECLARAÇÃO DE VARIAS VARIAVEIS AO MESMO TEMPO]\
+**DECLARE**\
+*\@MINSAL* **MONEY**,\
+*\@MAXSAL* **MONEY**,\
+*\@ATUALSAL* **MONEY**\
+
+[BLOCO INSERIR VALORES NAS VARIAVEIS "SELECT"]\
+**SELECT** *\@MINSAL* = *MINSAL*, *\@MAXSAL* = *MAXSAL* **FROM** *SALARIO_RANGE*\
+**SELECT** *\@ATUALSAL* = *I.SALARIO*\
+**FROM** *INSERTED* *I*\
+
+[TCL IF]\
+**IF** (*\@ATUALSAL* < *\@MINSAL*)\
+**BEGIN**\
+**RAISERROR** ('*SALARIO MENOR QUE O PISO*',16,1) [FUNÇÃO PRINT ERROR]\
+**ROLLBACK TRANSACTION** [DESFAZE A TRANSAÇÃO (LOG)]\
+**END**\
+**IF** (*\@ATUALSAL* > *\@MAXSAL*)\
+**BEGIN**\
+**RAISERROR**('*SALARIO MAIOR QUE O TETO*',16,1) [FUNÇÃO PRINT ERROR]\
+**ROLLBACK TRANSACTION** [DESFAZE A TRANSAÇÃO (LOG)]\
+**END**\
+**GO**\
 
 \newpage
 
