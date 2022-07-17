@@ -1932,9 +1932,36 @@ ERROR\]
     **SELECT** \* **FROM** *sys.schemas*  
     **GO**  
 
-# 15 Categorias de comandos
+# 15 Modulo 28 - **PROCEDURE**
 
-## 15.1 **DML** - *Data Manipulation Language* (Linguagem de Manipulação de Dados)
+## 15.1 **STORAGE PROCEDURES** (ou **STORED PROCEDURES**)
+
+-   **STORAGE PROCEDURE** (**SP\_**) são **PROCEDURES** armazenadas do
+    sistema.  
+
+-   São procedimentos de Sistema. Armazenados no banco de dados padrão
+    do SQL Server (Master), podemos indentifica-los com as siglas
+    **SP**, que se origina de stored procedure. Tais procedures executam
+    as tarefas administrativas e podem ser executadas a partir de
+    qualquer banco de dados.  
+
+## 15.2 **PROCEDURES**
+
+### 15.2.1 Básico de **PROCEDURES**
+
+### 15.2.2 **PROCEDURES** estáticas
+
+### 15.2.3 **PROCEDURES** dinâmicas
+
+### 15.2.4 Apagando **PROCEDURES**
+
+### 15.2.5 Alterando **PROCEDURE**
+
+### 15.2.6 **PROCEDURES** em tabelas - Entrada e Saída
+
+# 16 Categorias de comandos
+
+## 16.1 **DML** - *Data Manipulation Language* (Linguagem de Manipulação de Dados)
 
 É um conjunto de instruções usada nas consultas e modificações dos dados
 armazenados nas tabelas do banco de dados.  
@@ -1987,7 +2014,7 @@ armazenados nas tabelas do banco de dados.
         \* Mais detalhes no “*Modulo 26 PARTE 4 - Importação de arquivo
         de dados*”.  
 
-## 15.2 **DDL** - *Data Definition Language* (Linguagem de definição de dados)
+## 16.2 **DDL** - *Data Definition Language* (Linguagem de definição de dados)
 
 É um conjunto de instruções usado para criar e modificar as estruturas
 dos objetos armazenados no banco de dados.  
@@ -2101,14 +2128,14 @@ dos objetos armazenados no banco de dados.
         **TRUNCATE** **TABLE** *nome_tabela*  
         **GO**  
 
-## 15.3 **DCL** - *Data Control Language* (Linguagem de Controle de Dados)
+## 16.3 **DCL** - *Data Control Language* (Linguagem de Controle de Dados)
 
 São usados para controle de acesso e gerenciamento de permissões para
 usuários em no banco de dados. Com eles, pode facilmente permitir ou
 negar algumas ações para usuários nas tabelas ou registros (segurança de
 nível de linha).  
 
-### 15.3.1 Login
+### 16.3.1 Login
 
 -   **CREATE LOGIN**  
     -   A instrução **CREATE LOGIN** cria uma identidade usada para se
@@ -2200,7 +2227,7 @@ nível de linha).
         **FROM** *master.sys.sql_logins*  
         **GO**  
 
-### 15.3.2 USER - Usuário
+### 16.3.2 USER - Usuário
 
 -   **CREATE USER**  
     -   A instrução CREATE USER cria um usuário de banco de dados para
@@ -2244,7 +2271,7 @@ nível de linha).
         **DROP USER** *user_nome*  
         **GO**  
 
-### 15.3.3 Permissões
+### 16.3.3 Permissões
 
 -   **GRANT**  
 
@@ -2331,7 +2358,7 @@ nível de linha).
     -   **GRANT OPTION** — permite conceder ou remover privilégios de
         outros usuários.  
 
-## 15.4 **TCL** - *Tool Command Language* (Linguagem de Comandos de Ferramentas)
+## 16.4 **TCL** - *Tool Command Language* (Linguagem de Comandos de Ferramentas)
 
 São usados para gerenciar as mudanças feitas por instruções DML. Ele
 permite que as declarações a serem agrupadas em transações lógicas.  
@@ -2359,9 +2386,9 @@ permite que as declarações a serem agrupadas em transações lógicas.
         **COMMIT**  
         **GO**  
 
-# 16 Observações
+# 17 Observações
 
-## 16.1 Problemas para fazer *login* o **SSMS**
+## 17.1 Problemas para fazer *login* o **SSMS**
 
 -   Caso o **SSMS** não identifique o usuário “sa” e senha como deveria,
     seguir os seguintes passos:  
@@ -2374,7 +2401,7 @@ permite que as declarações a serem agrupadas em transações lógicas.
     -   Ao final da reparação, abrir o **SSMS** novamente e fazer o
         *login*.  
 
-## 16.2 Abreviações do nome de restrições (**CONSTRAINTS**) no dicionario de dados - sistema (boas práticas)
+## 17.2 Abreviações do nome de restrições (**CONSTRAINTS**) no dicionario de dados - sistema (boas práticas)
 
 -   Padronização do nome das restrições salvas no sistema.  
 -   Abreviações do nome das restrições (**CONSTRAINTS**), para salvar no
@@ -2384,13 +2411,13 @@ permite que as declarações a serem agrupadas em transações lógicas.
     -   ‘**UQ**’ é abreviação de “**UNIQUE**”  
     -   ‘**CK**’ é abreviação de “**CHECK**”  
 
-## 16.3 Formato da data no sistema
+## 17.3 Formato da data no sistema
 
 “aaaa-mm-dd hh:mm:ss.mmm”  
 (ano-mês-dia hora:minuto:segundos.milisegundos)  
 
-# 17 Andamento dos Estudos
+# 18 Andamento dos Estudos
 
-## 17.1 Assunto em andamento
+## 18.1 Assunto em andamento
 
-Atualmente estou estudando Módulo 27 - AULA 109 e 110.  
+Atualmente estou estudando Módulo 28 - AULA 111.  

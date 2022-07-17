@@ -4,21 +4,21 @@ subtitle: "Readme.rmd"
 author: "Sergio Pedro R Oliveira"
 date: "`r Sys.Date()`"
 output:
-  pdf_document:
-    number_sections: true
-    toc: TRUE
-  odt_document:
-    number_sections: true
-  github_document: default
-  word_document:
-    toc: TRUE
-    number_sections: true
   md_document:
     number_sections: true
     variant: markdown_github
+  odt_document:
+    number_sections: true
+  github_document: default
   html_document:
     number_sections: true
     df_print: paged
+  pdf_document:
+    number_sections: true
+    toc: TRUE
+  word_document:
+    toc: TRUE
+    number_sections: true
 ---
 
 \newpage
@@ -1630,6 +1630,30 @@ Define quem é o proprietario do **SCHEMA** criado.\
 
 \newpage
 
+#  Modulo 28 - **PROCEDURE**
+
+## **STORAGE PROCEDURES** (ou **STORED PROCEDURES**)
+
+- **STORAGE PROCEDURE** (**SP_**) são **PROCEDURES** armazenadas do sistema.\
+
+- São procedimentos de Sistema. Armazenados no banco de dados padrão do SQL Server (Master), podemos indentifica-los com as siglas **SP**, que se origina de stored procedure. Tais procedures executam as tarefas administrativas e podem ser executadas a partir de qualquer banco de dados.\
+
+## **PROCEDURES**
+
+### Básico de **PROCEDURES**
+
+### **PROCEDURES** estáticas
+
+### **PROCEDURES** dinâmicas
+
+### Apagando **PROCEDURES**
+
+### Alterando **PROCEDURE**
+
+### **PROCEDURES** em tabelas - Entrada e Saída
+
+\newpage
+
 # Categorias de comandos
 
 ## **DML** - *Data Manipulation Language* (Linguagem de Manipulação de Dados)
@@ -2017,4 +2041,4 @@ São usados para gerenciar as mudanças feitas por instruções DML. Ele permite
 
 ## Assunto em andamento
 
-Atualmente estou estudando Módulo 27 - AULA 109 e 110.\
+Atualmente estou estudando Módulo 28 - AULA 111.\
