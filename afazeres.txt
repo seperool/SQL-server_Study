@@ -1,18 +1,16 @@
-ESCRITO EM 18/07/22
+ESCRITO EM 19/07/22
 ---
-PARA 19/07/22
+PARA 20/07/22
 ---
 Subir github:
-
+	- scritp AULA 111
 Estudar:
 	- Modulo 28 - AULA 111
 afazeres:
-	- scritp AULA 111
+
 	- Escrever AULA 111
 	- tipo de dados
 	- variaveis locais e globais
 	- Conectar os dois bancos			
-	- Testar codigo:
-		- AULA 111
 pull:
 	- Ubuntu
