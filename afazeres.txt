@@ -1,6 +1,6 @@
-ESCRITO EM 17/07/22
+ESCRITO EM 18/07/22
 ---
-PARA 18/07/22
+PARA 19/07/22
 ---
 Subir github:
 
@@ -10,8 +10,9 @@ afazeres:
 	- scritp AULA 111
 	- Escrever AULA 111
 	- tipo de dados
+	- variaveis locais e globais
 	- Conectar os dois bancos			
 	- Testar codigo:
-		- AULA 109, 110 e 111
+		- AULA 111
 pull:
 	- Ubuntu
