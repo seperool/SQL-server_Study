@@ -1,9 +1,9 @@
-ESCRITO EM 19/07/22
+ESCRITO EM 20/07/22
 ---
-PARA 20/07/22
+PARA 21/07/22
 ---
 Subir github:
-	- scritp AULA 111
+
 Estudar:
 	- Modulo 28 - AULA 111
 afazeres:
