@@ -1940,7 +1940,7 @@ ERROR\]
     sistema.  
 
 -   São procedimentos de Sistema. Armazenados no banco de dados padrão
-    do SQL Server (Master), podemos indentifica-los com as siglas
+    do **SQL Server** (Master), podemos indentifica-los com as siglas
     **SP**, que se origina de stored procedure. Tais procedures executam
     as tarefas administrativas e podem ser executadas a partir de
     qualquer banco de dados.  

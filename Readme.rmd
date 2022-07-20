@@ -7,18 +7,18 @@ output:
   md_document:
     number_sections: true
     variant: markdown_github
-  odt_document:
+  word_document:
+    toc: TRUE
     number_sections: true
   github_document: default
+  odt_document:
+    number_sections: true
   html_document:
     number_sections: true
     df_print: paged
   pdf_document:
     number_sections: true
     toc: TRUE
-  word_document:
-    toc: TRUE
-    number_sections: true
 ---
 
 \newpage
@@ -1636,7 +1636,7 @@ Define quem é o proprietario do **SCHEMA** criado.\
 
 - **STORAGE PROCEDURE** (**SP_**) são **PROCEDURES** armazenadas do sistema.\
 
-- São procedimentos de Sistema. Armazenados no banco de dados padrão do SQL Server (Master), podemos indentifica-los com as siglas **SP**, que se origina de stored procedure. Tais procedures executam as tarefas administrativas e podem ser executadas a partir de qualquer banco de dados.\
+- São procedimentos de Sistema. Armazenados no banco de dados padrão do **SQL Server** (Master), podemos indentifica-los com as siglas **SP**, que se origina de stored procedure. Tais procedures executam as tarefas administrativas e podem ser executadas a partir de qualquer banco de dados.\
 
 ## **PROCEDURES**
 
