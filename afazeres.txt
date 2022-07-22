@@ -9,7 +9,6 @@ Estudar:
 afazeres:
 
 	- Escrever AULA 111
-		- variaveis locais e globais
 		- revisar SP_
 		- PROCEDURES
 			- básico
