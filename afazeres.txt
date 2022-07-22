@@ -1,6 +1,6 @@
-ESCRITO EM 21/07/22
+ESCRITO EM 22/07/22
 ---
-PARA 22/07/22
+PARA 23/07/22
 ---
 Subir github:
 
@@ -8,7 +8,16 @@ Estudar:
 	- Modulo 28 - AULA 111
 afazeres:
 
-	- Escrever AULA 111 (Revisar)
+	- Escrever AULA 111
+		- variaveis locais e globais
+		- revisar SP_
+		- PROCEDURES
+			- básico
+			- estáticas
+			- dinâmicas
+			- Apagando PROCEDURES
+			- Alterando PROCEDURES
+			- PROCEDURES em tabelas (entrada e saída)
 	- tipo de dados
 	- variaveis locais e globais
 	- Conectar os dois bancos			
