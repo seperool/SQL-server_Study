@@ -7,18 +7,18 @@ output:
   md_document:
     number_sections: true
     variant: markdown_github
+  pdf_document:
+    number_sections: true
+    toc: TRUE
+  github_document: default
   word_document:
     toc: TRUE
     number_sections: true
-  github_document: default
   odt_document:
     number_sections: true
   html_document:
     number_sections: true
     df_print: paged
-  pdf_document:
-    number_sections: true
-    toc: TRUE
 ---
 
 \newpage
@@ -1090,7 +1090,11 @@ Tabela_ASCII
 
 ### Declaração de variáveis - **DECLARE**
 
-- As variáveis são declaradas no corpo de uma **PROCEDURE**, ou **TRIGGER**, com a instrução **DECLARE**.\
+- As variáveis podem ser declaradas no corpo de uma **PROCEDURE**, ou **TRIGGER**, com a instrução **DECLARE**.\
+
+- Os nomes de variáveis devem começar com uma arroba '\@', para caracterizar uma variavel (regra de identificação), um arroba '\@' para variável local e dois arroba '\@\@' para variáveis globais.\
+
+- Para declara um variável, basta usar o **DECLARE**, variaveis não são restritas ao uso apenas dentro do corpo de algum **PROCEDURE**, ou **TRIGGER**. Mas neste capitulo abortaremos variáveis locais dentro de **TRIGGERS**.\
 
 - Valores são atribuidos as variáveis com as instrução **SELECT** ou **SET**.\
   - Sendo **SELECT**, valores vindos de tabelas.\
@@ -1098,10 +1102,13 @@ Tabela_ASCII
 
 - Depois da declaração, todas as variáveis são inicializada com **NULL**, a menos que um valor seja fornecido como parte da declaração.\
 
-- Os nomes de variáveis devem começar com uma arroba '\@'.\
-
 - Sintaxe:\
 **DECLARE** *\@variavel_local* *tipo* (= *valor_inicialização*)\
+
+- É possivel declarar varias variáveis ao mesmo tempo, com apenas um **DECLARE**.\
+  - Sintaxe:\
+  **DECLARE** *\@nome_varaivel_local1* tipo, *\@nome_varaivel_local2* tipo, ...\
+
 
 \newpage
 
@@ -1630,7 +1637,28 @@ Define quem é o proprietario do **SCHEMA** criado.\
 
 \newpage
 
-#  Modulo 28 - **PROCEDURE**
+#  Modulo 28 - Variáveis e **PROCEDURES**
+
+## Variáveis locais e globais
+
+- A difernça de variáveis globais e locais são:\
+  - As variaveis globais são visíveis e podem ser manipuladas por todo sistema e todos os usuários.\
+  - As variaveis locais têm escopo local e são apenas visíveis dentro do lote ou procedimento, onde elas estão definidas.\
+
+- Por regra as variáveis locais começam com um caracter de identificação "\@" antes do nome.\
+
+- Por regra as variaveis globais começam com dois caracteres de identificação "\@\@" antes do nome.\
+
+- O processo de declaração de variáveis, tanto global quanto local, são semelhantes.\
+**DECLARE** *\@nome_variavel_local* tipo\
+**DECLARE** *\@\@nome_variavel_global* tipo\
+
+- As variáveis em lotes e scripts são normalmente usadas:\
+  - Como um contador, para contar o número de vezes que um loop é executado ou controlar quantas vezes que o loop é executado.\
+  - Para reter um valor de dados a ser testado por uma instrução de controle de fluxo.\
+  - Para salvar um valor de dados a ser retornado por um código de retorno de procedimento armazenado ou valor de retorno de função.\
+  
+\newpage
 
 ## **STORAGE PROCEDURES** (ou **STORED PROCEDURES**)
 

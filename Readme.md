@@ -1235,8 +1235,17 @@ style="height:15cm" alt="Tabela de Conversão de Dados" />
 
 ### 11.2.2 Declaração de variáveis - **DECLARE**
 
--   As variáveis são declaradas no corpo de uma **PROCEDURE**, ou
+-   As variáveis podem ser declaradas no corpo de uma **PROCEDURE**, ou
     **TRIGGER**, com a instrução **DECLARE**.  
+
+-   Os nomes de variáveis devem começar com uma arroba ‘@’, para
+    caracterizar uma variavel (regra de identificação), um arroba ‘@’
+    para variável local e dois arroba ‘@@’ para variáveis globais.  
+
+-   Para declara um variável, basta usar o **DECLARE**, variaveis não
+    são restritas ao uso apenas dentro do corpo de algum **PROCEDURE**,
+    ou **TRIGGER**. Mas neste capitulo abortaremos variáveis locais
+    dentro de **TRIGGERS**.  
 
 -   Valores são atribuidos as variáveis com as instrução **SELECT** ou
     **SET**.  
@@ -1248,10 +1257,15 @@ style="height:15cm" alt="Tabela de Conversão de Dados" />
     **NULL**, a menos que um valor seja fornecido como parte da
     declaração.  
 
--   Os nomes de variáveis devem começar com uma arroba ‘@’.  
-
 -   Sintaxe:  
     **DECLARE** *@variavel_local* *tipo* (= *valor_inicialização*)  
+
+-   É possivel declarar varias variáveis ao mesmo tempo, com apenas um
+    **DECLARE**.  
+
+    -   Sintaxe:  
+        **DECLARE** *@nome_varaivel_local1* tipo,
+        *@nome_varaivel_local2* tipo, …  
 
 ## 11.3 **CREATE TRIGGER**
 
@@ -1932,9 +1946,39 @@ ERROR\]
     **SELECT** \* **FROM** *sys.schemas*  
     **GO**  
 
-# 15 Modulo 28 - **PROCEDURE**
+# 15 Modulo 28 - Variáveis e **PROCEDURES**
 
-## 15.1 **STORAGE PROCEDURES** (ou **STORED PROCEDURES**)
+## 15.1 Variáveis locais e globais
+
+-   A difernça de variáveis globais e locais são:  
+
+    -   As variaveis globais são visíveis e podem ser manipuladas por
+        todo sistema e todos os usuários.  
+    -   As variaveis locais têm escopo local e são apenas visíveis
+        dentro do lote ou procedimento, onde elas estão definidas.  
+
+-   Por regra as variáveis locais começam com um caracter de
+    identificação “@” antes do nome.  
+
+-   Por regra as variaveis globais começam com dois caracteres de
+    identificação “@@” antes do nome.  
+
+-   O processo de declaração de variáveis, tanto global quanto local,
+    são semelhantes.  
+    **DECLARE** *@nome_variavel_local* tipo  
+    **DECLARE** *@@nome_variavel_global* tipo  
+
+-   As variáveis em lotes e scripts são normalmente usadas:  
+
+    -   Como um contador, para contar o número de vezes que um loop é
+        executado ou controlar quantas vezes que o loop é executado.  
+    -   Para reter um valor de dados a ser testado por uma instrução de
+        controle de fluxo.  
+    -   Para salvar um valor de dados a ser retornado por um código de
+        retorno de procedimento armazenado ou valor de retorno de
+        função.  
+
+## 15.2 **STORAGE PROCEDURES** (ou **STORED PROCEDURES**)
 
 -   **STORAGE PROCEDURE** (**SP\_**) são **PROCEDURES** armazenadas do
     sistema.  
@@ -1945,19 +1989,19 @@ ERROR\]
     as tarefas administrativas e podem ser executadas a partir de
     qualquer banco de dados.  
 
-## 15.2 **PROCEDURES**
+## 15.3 **PROCEDURES**
 
-### 15.2.1 Básico de **PROCEDURES**
+### 15.3.1 Básico de **PROCEDURES**
 
-### 15.2.2 **PROCEDURES** estáticas
+### 15.3.2 **PROCEDURES** estáticas
 
-### 15.2.3 **PROCEDURES** dinâmicas
+### 15.3.3 **PROCEDURES** dinâmicas
 
-### 15.2.4 Apagando **PROCEDURES**
+### 15.3.4 Apagando **PROCEDURES**
 
-### 15.2.5 Alterando **PROCEDURE**
+### 15.3.5 Alterando **PROCEDURE**
 
-### 15.2.6 **PROCEDURES** em tabelas - Entrada e Saída
+### 15.3.6 **PROCEDURES** em tabelas - Entrada e Saída
 
 # 16 Categorias de comandos
 
