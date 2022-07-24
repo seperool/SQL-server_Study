@@ -1,6 +1,6 @@
-ESCRITO EM 22/07/22
+ESCRITO EM 24/07/22
 ---
-PARA 23/07/22
+PARA 25/07/22
 ---
 Subir github:
 
@@ -9,7 +9,7 @@ Estudar:
 afazeres:
 
 	- Escrever AULA 111
-		- revisar SP_
+		- Listar SP_
 		- PROCEDURES
 			- básico
 			- estáticas
