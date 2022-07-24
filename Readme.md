@@ -1980,14 +1980,18 @@ ERROR\]
 
 ## 15.2 **STORAGE PROCEDURES** (ou **STORED PROCEDURES**)
 
+### 15.2.1 Teoria **STORAGE PROCEDURES**
+
 -   **STORAGE PROCEDURE** (**SP\_**) são **PROCEDURES** armazenadas do
     sistema.  
 
--   São procedimentos de Sistema. Armazenados no banco de dados padrão
+-   São procedimentos de sistema. Armazenados no banco de dados padrão
     do **SQL Server** (Master), podemos indentifica-los com as siglas
-    **SP**, que se origina de stored procedure. Tais procedures executam
-    as tarefas administrativas e podem ser executadas a partir de
-    qualquer banco de dados.  
+    **SP**, que se origina de “stored procedure”. Tais **PROCEDURES**
+    executam as tarefas administrativas e podem ser executadas a partir
+    de qualquer banco de dados.  
+
+### 15.2.2 **STORAGE PROCEDURES**
 
 ## 15.3 **PROCEDURES**
 
