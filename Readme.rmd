@@ -4,20 +4,20 @@ subtitle: "Readme.rmd"
 author: "Sergio Pedro R Oliveira"
 date: "`r Sys.Date()`"
 output:
+  pdf_document:
+    number_sections: true
+    toc: TRUE
+  odt_document:
+    number_sections: true
+  github_document: default
   md_document:
     number_sections: true
     variant: markdown_github
   html_document:
     number_sections: true
     df_print: paged
-  github_document: default
-  pdf_document:
-    number_sections: true
-    toc: TRUE
   word_document:
     toc: TRUE
-    number_sections: true
-  odt_document:
     number_sections: true
 ---
 
@@ -1680,7 +1680,23 @@ Define quem é o proprietario do **SCHEMA** criado.\
 
 ### Apagando **PROCEDURES**
 
+- **DROP PROC** é uma instrução que apaga uma **PROCEDURE** criada anteriormente com a instrução **CREATE PROCEDURE** no **SQL Server**.\
+
+- Sintaxe:\
+**DROP** (**PROCEDURE** | **PROC**) [*SCHEMA.*]*nome_Procedure*\
+**GO**\
+
 ### Alterando **PROCEDURE**
+
+- **ALTER PROC** modifica uma **PROCEDURE** criado anteriormente com a execução da instrução **CREATE PROCEDURE** no **SQL Server**.\
+
+- Serve tando para modificar seus parâmetros, quanto seu bloco de programação **SQL**.\
+
+- Sintaxe:\
+**ALTER** (**PROCEDURE** | **PROC**) [*SCHEMA.*]*nome_Procedure* *parâmetro1* *tipo*, *parâmetro2* *tipo*, ...\
+**AS**\
+[Bloco de programação SQL]\
+**GO**\
 
 ### **PROCEDURES** em tabelas - Entrada e Saída
 

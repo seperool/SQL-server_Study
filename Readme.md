@@ -154,8 +154,8 @@ sqlcmd -S localhost -U SA
     ‘/var/opt/mssql/data’  
 
 -   No Windows os dados de arquitetura ficam gravados no caminho:  
-    ‘C:\\Program Files\\Microsoft SQL
-    Server\\MSSQL15.SQLEXPRESS\\MSSQL\\DATA’  
+    ‘C:\Program Files\Microsoft SQL
+    Server\MSSQL15.SQLEXPRESS\MSSQL\DATA’  
 
 ## 4.3 Tipos de arquivos
 
@@ -1056,8 +1056,8 @@ style="height:15cm" alt="Tabela de Conversão de Dados" />
     **WITH**(  
     **FIRSTROW** = 2,  
     **DATAFILETYPE** = ‘*char*’,  
-    **FIELDTERMINATOR** = ‘\\t’,  
-    **ROWTERMINATOR** = ‘\\n’  
+    **FIELDTERMINATOR** = ‘\t’,  
+    **ROWTERMINATOR** = ‘\n’  
     )  
     **GO**  
 
@@ -2003,7 +2003,28 @@ ERROR\]
 
 ### 15.3.4 Apagando **PROCEDURES**
 
+-   **DROP PROC** é uma instrução que apaga uma **PROCEDURE** criada
+    anteriormente com a instrução **CREATE PROCEDURE** no **SQL
+    Server**.  
+
+-   Sintaxe:  
+    **DROP** (**PROCEDURE** \| **PROC**) \[*SCHEMA.*\]*nome_Procedure*  
+    **GO**  
+
 ### 15.3.5 Alterando **PROCEDURE**
+
+-   **ALTER PROC** modifica uma **PROCEDURE** criado anteriormente com a
+    execução da instrução **CREATE PROCEDURE** no **SQL Server**.  
+
+-   Serve tando para modificar seus parâmetros, quanto seu bloco de
+    programação **SQL**.  
+
+-   Sintaxe:  
+    **ALTER** (**PROCEDURE** \| **PROC**) \[*SCHEMA.*\]*nome_Procedure*
+    *parâmetro1* *tipo*, *parâmetro2* *tipo*, …  
+    **AS**  
+    \[Bloco de programação SQL\]  
+    **GO**  
 
 ### 15.3.6 **PROCEDURES** em tabelas - Entrada e Saída
 
@@ -2055,8 +2076,8 @@ armazenados nas tabelas do banco de dados.
         **WITH**(  
         **FIRSTROW** = 2,  
         **DATAFILETYPE** = ‘*char*’,  
-        **FIELDTERMINATOR** = ‘\\t’,  
-        **ROWTERMINATOR** = ‘\\n’  
+        **FIELDTERMINATOR** = ‘\t’,  
+        **ROWTERMINATOR** = ‘\n’  
         )  
         **GO**  
         \* Mais detalhes no “*Modulo 26 PARTE 4 - Importação de arquivo
@@ -2442,8 +2463,8 @@ permite que as declarações a serem agrupadas em transações lógicas.
     seguir os seguintes passos:  
     -   Desabilitar temporariamente o antivirus do computados.  
     -   Desabilitar o “**firewall**” do computados.  
-        “Painel de Controle\\Sistema e Segurança\\Windows Defender
-        Firewall\\Personalizar Configurações”  
+        “Painel de Controle\Sistema e Segurança\Windows Defender
+        Firewall\Personalizar Configurações”  
     -   Abrir o *instalador* de **SQL Server** e pedir para
         “**Reparar**”.  
     -   Ao final da reparação, abrir o **SSMS** novamente e fazer o
