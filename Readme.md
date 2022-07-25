@@ -2021,7 +2021,7 @@ ERROR\]
 
 -   Sintaxe:  
     **ALTER** (**PROCEDURE** \| **PROC**) \[*SCHEMA.*\]*nome_Procedure*
-    *parâmetro1* *tipo*, *parâmetro2* *tipo*, …  
+    *@parâmetro_1* *tipo*, *@parâmetro_2* *tipo*, …  
     **AS**  
     \[Bloco de programação SQL\]  
     **GO**  
