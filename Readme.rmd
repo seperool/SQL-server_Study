@@ -7,18 +7,18 @@ output:
   md_document:
     number_sections: true
     variant: markdown_github
+  pdf_document:
+    number_sections: true
+    toc: TRUE
+  github_document: default
   word_document:
     toc: TRUE
     number_sections: true
-  github_document: default
   odt_document:
     number_sections: true
   html_document:
     number_sections: true
     df_print: paged
-  pdf_document:
-    number_sections: true
-    toc: TRUE
 ---
 
 \newpage
@@ -1672,13 +1672,38 @@ Define quem é o proprietario do **SCHEMA** criado.\
 
 ## **PROCEDURES**
 
-### Básico de **PROCEDURES**
+### Teoria **PROCEDURE**
 
-### **PROCEDURES** estáticas
+### Instruções básicas de **PROCEDURES**
 
-### **PROCEDURES** dinâmicas
+#### **CREATE PROCEDURE**
 
-### Apagando **PROCEDURES**
+- Para criar uma **PROCEDURE**, basta usar a instrução **CREATE PROCEDURE**, ou **CREATE PROC** + nome da **PROCEDURE**. 
+
+- Caso tenha argumentos (parâmetros) basta adicionar no cabeçalho as variaveis (*\@variavel*) e seus respectivos tipos.\
+
+- Após o cabeçalho (**CREATE PROC** + *nome_PROC* + argumentos), vem a instrução **AS** que inicia o "bloco de instrução **SQL**", com todos as instruções que a **PROCEDURE** deve executrar, encerrando com **GO**.\
+
+- Sintaxe:\
+**CREATE PROC** *nome_PROC* *\@variavel1* tipo, *\@variavel2* tipo, ...\
+**AS**\
+[Bloco de programação SQL]\
+**GO**\
+
+#### Bloco de programação SQL de uma **PROCEDURE**
+
+#### Chamando a **PROCEDURE**
+
+- Há duas maneiras chamar (executar) uma **PROCEDURE**, já criada, apenas chamando pelo nome da **PROCEDURE**, ou usar a instrução **EXEC** + nome da **PROCEDURE**. As boas práticas recomenda o uso de **EXEC**.\
+
+- Sintaxe:\
+**EXEC** *nome_PROC*\
+**GO**\
+ou\
+*nome_PROC*\
+**GO**\
+
+#### Apagando **PROCEDURES**
 
 - **DROP PROC** é uma instrução que apaga uma **PROCEDURE** criada anteriormente com a instrução **CREATE PROCEDURE** no **SQL Server**.\
 
@@ -1686,7 +1711,7 @@ Define quem é o proprietario do **SCHEMA** criado.\
 **DROP** (**PROCEDURE** | **PROC**) [*SCHEMA.*]*nome_Procedure*\
 **GO**\
 
-### Alterando **PROCEDURE**
+#### Alterando **PROCEDURE**
 
 - **ALTER PROC** modifica uma **PROCEDURE** criado anteriormente com a execução da instrução **CREATE PROCEDURE** no **SQL Server**.\
 
@@ -1697,6 +1722,10 @@ Define quem é o proprietario do **SCHEMA** criado.\
 **AS**\
 [Bloco de programação SQL]\
 **GO**\
+
+### **PROCEDURES** estáticas
+
+### **PROCEDURES** dinâmicas
 
 ### **PROCEDURES** em tabelas - Entrada e Saída
 

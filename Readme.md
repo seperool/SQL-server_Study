@@ -1995,13 +1995,47 @@ ERROR\]
 
 ## 15.3 **PROCEDURES**
 
-### 15.3.1 Básico de **PROCEDURES**
+### 15.3.1 Teoria **PROCEDURE**
 
-### 15.3.2 **PROCEDURES** estáticas
+### 15.3.2 Instruções básicas de **PROCEDURES**
 
-### 15.3.3 **PROCEDURES** dinâmicas
+#### 15.3.2.1 **CREATE PROCEDURE**
 
-### 15.3.4 Apagando **PROCEDURES**
+-   Para criar uma **PROCEDURE**, basta usar a instrução **CREATE
+    PROCEDURE**, ou **CREATE PROC** + nome da **PROCEDURE**.
+
+-   Caso tenha argumentos (parâmetros) basta adicionar no cabeçalho as
+    variaveis (*@variavel*) e seus respectivos tipos.  
+
+-   Após o cabeçalho (**CREATE PROC** + *nome_PROC* + argumentos), vem a
+    instrução **AS** que inicia o “bloco de instrução **SQL**”, com
+    todos as instruções que a **PROCEDURE** deve executrar, encerrando
+    com **GO**.  
+
+-   Sintaxe:  
+    **CREATE PROC** *nome_PROC* *@variavel1* tipo, *@variavel2* tipo,
+    …  
+    **AS**  
+    \[Bloco de programação SQL\]  
+    **GO**  
+
+#### 15.3.2.2 Bloco de programação SQL de uma **PROCEDURE**
+
+#### 15.3.2.3 Chamando a **PROCEDURE**
+
+-   Há duas maneiras chamar (executar) uma **PROCEDURE**, já criada,
+    apenas chamando pelo nome da **PROCEDURE**, ou usar a instrução
+    **EXEC** + nome da **PROCEDURE**. As boas práticas recomenda o uso
+    de **EXEC**.  
+
+-   Sintaxe:  
+    **EXEC** *nome_PROC*  
+    **GO**  
+    ou  
+    *nome_PROC*  
+    **GO**  
+
+#### 15.3.2.4 Apagando **PROCEDURES**
 
 -   **DROP PROC** é uma instrução que apaga uma **PROCEDURE** criada
     anteriormente com a instrução **CREATE PROCEDURE** no **SQL
@@ -2011,7 +2045,7 @@ ERROR\]
     **DROP** (**PROCEDURE** \| **PROC**) \[*SCHEMA.*\]*nome_Procedure*  
     **GO**  
 
-### 15.3.5 Alterando **PROCEDURE**
+#### 15.3.2.5 Alterando **PROCEDURE**
 
 -   **ALTER PROC** modifica uma **PROCEDURE** criado anteriormente com a
     execução da instrução **CREATE PROCEDURE** no **SQL Server**.  
@@ -2026,7 +2060,11 @@ ERROR\]
     \[Bloco de programação SQL\]  
     **GO**  
 
-### 15.3.6 **PROCEDURES** em tabelas - Entrada e Saída
+### 15.3.3 **PROCEDURES** estáticas
+
+### 15.3.4 **PROCEDURES** dinâmicas
+
+### 15.3.5 **PROCEDURES** em tabelas - Entrada e Saída
 
 # 16 Categorias de comandos
 
