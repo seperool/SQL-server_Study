@@ -1997,6 +1997,26 @@ ERROR\]
 
 ### 15.3.1 Teoria **PROCEDURE**
 
+-   **PROCEDURES** são o equivalente a funções em outras linguagens de
+    programação. Podendo ter valores de entrada e saida.  
+
+-   Serve para executar determinadas operações (bloco de programação
+    SQL) e transformar determinados objetos (dados, tabelas, banco de
+    dados, …), e repetir o processo toda vez que for chamada.  
+
+-   Procedimentos armazenados são semelhantes a procedimentos em outras
+    linguagens de programação no sentido de que podem:  
+
+    -   Aceitar parâmetros de entrada e retornar vários valores no
+        formulário de parâmetros de saída para o procedimento de chamada
+        ou lote.  
+
+    -   Conter instruções de programação que executam operações no banco
+        de dados, inclusive chamar outros procedimentos.  
+
+    -   Retornar um valor de status a um procedimento de chamada ou lote
+        para indicar êxito ou falha (e o motivo da falha).  
+
 ### 15.3.2 Instruções básicas de **PROCEDURES**
 
 #### 15.3.2.1 **CREATE PROCEDURE**
@@ -2021,12 +2041,30 @@ ERROR\]
 
 #### 15.3.2.2 Bloco de programação SQL de uma **PROCEDURE**
 
+-   O bloco de programação SQL são as instruções SQL que a **PROCEDURE**
+    vai executar toda vez em que for chamada.  
+
+-   Sintaxe tipica de uma **PROCEDURE** de consulta:  
+    **CREATE PROC** *nome_PROC* *@TIPO* CHAR(3)  
+    **AS**  
+    **SELECT**  
+    **P***.NOME*,  
+    **T***.NUMERO*  
+    **FROM** *tabela1* **P**  
+    **INNER JOIN** *tabela2* **T**  
+    **ON** **P***.IDPESSOA* = **T***.ID_PESSOA*  
+    **WHERE** *TIPO* = *@TIPO*  
+    **GO**  
+
 #### 15.3.2.3 Chamando a **PROCEDURE**
 
 -   Há duas maneiras chamar (executar) uma **PROCEDURE**, já criada,
     apenas chamando pelo nome da **PROCEDURE**, ou usar a instrução
     **EXEC** + nome da **PROCEDURE**. As boas práticas recomenda o uso
     de **EXEC**.  
+
+-   Quando chamada **PROCEDURES** que aceitem parâmetros, eles são
+    inseridos depois do nome da **PROCEDURE**.  
 
 -   Sintaxe:  
     **EXEC** *nome_PROC*  
