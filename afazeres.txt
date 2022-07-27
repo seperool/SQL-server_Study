@@ -1,12 +1,9 @@
-ESCRITO EM 26/07/22
+ESCRITO EM 27/07/22
 ---
-PARA 27/07/22
+PARA 28/07/22
 ---
 Subir github:
-	- PROCEDURES
-		- teoria
-		- comandos básicos
-			- bloco de programação SQL
+
 Estudar:
 	- Modulo 28 - AULA 111
 afazeres:
