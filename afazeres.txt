@@ -3,7 +3,10 @@ ESCRITO EM 26/07/22
 PARA 27/07/22
 ---
 Subir github:
-
+	- PROCEDURES
+		- teoria
+		- comandos básicos
+			- bloco de programação SQL
 Estudar:
 	- Modulo 28 - AULA 111
 afazeres:
@@ -11,9 +14,6 @@ afazeres:
 	- Escrever AULA 111
 		- Listar SP_
 		- PROCEDURES
-			- teoria
-			- comandos básicos
-				- bloco de programação SQL
 			- estáticas
 			- dinâmicas
 			- PROCEDURES em tabelas (entrada e saída)
