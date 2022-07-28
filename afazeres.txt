@@ -1,6 +1,6 @@
-ESCRITO EM 27/07/22
+ESCRITO EM 28/07/22
 ---
-PARA 28/07/22
+PARA 29/07/22
 ---
 Subir github:
 
@@ -11,8 +11,9 @@ afazeres:
 	- Escrever AULA 111
 		- Listar SP_
 		- PROCEDURES
-			- estáticas
 			- dinâmicas
+				- saída
+				- entrada e saída
 			- PROCEDURES em tabelas (entrada e saída)
 	- tipo de dados
 	- variaveis locais e globais
