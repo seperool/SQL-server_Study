@@ -4,21 +4,21 @@ subtitle: "Readme.rmd"
 author: "Sergio Pedro R Oliveira"
 date: "`r Sys.Date()`"
 output:
-  pdf_document:
-    number_sections: true
-    toc: TRUE
-  word_document:
-    toc: TRUE
-    number_sections: true
-  github_document: default
   md_document:
     number_sections: true
     variant: markdown_github
-  odt_document:
-    number_sections: true
   html_document:
     number_sections: true
     df_print: paged
+  github_document: default
+  word_document:
+    toc: TRUE
+    number_sections: true
+  pdf_document:
+    number_sections: true
+    toc: TRUE
+  odt_document:
+    number_sections: true
 ---
 
 \newpage
@@ -1670,6 +1670,8 @@ Define quem é o proprietario do **SCHEMA** criado.\
 
 ### **STORAGE PROCEDURES**
 
+\newpage
+
 ## **PROCEDURES**
 
 ### Teoria **PROCEDURE**
@@ -1751,11 +1753,58 @@ ou\
 [Bloco de programação SQL]\
 **GO**\
 
+\newpage
+
 ### **PROCEDURES** estáticas
+
+- **PROCEDURES** estáticas são as **PROCEDURES** que não contêm parâmetros de entrada e/ou saída.\
+
+- São uteis para executar determinados cálculos, mostrar determinadas consultas, ou resultados, muito recorrentes.\
+
+- Sintaxe com exemplo:\
+**CREATE PROC** *nome_PROCEDURE*\
+**AS**\
+**SELECT** 10 + 10 **AS** *SOMA*\
+**GO**\
+**EXEC** *nome_PROCEDURE*\
+**GO**\
 
 ### **PROCEDURES** dinâmicas
 
-### **PROCEDURES** em tabelas - Entrada e Saída
+- **PROCEDURES** dinâmicas são as **PROCEDURES** que contêm parametros, de entrada e/ou saída.\
+
+#### **PROCEDURES** com parâmetros de Entrada
+
+- Parâmetros de entrada são dados que são inseridos e aceitos dentro das **PROCEDURES**.\
+
+- Os parâmetros de entrada são inseridos na **PROCEDURE** por meio de variaveis definidas quando criadas as **PROCEDURES** (**CREATE PROC**).\
+**CREATE PROCEDURE** *nome_PROCEDURE* *\@variavel1* tipo_da_variavel, ...\
+
+- No bloco de programação SQL da **PROCEDURE** são trabalhadas as variaveis.\
+...\
+**AS**\
+**SELECT** *\@NUM1* + *\@NUM2* **AS** *RESULTADO*\
+**GO**\
+
+- Para inserir os parâmetros nas variaveis quando chamar as **PROCEDURES** dinâmicas basta inserir os dados ao lado do nome da PROCEDURE (se forem mais de um parâmetro basta separar por virgula).\
+**EXEC** **PROC** *nome_PROCEDURE* *valor1*, *valor2*, ...\
+**GO**\
+
+- No caso de variaveis do tipo **CHAR** ou **VARCHAR**, colocar os valores entre pareteses simples.\
+**EXEC** *TELEFONES* 'CEL'\
+**GO**\
+
+- Sintaxe:\
+**CREATE PROCEDURE** *nome_PROCEDURE* *\@variavel1* tipo_da_variavel, *\@variavel2* tipo_da_variavel\
+**AS**\
+**SELECT** *\@variavel1* + *\@variavel2* **AS** *RESULTADO*\
+**GO**\
+**EXEC** **PROC** *nome_PROCEDURE* *valor1*, *valor2*\
+**GO**\
+
+#### **PROCEDURES** com parâmetros de Saída
+
+#### **PROCEDURES** com parâmetros de entrada e saída
 
 \newpage
 

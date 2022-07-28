@@ -2100,9 +2100,67 @@ ERROR\]
 
 ### 15.3.3 **PROCEDURES** estáticas
 
+-   **PROCEDURES** estáticas são as **PROCEDURES** que não contêm
+    parâmetros de entrada e/ou saída.  
+
+-   São uteis para executar determinados cálculos, mostrar determinadas
+    consultas, ou resultados, muito recorrentes.  
+
+-   Sintaxe com exemplo:  
+    **CREATE PROC** *nome_PROCEDURE*  
+    **AS**  
+    **SELECT** 10 + 10 **AS** *SOMA*  
+    **GO**  
+    **EXEC** *nome_PROCEDURE*  
+    **GO**  
+
 ### 15.3.4 **PROCEDURES** dinâmicas
 
-### 15.3.5 **PROCEDURES** em tabelas - Entrada e Saída
+-   **PROCEDURES** dinâmicas são as **PROCEDURES** que contêm
+    parametros, de entrada e/ou saída.  
+
+#### 15.3.4.1 **PROCEDURES** com parâmetros de Entrada
+
+-   Parâmetros de entrada são dados que são inseridos e aceitos dentro
+    das **PROCEDURES**.  
+
+-   Os parâmetros de entrada são inseridos na **PROCEDURE** por meio de
+    variaveis definidas quando criadas as **PROCEDURES** (**CREATE
+    PROC**).  
+    **CREATE PROCEDURE** *nome_PROCEDURE* *@variavel1* tipo_da_variavel,
+    …  
+
+-   No bloco de programação SQL da **PROCEDURE** são trabalhadas as
+    variaveis.  
+    …  
+    **AS**  
+    **SELECT** *@NUM1* + *@NUM2* **AS** *RESULTADO*  
+    **GO**  
+
+-   Para inserir os parâmetros nas variaveis quando chamar as
+    **PROCEDURES** dinâmicas basta inserir os dados ao lado do nome da
+    PROCEDURE (se forem mais de um parâmetro basta separar por
+    virgula).  
+    **EXEC** **PROC** *nome_PROCEDURE* *valor1*, *valor2*, …  
+    **GO**  
+
+-   No caso de variaveis do tipo **CHAR** ou **VARCHAR**, colocar os
+    valores entre pareteses simples.  
+    **EXEC** *TELEFONES* ‘CEL’  
+    **GO**  
+
+-   Sintaxe:  
+    **CREATE PROCEDURE** *nome_PROCEDURE* *@variavel1* tipo_da_variavel,
+    *@variavel2* tipo_da_variavel  
+    **AS**  
+    **SELECT** *@variavel1* + *@variavel2* **AS** *RESULTADO*  
+    **GO**  
+    **EXEC** **PROC** *nome_PROCEDURE* *valor1*, *valor2*  
+    **GO**  
+
+#### 15.3.4.2 **PROCEDURES** com parâmetros de Saída
+
+#### 15.3.4.3 **PROCEDURES** com parâmetros de entrada e saída
 
 # 16 Categorias de comandos
 
