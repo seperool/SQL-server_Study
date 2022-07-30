@@ -1,6 +1,6 @@
-ESCRITO EM 28/07/22
+ESCRITO EM 29/07/22
 ---
-PARA 29/07/22
+PARA 30/07/22
 ---
 Subir github:
 
@@ -12,7 +12,6 @@ afazeres:
 		- Listar SP_
 		- PROCEDURES
 			- dinâmicas
-				- saída
 				- entrada e saída
 			- PROCEDURES em tabelas (entrada e saída)
 	- tipo de dados
