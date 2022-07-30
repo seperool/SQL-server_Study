@@ -2160,6 +2160,47 @@ ERROR\]
 
 #### 15.3.4.2 **PROCEDURES** com parâmetros de Saída
 
+-   Parâmetros de saida são variaveis de saida, que retornam valores.  
+
+-   Ao criar uma **PROCEDURE** (**CREATE PROC**), os parâmetros de saída
+    são variaveis acompanhadas do tipo e o indicador **OUTPUT**.  
+    **CREATE PROCEDURE** *nome_PROCEDURE* *@Variavel_entrada* CHAR(3),
+    *@Variavel_saida* INT **OUTPUT**  
+    …  
+
+-   **OUTPUT** indica que o parâmetro é um parâmetro de saída.  
+
+-   Use parâmetros **OUTPUT** para retornar valores do chamador do
+    **PROCEDURE**.  
+    **DECLARE** *@SAIDA* INT (DECLARANDO UMA VARIAVEL NA MEMORIA RAM,
+    **TCL**)  
+    **EXEC** *nome_PROCEDURE* *@variavel_entrada* = ‘CEL’,
+    *@variavel_saida* = *@SAIDA* **OUTPUT**  
+    **GO**  
+
+-   Sintaxe, com exemplo e comentários entre colchetes:  
+    **CREATE PROCEDURE** *GETTIPO* *@TIPO* CHAR(3), *@CONTADOR* INT
+    **OUTPUT**  
+    **AS**  
+    **SELECT**  
+    *@CONTADOR* = COUNT(\*)  
+    **FROM** *TELEFONE01*  
+    **WHERE** *TIPO* = *@TIPO*  
+    **GO**  
+    **DECLARE** *@SAIDA* INT \[DECLARANDO UMA VARIAVEL NA MEMORIA RAM,
+    **TCL**\]  
+    **EXEC** *GETTIPO* *@TIPO* = ‘CEL’, *@CONTADOR* = *@SAIDA*
+    **OUTPUT**  
+    **SELECT** *@SAIDA* \[PROJEÇÃO, imprimindo na tela\]  
+    **GO**  
+    ou  
+    **DECLARE** *@SAIDA* INT \[DECLARANDO UMA VARIAVEL NA MEMORIA RAM,
+    **TCL**\]  
+    **EXEC** *GETTIPO* ‘CEL’, *@SAIDA* **OUTPUT** \[APENAS COLOCANDO
+    VALORES E VARIAVEIS NAS POSIÇÕES CERTAS\]  
+    **SELECT** *@SAIDA* \[PROJEÇÃO, imprimindo na tela\]  
+    **GO**  
+
 #### 15.3.4.3 **PROCEDURES** com parâmetros de entrada e saída
 
 # 16 Categorias de comandos
