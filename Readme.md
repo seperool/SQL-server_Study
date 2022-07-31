@@ -2178,6 +2178,27 @@ ERROR\]
     *@variavel_saida* = *@SAIDA* **OUTPUT**  
     **GO**  
 
+#### 15.3.4.3 **PROCEDURES** com parâmetros de entrada e saída
+
+-   Utilizar PROCEDURES com parâmetros de entrada e saída portencializa
+    o uso.  
+
+-   Lembrar de usar **OUTPUT** para variáveis de saída.  
+
+-   Para salvar o parâmetro de saída e poder utilizar seu valor a
+    qualquer momento, basta associar ele a uma variavel salva na memoria
+    RAM (declarada fora de qualquer escopo).  
+    **DECLARE** *@SAIDA* INT \[DECLARANDO UMA VARIAVEL NA MEMORIA RAM,
+    **TCL**\]  
+    **EXEC** *GETTIPO* *@TIPO* = ‘CEL’, *@CONTADOR* = *@SAIDA*
+    **OUTPUT**  
+    …  
+    ou  
+    **DECLARE** *@SAIDA* INT \[DECLARANDO UMA VARIAVEL NA MEMORIA RAM,
+    **TCL**\]  
+    **EXEC** *GETTIPO* ‘CEL’, *@SAIDA* **OUTPUT**  
+    …  
+
 -   Sintaxe, com exemplo e comentários entre colchetes:  
     **CREATE PROCEDURE** *GETTIPO* *@TIPO* CHAR(3), *@CONTADOR* INT
     **OUTPUT**  
@@ -2200,8 +2221,6 @@ ERROR\]
     VALORES E VARIAVEIS NAS POSIÇÕES CERTAS\]  
     **SELECT** *@SAIDA* \[PROJEÇÃO, imprimindo na tela\]  
     **GO**  
-
-#### 15.3.4.3 **PROCEDURES** com parâmetros de entrada e saída
 
 # 16 Categorias de comandos
 

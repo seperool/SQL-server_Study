@@ -7,18 +7,18 @@ output:
   pdf_document:
     number_sections: true
     toc: TRUE
-  odt_document:
-    number_sections: true
-  github_document: default
   html_document:
     number_sections: true
     df_print: paged
-  md_document:
+  github_document: default
+  odt_document:
     number_sections: true
-    variant: markdown_github
   word_document:
     toc: TRUE
     number_sections: true
+  md_document:
+    number_sections: true
+    variant: markdown_github
 ---
 
 \newpage
@@ -1817,6 +1817,21 @@ ou\
 **EXEC** *nome_PROCEDURE* *\@variavel_entrada* = 'CEL', *\@variavel_saida* = *\@SAIDA* **OUTPUT**\
 **GO**\
 
+#### **PROCEDURES** com parâmetros de entrada e saída
+
+- Utilizar PROCEDURES com parâmetros de entrada e saída portencializa o uso.\
+
+- Lembrar de usar **OUTPUT** para variáveis de saída.\
+
+- Para salvar o parâmetro de saída e poder utilizar seu valor a qualquer momento, basta associar ele a uma variavel salva na memoria RAM (declarada fora de qualquer escopo).\
+**DECLARE** *\@SAIDA* INT [DECLARANDO UMA VARIAVEL NA MEMORIA RAM, **TCL**]\
+**EXEC** *GETTIPO* *\@TIPO* = 'CEL', *\@CONTADOR* = *\@SAIDA* **OUTPUT**\
+...\
+ou\
+**DECLARE** *\@SAIDA* INT [DECLARANDO UMA VARIAVEL NA MEMORIA RAM, **TCL**]\
+**EXEC** *GETTIPO* 'CEL', *\@SAIDA* **OUTPUT**\
+...\
+
 - Sintaxe, com exemplo e comentários entre colchetes:\
 **CREATE PROCEDURE** *GETTIPO* *\@TIPO* CHAR(3), *\@CONTADOR* INT **OUTPUT**\
 **AS**\
@@ -1834,8 +1849,6 @@ ou\
 **EXEC** *GETTIPO* 'CEL', *\@SAIDA* **OUTPUT** [APENAS COLOCANDO VALORES E VARIAVEIS NAS POSIÇÕES CERTAS]\
 **SELECT** *\@SAIDA* [PROJEÇÃO, imprimindo na tela]\
 **GO**\
-
-#### **PROCEDURES** com parâmetros de entrada e saída
 
 \newpage
 
