@@ -1,6 +1,6 @@
-ESCRITO EM 29/07/22
+ESCRITO EM 31/07/22
 ---
-PARA 30/07/22
+PARA 01/08/22
 ---
 Subir github:
 
@@ -10,10 +10,6 @@ afazeres:
 
 	- Escrever AULA 111
 		- Listar SP_
-		- PROCEDURES
-			- dinâmicas
-				- entrada e saída
-			- PROCEDURES em tabelas (entrada e saída)
 	- tipo de dados
 	- variaveis locais e globais
 	- Conectar os dois bancos			
