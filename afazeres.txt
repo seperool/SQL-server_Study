@@ -1,10 +1,8 @@
-ESCRITO EM 31/07/22
+ESCRITO EM 01/08/22
 ---
-PARA 01/08/22
+PARA 02/08/22
 ---
 Subir github:
-	- PROCEDURE
-		- Listar SP_
 	- script AULA 112 (depois de testar)
 Estudar:
 	- Modulo 28 - AULA 112
