@@ -1991,7 +1991,23 @@ ERROR\]
     executam as tarefas administrativas e podem ser executadas a partir
     de qualquer banco de dados.  
 
-### 15.2.2 **STORAGE PROCEDURES**
+### 15.2.2 Lista de **STORAGE PROCEDURES**
+
+-   **SP_HELP**  
+    Listar todos os objetos do banco.  
+-   **SP_HELP** *objeto*  
+    Ver as características do objeto. O comando oferece a descrição
+    detalhada do objeto tabela).  
+    Comando semelhante ao **SHOW CREATE TABLE** do **MySQL**.  
+-   **SP_TABLES**  
+    Lista todas as tabelas e **VIEWS**.  
+-   **SP_HELPTEXT** *objeto*  
+    Exibe o texto de uma regra definida pelo usuário (TRIGGER,
+    PROCEDURE, …).  
+-   **SP_COLUMNS** *objeto*  
+    Exibe a descrição de terminado objeto (tabela), como colunas de
+    determinada tabela.  
+    Comando semelhante ao **DESC** do **MySQL**.  
 
 ## 15.3 **PROCEDURES**
 
@@ -2683,4 +2699,4 @@ permite que as declarações a serem agrupadas em transações lógicas.
 
 ## 18.1 Assunto em andamento
 
-Atualmente estou estudando Módulo 28 - AULA 111.  
+Atualmente estou estudando Módulo 28 - AULA 112.  
