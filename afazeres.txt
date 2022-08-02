@@ -1,13 +1,13 @@
-ESCRITO EM 01/08/22
+ESCRITO EM 02/08/22
 ---
-PARA 02/08/22
+PARA 03/08/22
 ---
 Subir github:
-	- script AULA 112 (depois de testar)
+	- script AULA 112 código testado - query9
+	- script AULA 111 (modificado) código testado - query8
 Estudar:
 	- Modulo 28 - AULA 112
-afazeres:
-	- testar script AULA 112 SQL Server 
+afazeres: 
 	- escrever:
 		- PROCEDURE COMO REGRA DE NEGÓCIO
 			- áreas de um site ou aplicativo
