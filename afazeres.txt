@@ -1,9 +1,9 @@
-ESCRITO EM 03/08/22
+ESCRITO EM 04/08/22
 ---
-PARA 04/08/22
+PARA 05/08/22
 ---
 Subir github:
-	- script AULA 112 código testado - query9
+	
 Estudar:
 	- Modulo 28 - AULA 112
 afazeres: 
