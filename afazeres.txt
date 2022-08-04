@@ -5,7 +5,7 @@ PARA 05/08/22
 Subir github:
 
 Estudar:
-	- Modulo 28 - AULA 113
+	- Modulo 29 - AULA 113
 afazeres: 
 	- tipo de dados
 	- Conectar os dois bancos		
