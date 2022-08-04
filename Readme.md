@@ -685,6 +685,13 @@ sqlcmd -S localhost -U SA
         …  
         **PRINT** ‘*TRIGGER EXECUTADO COM SUCESSO*’  
         **GO**  
+-   **@@IDENTITY**  
+    -   O comando **SELECT @@IDENTITY** retorna o último **IDENTITY**
+        gerado pela seção.  
+    -   Uma ótima opção para recuperar um **IDENTITY** que acaba de ser
+        gerado em algum procedimento.  
+    -   **PROCEDURES** (funções) podem se utilizar desta função no caso
+        de uma **PROCEDURE** que insira dados numa tabela.  
 
 ### 7.1.2 Funções de auditoria
 
@@ -2236,6 +2243,94 @@ ERROR\]
     **EXEC** *GETTIPO* ‘CEL’, *@SAIDA* **OUTPUT** \[APENAS COLOCANDO
     VALORES E VARIAVEIS NAS POSIÇÕES CERTAS\]  
     **SELECT** *@SAIDA* \[PROJEÇÃO, imprimindo na tela\]  
+    **GO**  
+
+### 15.3.5 **PROCEDURE** como regra de negócio
+
+#### 15.3.5.1 Áreas na construção de um software
+
+As áreas, ou camadas, de arquitetura de software:  
+
+-   Área de view (visão)  
+    -   Área na contrução de um software destinada a parte visual,
+        normalmente é constituido por HTML, CSS, e outras linguens de
+        marcação.  
+    -   Interface com o usuário.  
+-   Área de controller  
+    -   Área da construção do um software destinada a programação do
+        mesmo, normalmente é constituido da linguagens de programação
+        responsavel pelas funcionalidade do software e pelas regras de
+        negócio (JAVA, Python, C++, …).  
+    -   Controle faz a mediação da entrada e saída, comandando a visão e
+        o modelo para serem alterados de forma apropriada conforme o
+        usuário solicitou através do mouse e teclado.  
+    -   O foco do Controle é a ação do usuário, onde são manipulados os
+        dados que o usuário insere ou atualiza, chamando em seguida o
+        Modelo.  
+    -   O Controle (Controller) envia essas ações para o Modelo (Model)
+        e para a janela de visualização (View) onde serão realizadas as
+        operações necessárias.  
+-   Área de model (modelo)  
+    -   Modelo é a ponte entre as camadas Visão (View) e Controle
+        (Controller), gerencia o comportamento dos dados através de
+        regras de negócios, lógica e funções.  
+    -   É comum que seja o banco de dados.  
+    -   Pode vir a ter as regras negócio, ou não.  
+    -   O model fica esperando a chamada das funções, que permite o
+        acesso para os dados serem coletados, gravados e, exibidos.  
+    -   O model se preocupa apenas com o armazenamento, manipulação e
+        geração de dados. É um encapsulamento de dados e de
+        comportamento independente da apresentação.  
+
+#### 15.3.5.2 Vantagens e desvantagens
+
+-   O uso de uma **PROCEDURE** como regra de negócio pode proporcionar
+    algumas vantagens e outras desvangens.  
+
+-   Não é a opção mais usual de ação para o uso do SQL, porem pode vir a
+    ser uma necessidade dependendo da situação, aliviar parte do
+    servidor por exemplo.  
+
+-   Desvantagens:  
+
+    -   Caso haja a necessidade de migra de banco de dados, como a regra
+        de negócio esta implementada no banco de dados, a migração passa
+        a ser mais complexa, pois vai exigir reescrever/reprogramar, ou
+        modificar, as regras para a linguagem SQL do novo banco de
+        dados.  
+    -   O processamento do banco de dados passa a ser mais penoso para o
+        servidor, pois instruções mais complexas passam a ser
+        processadas.  
+
+-   Vantagens:  
+
+    -   Torna a migração da área de controller mais fácil.  
+    -   Alivia o processamento da área de controller (área responsavel
+        pelas linguagens de programação).  
+
+#### 15.3.5.3 Exemplo de **PROCEDURE** como regra de negócio
+
+-   Exemplo de uma **PROCEDURE** que insere dados em duas tabelas ao
+    mesmo tempo.  
+
+-   Exemplo como comentários entre colchetes:  
+    **CREATE PROC** *CADASTRO* *@NOME* VARCHAR(30), *@SEXO* CHAR(1),
+    *@NASCIMENTO* DATE,  
+    *@TIPO* CHAR(3), *@NUMERO* VARCHAR(10)  
+    **AS**  
+    **DECLARE** *@FK* INT  
+    **INSERT INTO** *PESSOA* **VALUES** (*@NOME*, *@SEXO*,
+    *@NASCIMENTO*)  
+    \[Gera um ID\]  
+    **SET** *@FK* = (**SELECT** *IDPESSOA* **FROM** *PESSOA* **WHERE**
+    *IDPESSOA* = **@@IDENTITY**)  
+    \[**SELECT @@IDENTITY** retorna o último **IDENTITY** inserido na
+    seção\]  
+    \[Poderia colocar apenas ‘**SELECT @@IDENTITY**’\]  
+    **INSERT INTO** *TELEFONE01* **VALUES** (*@TIPO*, *@NUMERO*,
+    *@FK*)  
+    **GO**  
+    **EXEC** *CADASTRO* ‘JORGE’, ‘M’, ‘1981-01-01’, ‘CEL’, ‘987842561’  
     **GO**  
 
 # 16 Categorias de comandos
