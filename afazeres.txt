@@ -3,16 +3,10 @@ ESCRITO EM 04/08/22
 PARA 05/08/22
 ---
 Subir github:
-	
+
 Estudar:
-	- Modulo 28 - AULA 112
+	- Modulo 28 - AULA 113
 afazeres: 
-	- escrever:
-		- PROCEDURE COMO REGRA DE NEGÓCIO
-			- áreas de um site ou aplicativo
-			- vantagens e desvantagens
-			- Função SELECT @@IDENTITY
-			- exemplo de PROCEDURE COMO REGRA DE NEGÓCIO
 	- tipo de dados
 	- Conectar os dois bancos		
 pull:
