@@ -1,12 +1,18 @@
-ESCRITO EM 05/08/22
+ESCRITO EM 06/08/22
 ---
-PARA 06/08/22
+PARA 07/08/22
 ---
 Subir github:
 
 Estudar:
 	- Modulo 29 - AULA 113
-afazeres: 
+afazeres:
+	- Escrever AULA 113 - TSQL
+		- Teoria
+		- Estrutura de um TSQL
+		- Tipos e conversão de tipos (CAST e CONVERT)
+	- Escrever script query10-TSQL
+	- testar script query10-TSQL
 	- tipo de dados
 	- Conectar os dois bancos		
 pull:
