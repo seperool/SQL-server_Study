@@ -7,17 +7,17 @@ output:
   md_document:
     number_sections: true
     variant: markdown_github
-  pdf_document:
-    number_sections: true
-    toc: TRUE
-  github_document: default
   html_document:
     number_sections: true
     df_print: paged
+  github_document: default
+  odt_document:
+    number_sections: true
+  pdf_document:
+    number_sections: true
+    toc: TRUE
   word_document:
     toc: TRUE
-    number_sections: true
-  odt_document:
     number_sections: true
 ---
 
@@ -1642,7 +1642,7 @@ Define quem é o proprietario do **SCHEMA** criado.\
 
 \newpage
 
-#  Modulo 28 - Variáveis e **PROCEDURES**
+# Modulo 28 parte 1 - Variáveis e **PROCEDURES**
 
 ## Variáveis locais e globais
 
@@ -1870,31 +1870,32 @@ ou\
 
 \newpage
 
-### **PROCEDURE** como regra de negócio
+# Modulo 28 parte 2 - Arquitetura de software  e **PROCEDURE** como regra de negócio
 
-#### Áreas na construção de um software
+## Áreas na construção de um software
 
 As áreas, ou camadas, de arquitetura de software:\
 
-- Área de view (visão)\
+- Área de **VIEW** (visão)\
   - Área na contrução de um software destinada a parte visual, normalmente é constituido por HTML, CSS, e outras linguens de marcação.\
   - Interface com o usuário.\
 
-- Área de controller\
+- Área de **CONTROLLER** (controle)\
   - Área da construção do um software destinada a programação do mesmo, normalmente é constituido da linguagens de programação responsavel pelas funcionalidade do software e pelas regras de negócio (JAVA, Python, C++, ...).\
   - Controle faz a mediação da entrada e saída, comandando a visão e o modelo para serem alterados de forma apropriada conforme o usuário solicitou através do mouse e teclado.\
   - O foco do Controle é a ação do usuário, onde são manipulados os dados que o usuário insere ou atualiza, chamando em seguida o Modelo.\
   - O Controle (Controller) envia essas ações para o Modelo (Model) e para a janela de visualização (View) onde serão realizadas as operações necessárias.\
 
-- Área de model (modelo)\
+- Área de **MODEL** (modelo)\
   - Modelo é a ponte entre as camadas Visão (View) e Controle (Controller), gerencia o comportamento dos dados através de regras de negócios, lógica e funções.\
   - É comum que seja o banco de dados.\
   - Pode vir a ter as regras negócio, ou não.\
   - O model fica esperando a chamada das funções, que permite o acesso para os dados serem coletados, gravados e, exibidos.\
   - O model se preocupa apenas com o armazenamento, manipulação e geração de dados. É um encapsulamento de dados e de comportamento independente da apresentação.\
+
+## **PROCEDURE** como regra de negócio
   
-  
-#### Vantagens e desvantagens
+### Vantagens e desvantagens 
 
 - O uso de uma **PROCEDURE** como regra de negócio pode proporcionar algumas vantagens e outras desvangens.\
 
@@ -1908,7 +1909,7 @@ As áreas, ou camadas, de arquitetura de software:\
   - Torna a migração da área de controller mais fácil.\
   - Alivia o processamento da área de controller (área responsavel pelas linguagens de programação).\
   
-#### Exemplo de **PROCEDURE** como regra de negócio
+### Exemplo de **PROCEDURE** como regra de negócio
 
 - Exemplo de uma **PROCEDURE** que insere dados em duas tabelas ao mesmo tempo.\
 
@@ -1926,6 +1927,22 @@ As áreas, ou camadas, de arquitetura de software:\
 **GO**\
 **EXEC** *CADASTRO* 'JORGE', 'M', '1981-01-01', 'CEL', '987842561'\
 **GO**\
+
+\newpage
+
+# Modulo 29 parte 1 - **TSQL** teoria, estrutura e Conversão de tipos
+
+## Teoria
+
+## Estrutura do **TSQL**
+
+## Delimitador **GO** na estrutura do **TSQL**
+
+## Tipos e Conversão de tipos em **TSQL**
+
+### Conversão de tipos (**CAST**)
+
+### Conversão do tipo **DATE** (**CONVERT**)
 
 \newpage
 

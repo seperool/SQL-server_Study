@@ -1953,7 +1953,7 @@ ERROR\]
     **SELECT** \* **FROM** *sys.schemas*  
     **GO**  
 
-# 15 Modulo 28 - Variáveis e **PROCEDURES**
+# 15 Modulo 28 parte 1 - Variáveis e **PROCEDURES**
 
 ## 15.1 Variáveis locais e globais
 
@@ -2245,18 +2245,18 @@ ERROR\]
     **SELECT** *@SAIDA* \[PROJEÇÃO, imprimindo na tela\]  
     **GO**  
 
-### 15.3.5 **PROCEDURE** como regra de negócio
+# 16 Modulo 28 parte 2 - Arquitetura de software e **PROCEDURE** como regra de negócio
 
-#### 15.3.5.1 Áreas na construção de um software
+## 16.1 Áreas na construção de um software
 
 As áreas, ou camadas, de arquitetura de software:  
 
--   Área de view (visão)  
+-   Área de **VIEW** (visão)  
     -   Área na contrução de um software destinada a parte visual,
         normalmente é constituido por HTML, CSS, e outras linguens de
         marcação.  
     -   Interface com o usuário.  
--   Área de controller  
+-   Área de **CONTROLLER** (controle)  
     -   Área da construção do um software destinada a programação do
         mesmo, normalmente é constituido da linguagens de programação
         responsavel pelas funcionalidade do software e pelas regras de
@@ -2270,7 +2270,7 @@ As áreas, ou camadas, de arquitetura de software:
     -   O Controle (Controller) envia essas ações para o Modelo (Model)
         e para a janela de visualização (View) onde serão realizadas as
         operações necessárias.  
--   Área de model (modelo)  
+-   Área de **MODEL** (modelo)  
     -   Modelo é a ponte entre as camadas Visão (View) e Controle
         (Controller), gerencia o comportamento dos dados através de
         regras de negócios, lógica e funções.  
@@ -2282,7 +2282,9 @@ As áreas, ou camadas, de arquitetura de software:
         geração de dados. É um encapsulamento de dados e de
         comportamento independente da apresentação.  
 
-#### 15.3.5.2 Vantagens e desvantagens
+## 16.2 **PROCEDURE** como regra de negócio
+
+### 16.2.1 Vantagens e desvantagens
 
 -   O uso de uma **PROCEDURE** como regra de negócio pode proporcionar
     algumas vantagens e outras desvangens.  
@@ -2308,7 +2310,7 @@ As áreas, ou camadas, de arquitetura de software:
     -   Alivia o processamento da área de controller (área responsavel
         pelas linguagens de programação).  
 
-#### 15.3.5.3 Exemplo de **PROCEDURE** como regra de negócio
+### 16.2.2 Exemplo de **PROCEDURE** como regra de negócio
 
 -   Exemplo de uma **PROCEDURE** que insere dados em duas tabelas ao
     mesmo tempo.  
@@ -2333,9 +2335,23 @@ As áreas, ou camadas, de arquitetura de software:
     **EXEC** *CADASTRO* ‘JORGE’, ‘M’, ‘1981-01-01’, ‘CEL’, ‘987842561’  
     **GO**  
 
-# 16 Categorias de comandos
+# 17 Modulo 29 parte 1 - **TSQL** teoria, estrutura e Conversão de tipos
 
-## 16.1 **DML** - *Data Manipulation Language* (Linguagem de Manipulação de Dados)
+## 17.1 Teoria
+
+## 17.2 Estrutura do **TSQL**
+
+## 17.3 Delimitador **GO** na estrutura do **TSQL**
+
+## 17.4 Tipos e Conversão de tipos em **TSQL**
+
+### 17.4.1 Conversão de tipos (**CAST**)
+
+### 17.4.2 Conversão do tipo **DATE** (**CONVERT**)
+
+# 18 Categorias de comandos
+
+## 18.1 **DML** - *Data Manipulation Language* (Linguagem de Manipulação de Dados)
 
 É um conjunto de instruções usada nas consultas e modificações dos dados
 armazenados nas tabelas do banco de dados.  
@@ -2388,7 +2404,7 @@ armazenados nas tabelas do banco de dados.
         \* Mais detalhes no “*Modulo 26 PARTE 4 - Importação de arquivo
         de dados*”.  
 
-## 16.2 **DDL** - *Data Definition Language* (Linguagem de definição de dados)
+## 18.2 **DDL** - *Data Definition Language* (Linguagem de definição de dados)
 
 É um conjunto de instruções usado para criar e modificar as estruturas
 dos objetos armazenados no banco de dados.  
@@ -2502,14 +2518,14 @@ dos objetos armazenados no banco de dados.
         **TRUNCATE** **TABLE** *nome_tabela*  
         **GO**  
 
-## 16.3 **DCL** - *Data Control Language* (Linguagem de Controle de Dados)
+## 18.3 **DCL** - *Data Control Language* (Linguagem de Controle de Dados)
 
 São usados para controle de acesso e gerenciamento de permissões para
 usuários em no banco de dados. Com eles, pode facilmente permitir ou
 negar algumas ações para usuários nas tabelas ou registros (segurança de
 nível de linha).  
 
-### 16.3.1 Login
+### 18.3.1 Login
 
 -   **CREATE LOGIN**  
     -   A instrução **CREATE LOGIN** cria uma identidade usada para se
@@ -2601,7 +2617,7 @@ nível de linha).
         **FROM** *master.sys.sql_logins*  
         **GO**  
 
-### 16.3.2 USER - Usuário
+### 18.3.2 USER - Usuário
 
 -   **CREATE USER**  
     -   A instrução CREATE USER cria um usuário de banco de dados para
@@ -2645,7 +2661,7 @@ nível de linha).
         **DROP USER** *user_nome*  
         **GO**  
 
-### 16.3.3 Permissões
+### 18.3.3 Permissões
 
 -   **GRANT**  
 
@@ -2732,7 +2748,7 @@ nível de linha).
     -   **GRANT OPTION** — permite conceder ou remover privilégios de
         outros usuários.  
 
-## 16.4 **TCL** - *Tool Command Language* (Linguagem de Comandos de Ferramentas)
+## 18.4 **TCL** - *Tool Command Language* (Linguagem de Comandos de Ferramentas)
 
 São usados para gerenciar as mudanças feitas por instruções DML. Ele
 permite que as declarações a serem agrupadas em transações lógicas.  
@@ -2760,9 +2776,9 @@ permite que as declarações a serem agrupadas em transações lógicas.
         **COMMIT**  
         **GO**  
 
-# 17 Observações
+# 19 Observações
 
-## 17.1 Problemas para fazer *login* o **SSMS**
+## 19.1 Problemas para fazer *login* o **SSMS**
 
 -   Caso o **SSMS** não identifique o usuário “sa” e senha como deveria,
     seguir os seguintes passos:  
@@ -2775,7 +2791,7 @@ permite que as declarações a serem agrupadas em transações lógicas.
     -   Ao final da reparação, abrir o **SSMS** novamente e fazer o
         *login*.  
 
-## 17.2 Abreviações do nome de restrições (**CONSTRAINTS**) no dicionario de dados - sistema (boas práticas)
+## 19.2 Abreviações do nome de restrições (**CONSTRAINTS**) no dicionario de dados - sistema (boas práticas)
 
 -   Padronização do nome das restrições salvas no sistema.  
 -   Abreviações do nome das restrições (**CONSTRAINTS**), para salvar no
@@ -2785,13 +2801,13 @@ permite que as declarações a serem agrupadas em transações lógicas.
     -   ‘**UQ**’ é abreviação de “**UNIQUE**”  
     -   ‘**CK**’ é abreviação de “**CHECK**”  
 
-## 17.3 Formato da data no sistema
+## 19.3 Formato da data no sistema
 
 “aaaa-mm-dd hh:mm:ss.mmm”  
 (ano-mês-dia hora:minuto:segundos.milisegundos)  
 
-# 18 Andamento dos Estudos
+# 20 Andamento dos Estudos
 
-## 18.1 Assunto em andamento
+## 20.1 Assunto em andamento
 
 Atualmente estou estudando Módulo 29 - AULA 113.  
