@@ -1,6 +1,6 @@
-ESCRITO EM 06/08/22
+ESCRITO EM 07/08/22
 ---
-PARA 07/08/22
+PARA 08/08/22
 ---
 Subir github:
 
@@ -11,8 +11,6 @@ afazeres:
 		- Teoria
 		- Estrutura de um TSQL
 		- Tipos e conversão de tipos (CAST e CONVERT)
-	- Escrever script query10-TSQL
-	- testar script query10-TSQL
 	- tipo de dados
 	- Conectar os dois bancos		
 pull:
