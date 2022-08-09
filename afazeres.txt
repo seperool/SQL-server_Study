@@ -1,6 +1,6 @@
-ESCRITO EM 07/08/22
+ESCRITO EM 08/08/22
 ---
-PARA 08/08/22
+PARA 09/08/22
 ---
 Subir github:
 
@@ -8,8 +8,8 @@ Estudar:
 	- Modulo 29 - AULA 113
 afazeres:
 	- Escrever AULA 113 - TSQL
-		- Teoria
-		- Estrutura de um TSQL
+		- Teoria (completar)
+		- Estrutura de um TSQL (completar)
 		- Tipos e conversão de tipos (CAST e CONVERT)
 	- tipo de dados
 	- Conectar os dois bancos		
