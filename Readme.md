@@ -2339,9 +2339,60 @@ As áreas, ou camadas, de arquitetura de software:
 
 ## 17.1 Teoria
 
+-   **Transact-SQL** ou **T-SQL** é uma extensão da linguagem SQL
+    implementada pela **Microsoft** para o **SQL Server**. Ela
+    acrescenta recursos evoluindo as seguintes características do SQL:  
+    -   Controle de fluxo  
+    -   Variáveis locais  
+    -   Várias funções de suporte ao processamento de strings, datas,
+        matemáticas, etc.  
+    -   Condicionais  
+-   Usando variáveis:  
+    -   Declaração  
+        **DECLARE** *@variavel* tipo \[= *valor_default*\]  
+    -   Atribuição  
+        **SET** *@variavel* = ‘*valor*’  
+    -   Retornar valor (ou outra forma de atribuição)  
+        **SELECT** *@variavel*  
+        **SELECT** *@variavel* = *nome_coluna* **FROM** \[*tabela* \|
+        **INSERTED** \| **DELETED**\]  
+
 ## 17.2 Estrutura do **TSQL**
 
+-   Engloba uma série de instruções Transact-SQL de modo que um grupo de
+    instruções possa ser executado.  
+
+-   **BEGIN** e **END** são palavras-chave da linguagem de controle de
+    fluxo.  
+
+-   Dentro de **BEGIN** e **END** vem o bloco de instruções SQL.  
+
+-   Sintaxe:  
+    **BEGIN**  
+    \[bloco de instruções SQL\]  
+    **END**  
+    **GO**  
+
 ## 17.3 Delimitador **GO** na estrutura do **TSQL**
+
+-   O comando **GO** sinaliza o final de um lote de instruções
+    **Transact-SQL** para os utilitários do **SQL Server**.  
+
+-   No caso de usar instruções **TSQL**, o **GO** delimita o lote, logo
+    instruções, da memora RAM, que forem inseridas após o **GO** não
+    serão reconhecidas.  
+
+-   Exemplo:  
+    **DECLARE** *@contador* INT  
+    **BEGIN**  
+    **SET** *@contador* = 5  
+    **PRINT** *@contador*  
+    **END**  
+    **GO**  
+    **SELECT** *@contador*  
+    **GO**  
+    A variável *@contador* na instrução **SELECT** vai dar ERROR, pois
+    não será reconhecida como uma variável declarada.  
 
 ## 17.4 Tipos e Conversão de tipos em **TSQL**
 
