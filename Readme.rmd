@@ -4,21 +4,21 @@ subtitle: "Readme.rmd"
 author: "Sergio Pedro R Oliveira"
 date: "`r Sys.Date()`"
 output:
-  md_document:
-    number_sections: true
-    variant: markdown_github
-  odt_document:
-    number_sections: true
-  github_document: default
-  html_document:
-    number_sections: true
-    df_print: paged
   pdf_document:
     number_sections: true
     toc: TRUE
   word_document:
     toc: TRUE
     number_sections: true
+  github_document: default
+  odt_document:
+    number_sections: true
+  md_document:
+    number_sections: true
+    variant: markdown_github
+  html_document:
+    number_sections: true
+    df_print: paged
 ---
 
 \newpage
@@ -1981,7 +1981,7 @@ As áreas, ou camadas, de arquitetura de software:\
 
 - **BEGIN** e **END** são palavras-chave da linguagem de controle de fluxo.\
 
-- Dentro de **BEGIN** e **END** vem o bloco de instruções SQL, instruções de programação.\
+- Dentro de **BEGIN** e **END** vem o bloco de instruções de programação.\
 
 - O bloco de instruções, por boas práticas, deve ser indentado dentro do **BEGIN** e **END**.\
 
@@ -1995,7 +1995,7 @@ As áreas, ou camadas, de arquitetura de software:\
 
 - O comando **GO** sinaliza o final de um lote de instruções **Transact-SQL** para os utilitários do **SQL Server**.\
 
-- No caso de usar instruções **TSQL**, o **GO** delimita o lote, logo instruções, da memora RAM, que forem inseridas após o **GO** não serão reconhecidas.\
+- No caso de usar instruções **TSQL**, o **GO** delimita o lote, memória RAM, logo instruções que forem inseridas após o **GO** não serão reconhecidas.\
 
 - Exemplo:\
 **DECLARE** *\@contador* INT\
@@ -2008,6 +2008,8 @@ As áreas, ou camadas, de arquitetura de software:\
 **GO**\
 A variável *\@contador* na instrução **SELECT** vai retornar **ERROR**, pois não será reconhecida como uma variável declarada, dado que o lote em que a variavel foi declarada é outro.\
 
+\newpage
+
 ## Tipos e Conversão de tipos em **TSQL**
 
 - Toda variável recebe um tipo, logo para manipular as variaveis é imprescindível a conversão de tipo.\
@@ -2018,7 +2020,7 @@ A variável *\@contador* na instrução **SELECT** vai retornar **ERROR**, pois 
 
 - A função **CAST** normalmente é a mais utilizada para conversão de tipos.\
 
-- Exceção de conversão dos tipos data (**DATE**, **DATETIME**, ...), nestes casos é mais aconselhavel, por questão de recursos, a função **CONVERT**.\
+- Exceção de conversão dos tipos data (**DATE**, **DATETIME**, função **GETDATE**, ...), nestes casos é mais aconselhavel, por questão de recursos, a função **CONVERT**.\
 
 - Sintaxe:\
 **DECLARE** *\@variável* tipo\
@@ -2033,7 +2035,7 @@ A variável *\@contador* na instrução **SELECT** vai retornar **ERROR**, pois 
 
 - O principal recurso é o codigo para formatos de datas especificas.\
 
-- Converte de um tipo data (**DATE**, **DATETIME**, ...) para algum formato de data especifico em **VARCHAR** (Ver documentação para obter os codigos).\
+- Converte de um tipo data (**DATE**, **DATETIME**, função **GETDATE**, ...) para algum formato de data especifico em **VARCHAR** (Ver documentação para obter os codigos).\
 
 - Principais códigos:\
   - 105\

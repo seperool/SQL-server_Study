@@ -2398,8 +2398,8 @@ As áreas, ou camadas, de arquitetura de software:
 -   **BEGIN** e **END** são palavras-chave da linguagem de controle de
     fluxo.  
 
--   Dentro de **BEGIN** e **END** vem o bloco de instruções SQL,
-    instruções de programação.  
+-   Dentro de **BEGIN** e **END** vem o bloco de instruções de
+    programação.  
 
 -   O bloco de instruções, por boas práticas, deve ser indentado dentro
     do **BEGIN** e **END**.  
@@ -2415,8 +2415,8 @@ As áreas, ou camadas, de arquitetura de software:
 -   O comando **GO** sinaliza o final de um lote de instruções
     **Transact-SQL** para os utilitários do **SQL Server**.  
 
--   No caso de usar instruções **TSQL**, o **GO** delimita o lote, logo
-    instruções, da memora RAM, que forem inseridas após o **GO** não
+-   No caso de usar instruções **TSQL**, o **GO** delimita o lote,
+    memória RAM, logo instruções que forem inseridas após o **GO** não
     serão reconhecidas.  
 
 -   Exemplo:  
@@ -2446,9 +2446,9 @@ As áreas, ou camadas, de arquitetura de software:
 -   A função **CAST** normalmente é a mais utilizada para conversão de
     tipos.  
 
--   Exceção de conversão dos tipos data (**DATE**, **DATETIME**, …),
-    nestes casos é mais aconselhavel, por questão de recursos, a função
-    **CONVERT**.  
+-   Exceção de conversão dos tipos data (**DATE**, **DATETIME**, função
+    **GETDATE**, …), nestes casos é mais aconselhavel, por questão de
+    recursos, a função **CONVERT**.  
 
 -   Sintaxe:  
     **DECLARE** *@variável* tipo  
@@ -2465,9 +2465,9 @@ As áreas, ou camadas, de arquitetura de software:
 
 -   O principal recurso é o codigo para formatos de datas especificas.  
 
--   Converte de um tipo data (**DATE**, **DATETIME**, …) para algum
-    formato de data especifico em **VARCHAR** (Ver documentação para
-    obter os codigos).  
+-   Converte de um tipo data (**DATE**, **DATETIME**, função
+    **GETDATE**, …) para algum formato de data especifico em **VARCHAR**
+    (Ver documentação para obter os codigos).  
 
 -   Principais códigos:  
 
