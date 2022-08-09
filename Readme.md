@@ -951,7 +951,7 @@ style="height:15cm" alt="Tabela de Conversão de Dados" />
 -   **CAST**()  
     -   A função **CAST**() converte um valor (de qualquer tipo) em um
         tipo de dados especificado.  
-    -   O tipo de dados para converter a expressão. Pode ser um dos
+    -   O tipo de dados para converter a expressão, pode ser um dos
         seguintes:  
         -   **BIGINT**  
         -   **INT**  
@@ -980,6 +980,31 @@ style="height:15cm" alt="Tabela de Conversão de Dados" />
     -   Sintaxe:  
         **SELECT**  
         **CAST**(*expressão* **AS** *TIPO_especificado*)  
+        **GO**  
+        ou  
+        **CAST**(*@variável* **AS** *novo_tipo*)  
+        **GO**
+-   **CONVERT**()  
+    -   Assim como **CAST**, converte os tipos dos dados, porem com mais
+        recursos para converter tipos data (**DATETIME**, **DATE**, …)
+        em **VARCHAR** de algum formato de data espefico.  
+    -   A função mais recomendada para converter tipos data
+        (**DATETIME**, **DATE**, …) em tipo **VARCHAR**.  
+    -   Os códigos dos formatos de date podem ser obtidos na
+        documentação, porem os principais códigos são:  
+        -   105  
+            Código do formato **DATE** PT-BR, sem horas.  
+        -   120  
+            Código do formato **DATETIME** ENG, sem milésimos.  
+        -   121  
+            Código do formato **DATETIME** ENG, com milésimos.  
+    -   Sintaxe:  
+        **DECLARE** *@variável* tipo  
+        **CONVERT**(novo_tipo, *@variável*)  
+        **GO**  
+        ou  
+        **DECLARE** *@variável* **DATETIME**  
+        **CONVERT**(**VARCHAR**, *@variável*, *código_do_formato*)  
         **GO**  
 -   **CHARINDEX**()  
     -   Retorna um numero inteiro de acordo com a posição de determinada
@@ -2342,13 +2367,21 @@ As áreas, ou camadas, de arquitetura de software:
 -   **Transact-SQL** ou **T-SQL** é uma extensão da linguagem SQL
     implementada pela **Microsoft** para o **SQL Server**. Ela
     acrescenta recursos evoluindo as seguintes características do SQL:  
+
     -   Controle de fluxo  
     -   Variáveis locais  
     -   Várias funções de suporte ao processamento de strings, datas,
         matemáticas, etc.  
     -   Condicionais  
+
+-   O **T-SQL** adiciona recursos de programação ao **SQL Server**.  
+
 -   Usando variáveis:  
+
     -   Declaração  
+        Declaração de variáveis fora de alguma função, ficam armazenada
+        na memoria RAM, pronta para ser usada, mas limitadas ao
+        delimitador **GO**.  
         **DECLARE** *@variavel* tipo \[= *valor_default*\]  
     -   Atribuição  
         **SET** *@variavel* = ‘*valor*’  
@@ -2359,13 +2392,17 @@ As áreas, ou camadas, de arquitetura de software:
 
 ## 17.2 Estrutura do **TSQL**
 
--   Engloba uma série de instruções Transact-SQL de modo que um grupo de
-    instruções possa ser executado.  
+-   Engloba uma série de instruções **Transact-SQL** de modo que um
+    grupo de instruções possa ser executado.  
 
 -   **BEGIN** e **END** são palavras-chave da linguagem de controle de
     fluxo.  
 
--   Dentro de **BEGIN** e **END** vem o bloco de instruções SQL.  
+-   Dentro de **BEGIN** e **END** vem o bloco de instruções SQL,
+    instruções de programação.  
+
+-   O bloco de instruções, por boas práticas, deve ser indentado dentro
+    do **BEGIN** e **END**.  
 
 -   Sintaxe:  
     **BEGIN**  
@@ -2391,14 +2428,62 @@ As áreas, ou camadas, de arquitetura de software:
     **GO**  
     **SELECT** *@contador*  
     **GO**  
-    A variável *@contador* na instrução **SELECT** vai dar ERROR, pois
-    não será reconhecida como uma variável declarada.  
+    A variável *@contador* na instrução **SELECT** vai retornar
+    **ERROR**, pois não será reconhecida como uma variável declarada,
+    dado que o lote em que a variavel foi declarada é outro.  
 
 ## 17.4 Tipos e Conversão de tipos em **TSQL**
 
+-   Toda variável recebe um tipo, logo para manipular as variaveis é
+    imprescindível a conversão de tipo.  
+
+-   No **TSQL** é comum o uso de conversão de tipos para trabalhar com
+    variáveis, seja por necessidade de manipular as variáveis, ou
+    imprimir elas na tela.  
+
 ### 17.4.1 Conversão de tipos (**CAST**)
 
+-   A função **CAST** normalmente é a mais utilizada para conversão de
+    tipos.  
+
+-   Exceção de conversão dos tipos data (**DATE**, **DATETIME**, …),
+    nestes casos é mais aconselhavel, por questão de recursos, a função
+    **CONVERT**.  
+
+-   Sintaxe:  
+    **DECLARE** *@variável* tipo  
+    **BEGIN**  
+    **CAST**(*@variável* **AS** *novo_tipo*)  
+    **END**  
+    **GO**  
+
 ### 17.4.2 Conversão do tipo **DATE** (**CONVERT**)
+
+-   A função **CONVERT** também converte os tipos das variáveis, porem
+    oferece mais recursos para conversão dos tipos data para
+    **VARCHAR**.  
+
+-   O principal recurso é o codigo para formatos de datas especificas.  
+
+-   Converte de um tipo data (**DATE**, **DATETIME**, …) para algum
+    formato de data especifico em **VARCHAR** (Ver documentação para
+    obter os codigos).  
+
+-   Principais códigos:  
+
+    -   105  
+        Código do formato **DATE** PT-BR, sem horas.  
+    -   120  
+        Código do formato **DATETIME** ENG, sem milésimos.  
+    -   121  
+        Código do formato **DATETIME** ENG, com milésimos.  
+
+-   Sintaxe:  
+    **DECLARE** *@variável* **DATETIME**  
+    **BEGIN**  
+    **CONVERT**(**VARCHAR**, *@variável*, *código*)  
+    **END**  
+    **GO**  
 
 # 18 Categorias de comandos
 
