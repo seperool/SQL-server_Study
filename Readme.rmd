@@ -4,21 +4,21 @@ subtitle: "Readme.rmd"
 author: "Sergio Pedro R Oliveira"
 date: "`r Sys.Date()`"
 output:
-  pdf_document:
-    number_sections: true
-    toc: TRUE
-  word_document:
-    toc: TRUE
-    number_sections: true
-  github_document: default
-  odt_document:
-    number_sections: true
   md_document:
     number_sections: true
     variant: markdown_github
   html_document:
     number_sections: true
     df_print: paged
+  odt_document:
+    number_sections: true
+  github_document: default
+  pdf_document:
+    number_sections: true
+    toc: TRUE
+  word_document:
+    toc: TRUE
+    number_sections: true
 ---
 
 \newpage
@@ -1952,7 +1952,7 @@ As áreas, ou camadas, de arquitetura de software:\
 
 \newpage
 
-# Modulo 29 parte 1 - **TSQL** teoria, estrutura e Conversão de tipos
+# Modulo 29 parte 1 - **TSQL** teoria, estrutura, Conversão de tipos e atribuição de variáveis
 
 ## Teoria
 
@@ -1963,17 +1963,6 @@ As áreas, ou camadas, de arquitetura de software:\
   - Condicionais\
 
 - O **T-SQL** adiciona recursos de programação ao **SQL Server**.\
-
-- Usando variáveis:\
-  - Declaração\
-  Declaração de variáveis fora de alguma função, ficam armazenada na memoria RAM, pronta para ser usada, mas limitadas ao delimitador **GO**.\
-  **DECLARE** *\@variavel* tipo [= *valor_default*]\
-  - Atribuição\
-  **SET** *\@variavel* = '*valor*'\
-  - Retornar valor (ou outra forma de atribuição)\
-  **SELECT** *\@variavel*\
-  **SELECT** *\@variavel* = *nome_coluna* **FROM** [*tabela* | **INSERTED** | **DELETED**]\
-
 
 ## Estrutura do **TSQL**
 
@@ -2051,6 +2040,63 @@ A variável *\@contador* na instrução **SELECT** vai retornar **ERROR**, pois 
 **CONVERT**(**VARCHAR**, *\@variável*, *código*)\
 **END**\
 **GO**\
+
+\newpage
+
+## Atribuição de variáveis em TSQL
+
+- Usando variáveis:\
+  - Declaração\
+  Declaração de variáveis fora de alguma função, ficam armazenada na memoria RAM, pronta para ser usada, mas limitadas ao delimitador **GO**.\
+  **DECLARE** *\@variavel* tipo [= *valor_default*]\
+  - Atribuição\
+  **SET** *\@variavel* = '*valor*'\
+  - Retornar valor (ou outra forma de atribuição)\
+  **SELECT** *\@variavel*\
+  **SELECT** *\@variavel* = *nome_coluna* **FROM** [*tabela* | **INSERTED** | **DELETED**]\
+  
+## Atribuição de variáveis atraves de consultas em **TSQL**
+  
+- Outra forma de atribuir valor, em variáveis, é atraves de consultas (**SELECT**).\
+
+- O retorno deve ser de uma consulta simples de um só resultado.\
+
+- As duas formas de atribuição:
+  - **SET**
+  - **SELECT**
+  
+### Atribuição de variável atraves de consultas em **TSQL** usando **SET**
+
+- No caso de usar há atribuição de variáveis, atraves de consultas, usando o comando **SET**, a instrução **SELECT** deve ficar entre parenteses.\
+
+- Exemplo:\
+**DECLARE** *\@V_CONT_FORD* INT\
+**BEGIN**\
+**SET** *\@V_CONT_FORD* = (**SELECT** **COUNT**(\*) **FROM** *tabela*\
+**WHERE** *FABRICANTE* = 'FORD')\
+**PRINT** 'QTD FORD: ' + **CAST**(*\@V_CONT_FORD* **AS** **VARCHAR**)\
+**END**\
+**GO**\
+
+### Atribuição de variável atraves de consultas em **TSQL** usando **SELECT**
+
+- No caso de usar há atribuição de variáveis, atraves de consultas, usando o comando **SELECT**, a instrução **SELECT** é direta.\
+
+- Exemplo:\
+**DECLARE** *\@V_CONT_FIAT* INT\
+**BEGIN**\
+**SELECT** *\@V_CONT_FIAT* = **COUNT**(\*) **FROM** *tabela* **WHERE** *FABRICANTE* = 'FIAT'\
+**PRINT** 'QTD FIAT: ' + **CONVERT**(**VARCHAR**, *\@V_CONT_FIAT*)\
+**END**\
+**GO**\
+
+\newpage
+
+# Modulo 29 parte 2 - **TSQL** condicionais e loop
+
+## Condicionais
+
+## Loop
 
 \newpage
 
@@ -2441,4 +2487,4 @@ São usados para gerenciar as mudanças feitas por instruções DML. Ele permite
 
 ## Assunto em andamento
 
-Atualmente estou estudando Módulo 29 - AULA 113.\
+Atualmente estou estudando Módulo 29 - AULA 115.\

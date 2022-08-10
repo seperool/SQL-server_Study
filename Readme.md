@@ -2360,35 +2360,19 @@ As áreas, ou camadas, de arquitetura de software:
     **EXEC** *CADASTRO* ‘JORGE’, ‘M’, ‘1981-01-01’, ‘CEL’, ‘987842561’  
     **GO**  
 
-# 17 Modulo 29 parte 1 - **TSQL** teoria, estrutura e Conversão de tipos
+# 17 Modulo 29 parte 1 - **TSQL** teoria, estrutura, Conversão de tipos e atribuição de variáveis
 
 ## 17.1 Teoria
 
 -   **Transact-SQL** ou **T-SQL** é uma extensão da linguagem SQL
     implementada pela **Microsoft** para o **SQL Server**. Ela
     acrescenta recursos evoluindo as seguintes características do SQL:  
-
     -   Controle de fluxo  
     -   Variáveis locais  
     -   Várias funções de suporte ao processamento de strings, datas,
         matemáticas, etc.  
     -   Condicionais  
-
 -   O **T-SQL** adiciona recursos de programação ao **SQL Server**.  
-
--   Usando variáveis:  
-
-    -   Declaração  
-        Declaração de variáveis fora de alguma função, ficam armazenada
-        na memoria RAM, pronta para ser usada, mas limitadas ao
-        delimitador **GO**.  
-        **DECLARE** *@variavel* tipo \[= *valor_default*\]  
-    -   Atribuição  
-        **SET** *@variavel* = ‘*valor*’  
-    -   Retornar valor (ou outra forma de atribuição)  
-        **SELECT** *@variavel*  
-        **SELECT** *@variavel* = *nome_coluna* **FROM** \[*tabela* \|
-        **INSERTED** \| **DELETED**\]  
 
 ## 17.2 Estrutura do **TSQL**
 
@@ -2485,9 +2469,73 @@ As áreas, ou camadas, de arquitetura de software:
     **END**  
     **GO**  
 
-# 18 Categorias de comandos
+## 17.5 Atribuição de variáveis em TSQL
 
-## 18.1 **DML** - *Data Manipulation Language* (Linguagem de Manipulação de Dados)
+-   Usando variáveis:  
+    -   Declaração  
+        Declaração de variáveis fora de alguma função, ficam armazenada
+        na memoria RAM, pronta para ser usada, mas limitadas ao
+        delimitador **GO**.  
+        **DECLARE** *@variavel* tipo \[= *valor_default*\]  
+    -   Atribuição  
+        **SET** *@variavel* = ‘*valor*’  
+    -   Retornar valor (ou outra forma de atribuição)  
+        **SELECT** *@variavel*  
+        **SELECT** *@variavel* = *nome_coluna* **FROM** \[*tabela* \|
+        **INSERTED** \| **DELETED**\]  
+
+## 17.6 Atribuição de variáveis atraves de consultas em **TSQL**
+
+-   Outra forma de atribuir valor, em variáveis, é atraves de consultas
+    (**SELECT**).  
+
+-   O retorno deve ser de uma consulta simples de um só resultado.  
+
+-   As duas formas de atribuição:
+
+    -   **SET**
+    -   **SELECT**
+
+### 17.6.1 Atribuição de variável atraves de consultas em **TSQL** usando **SET**
+
+-   No caso de usar há atribuição de variáveis, atraves de consultas,
+    usando o comando **SET**, a instrução **SELECT** deve ficar entre
+    parenteses.  
+
+-   Exemplo:  
+    **DECLARE** *@V_CONT_FORD* INT  
+    **BEGIN**  
+    **SET** *@V_CONT_FORD* = (**SELECT** **COUNT**(\*) **FROM**
+    *tabela*  
+    **WHERE** *FABRICANTE* = ‘FORD’)  
+    **PRINT** ‘QTD FORD:’ + **CAST**(*@V_CONT_FORD* **AS**
+    **VARCHAR**)  
+    **END**  
+    **GO**  
+
+### 17.6.2 Atribuição de variável atraves de consultas em **TSQL** usando **SELECT**
+
+-   No caso de usar há atribuição de variáveis, atraves de consultas,
+    usando o comando **SELECT**, a instrução **SELECT** é direta.  
+
+-   Exemplo:  
+    **DECLARE** *@V_CONT_FIAT* INT  
+    **BEGIN**  
+    **SELECT** *@V_CONT_FIAT* = **COUNT**(\*) **FROM** *tabela*
+    **WHERE** *FABRICANTE* = ‘FIAT’  
+    **PRINT** ‘QTD FIAT:’ + **CONVERT**(**VARCHAR**, *@V_CONT_FIAT*)  
+    **END**  
+    **GO**  
+
+# 18 Modulo 29 parte 2 - **TSQL** condicionais e loop
+
+## 18.1 Condicionais
+
+## 18.2 Loop
+
+# 19 Categorias de comandos
+
+## 19.1 **DML** - *Data Manipulation Language* (Linguagem de Manipulação de Dados)
 
 É um conjunto de instruções usada nas consultas e modificações dos dados
 armazenados nas tabelas do banco de dados.  
@@ -2540,7 +2588,7 @@ armazenados nas tabelas do banco de dados.
         \* Mais detalhes no “*Modulo 26 PARTE 4 - Importação de arquivo
         de dados*”.  
 
-## 18.2 **DDL** - *Data Definition Language* (Linguagem de definição de dados)
+## 19.2 **DDL** - *Data Definition Language* (Linguagem de definição de dados)
 
 É um conjunto de instruções usado para criar e modificar as estruturas
 dos objetos armazenados no banco de dados.  
@@ -2654,14 +2702,14 @@ dos objetos armazenados no banco de dados.
         **TRUNCATE** **TABLE** *nome_tabela*  
         **GO**  
 
-## 18.3 **DCL** - *Data Control Language* (Linguagem de Controle de Dados)
+## 19.3 **DCL** - *Data Control Language* (Linguagem de Controle de Dados)
 
 São usados para controle de acesso e gerenciamento de permissões para
 usuários em no banco de dados. Com eles, pode facilmente permitir ou
 negar algumas ações para usuários nas tabelas ou registros (segurança de
 nível de linha).  
 
-### 18.3.1 Login
+### 19.3.1 Login
 
 -   **CREATE LOGIN**  
     -   A instrução **CREATE LOGIN** cria uma identidade usada para se
@@ -2753,7 +2801,7 @@ nível de linha).
         **FROM** *master.sys.sql_logins*  
         **GO**  
 
-### 18.3.2 USER - Usuário
+### 19.3.2 USER - Usuário
 
 -   **CREATE USER**  
     -   A instrução CREATE USER cria um usuário de banco de dados para
@@ -2797,7 +2845,7 @@ nível de linha).
         **DROP USER** *user_nome*  
         **GO**  
 
-### 18.3.3 Permissões
+### 19.3.3 Permissões
 
 -   **GRANT**  
 
@@ -2884,7 +2932,7 @@ nível de linha).
     -   **GRANT OPTION** — permite conceder ou remover privilégios de
         outros usuários.  
 
-## 18.4 **TCL** - *Tool Command Language* (Linguagem de Comandos de Ferramentas)
+## 19.4 **TCL** - *Tool Command Language* (Linguagem de Comandos de Ferramentas)
 
 São usados para gerenciar as mudanças feitas por instruções DML. Ele
 permite que as declarações a serem agrupadas em transações lógicas.  
@@ -2912,9 +2960,9 @@ permite que as declarações a serem agrupadas em transações lógicas.
         **COMMIT**  
         **GO**  
 
-# 19 Observações
+# 20 Observações
 
-## 19.1 Problemas para fazer *login* o **SSMS**
+## 20.1 Problemas para fazer *login* o **SSMS**
 
 -   Caso o **SSMS** não identifique o usuário “sa” e senha como deveria,
     seguir os seguintes passos:  
@@ -2927,7 +2975,7 @@ permite que as declarações a serem agrupadas em transações lógicas.
     -   Ao final da reparação, abrir o **SSMS** novamente e fazer o
         *login*.  
 
-## 19.2 Abreviações do nome de restrições (**CONSTRAINTS**) no dicionario de dados - sistema (boas práticas)
+## 20.2 Abreviações do nome de restrições (**CONSTRAINTS**) no dicionario de dados - sistema (boas práticas)
 
 -   Padronização do nome das restrições salvas no sistema.  
 -   Abreviações do nome das restrições (**CONSTRAINTS**), para salvar no
@@ -2937,13 +2985,13 @@ permite que as declarações a serem agrupadas em transações lógicas.
     -   ‘**UQ**’ é abreviação de “**UNIQUE**”  
     -   ‘**CK**’ é abreviação de “**CHECK**”  
 
-## 19.3 Formato da data no sistema
+## 20.3 Formato da data no sistema
 
 “aaaa-mm-dd hh:mm:ss.mmm”  
 (ano-mês-dia hora:minuto:segundos.milisegundos)  
 
-# 20 Andamento dos Estudos
+# 21 Andamento dos Estudos
 
-## 20.1 Assunto em andamento
+## 21.1 Assunto em andamento
 
-Atualmente estou estudando Módulo 29 - AULA 113.  
+Atualmente estou estudando Módulo 29 - AULA 115.  
