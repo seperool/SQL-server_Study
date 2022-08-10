@@ -1,13 +1,12 @@
-ESCRITO EM 11/08/22
+ESCRITO EM 10/08/22
 ---
-PARA 12/08/22
+PARA 11/08/22
 ---
 Subir github:
-	- script AULA 114 - query11 (testar antes de subir)
+	- script AULA 114 - query11 (testado)
 Estudar:
 	- Modulo 29 - AULA 115
 afazeres:
-	- testar script AULA 114 - query11
 	- tipo de dados
 	- Conectar os dois bancos		
 pull:
