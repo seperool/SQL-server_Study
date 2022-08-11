@@ -4,14 +4,17 @@ PARA 12/08/22
 ---
 Subir github:
 	- AULA 115
-		- CASE
-	- script AULA 115 - query12 (testar antes de enviar)
-Estudar:
-	- Modulo 29 - AULA 116
-afazeres:
-	- Escrever AULA 115
 		- IF e ELSE
-	- testar script AULA 115
+		- CASE
+	- AULA 116
+		- WHILE
+		- BREAK
+		- CONTINUE
+	- script AULA 115 - query12 (testado)
+	- script AULA 116 - query13 (testado)
+Estudar:
+	- Modulo 30
+afazeres:
 	- tipo de dados
 	- Conectar os dois bancos		
 pull:
