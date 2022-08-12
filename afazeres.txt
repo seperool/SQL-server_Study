@@ -1,6 +1,6 @@
-ESCRITO EM 11/08/22
+ESCRITO EM 12/08/22
 ---
-PARA 12/08/22
+PARA 13/08/22
 ---
 Subir github:
 	- AULA 115
@@ -10,7 +10,6 @@ Subir github:
 		- WHILE
 		- BREAK
 		- CONTINUE
-	- script AULA 115 - query12 (testado)
 	- script AULA 116 - query13 (testado)
 Estudar:
 	- Modulo 30
