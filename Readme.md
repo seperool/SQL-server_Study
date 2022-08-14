@@ -2531,7 +2531,147 @@ As áreas, ou camadas, de arquitetura de software:
 
 ## 18.1 Condicionais
 
-## 18.2 Loop
+-   São clausulas de programação que envolve analisar um conjunto de
+    condições.  
+
+-   A partir dessas condições decidir qual ação deve ser executada.  
+
+### 18.1.1 **IF ELSE**
+
+-   Impõe condições na execução de uma instrução **TSQL**.  
+
+-   A instrução **TSQL** que aparece depois de uma palavra-chave **IF**
+    e a condição dela será executada se a condição for satisfeita: a
+    expressão booliana retorna **TRUE**.  
+
+-   A palavra-chave opcional **ELSE** introduz outra instrução **TSQL**
+    que será executada quando a condição **IF** não for atendida: a
+    expressão booliana retorna **FALSE**.  
+
+-   Os blocos de programação devem ser indentados nas instruções (**IF**
+    e/ou **ELSE**).  
+
+-   Expressões booleanas são expressoes no qual o retorno é 0
+    (**FALSE**) ou 1 (**TRUE**):  
+
+    -   Maior ‘\>’  
+    -   Maior ou igual ‘\>=’  
+    -   Menor ‘\<’  
+    -   Menor ou igual ‘\<=’  
+    -   Igual ‘=’  
+    -   Diferente ‘\<\>’  
+    -   Negação ‘**NOT**’  
+
+-   É possivel inserir **IF ELSE** dentro de uma estrutura **TSQL**
+    **BEGIN END**, e/ou colocar uma estutura **TSQL** **BEGIN END**
+    dentro de uma instrução **IF** ou **ELSE**, para melhor delimitar os
+    limites da instrução.  
+
+-   Sintaxe:  
+    **IF** *expressão_booleana*  
+    \[bloco de programação 1\]  
+    **ELSE**  
+    \[bloco de programação 2\]  
+    **GO**  
+    ou  
+    **BEGIN**  
+    **IF** *expressão_booleana*  
+    \[bloco de programação 1\]  
+    **ELSE**  
+    \[bloco de programação 2\]  
+    **END**  
+    **GO**  
+
+### 18.1.2 **CASE**
+
+-   A instrução **CASE** não é uma programação, é uma função muito
+    utilizada como condicional.  
+
+-   A instrução **CASE** dentro de um **SELECT** atua como uma
+    coluna/campo, analisando registro por registro de uma coluna/campo e
+    devolvendo como resultado algum valor.  
+
+-   A instrução **CASE** pode ser usado fora do **SELECT**.  
+
+-   A expressão **CASE** tem dois formatos:  
+
+    -   A expressão **CASE** simples compara uma expressão com um
+        conjunto de expressões simples para determinar o resultado.  
+    -   A expressão **CASE** pesquisada avalia um conjunto de expressões
+        boolianas para determinar o resultado.  
+    -   Os dois formatos dão suporte a um argumento **ELSE** opcional.  
+
+-   A instrução **CASE** termina com um **END**.  
+
+-   Sintaxe:  
+    **BEGIN**  
+    **SELECT**  
+    **CASE**  
+    **WHEN** *coluna1* = ‘*valor1*’ **THEN** ‘*valor_case_1*’  
+    **WHEN** *coluna1* = *valor2* **THEN** *valor_case_2* **ELSE**
+    *valor_case_3*  
+    …  
+    **END** **AS** *alias*,  
+    \*  
+    **FROM** *tabela*  
+    **END**  
+    **GO**  
+
+    -   valor entre aspas simples para tipo **CHAR**, ou **VARCHAR**.  
+    -   valor sem aspas para tipo **INT**, ou **NUMERIC**.  
+
+## 18.2 Loops - **WHILE**
+
+-   Executa uma ação enquanto determinado expressão for verdadeira
+    (**TRUE**).  
+
+-   Loops **WHILE** normalmente utilizam contadores, que são variáveis
+    que servem como parametro para determinar um mecanismo de parada
+    para o Loop.  
+
+-   É possivel inserir **WHILE** dentro de uma estrutura **TSQL**
+    **BEGIN END**, e/ou colocar uma estutura **TSQL** **BEGIN END**
+    dentro de uma instrução **WHILE**, para melhor delimitar os limites
+    da instrução e indentação do código.  
+
+-   Por boas práticas e questão de organização, lembrar de indentar o
+    código para melhor compreensão.  
+
+-   A execução de instruções no loop **WHILE** pode ser controlada
+    internamente ao loop com as palavras-chave **BREAK** e
+    **CONTINUE**.  
+
+-   Exemplo com comentários entre colchetes:  
+    **DECLARE**  
+    *@I* **INT** = 1 \[variável contador\]  
+    **BEGIN**  
+    **WHILE** (*@I* \< 15) \[expressão booleana\]  
+    **BEGIN**  
+    **PRINT** ‘VALOR DE *@I* =’ + **CAST**(*@I* **AS** **VARCHAR**)  
+    **SET** *@I* = *@I* + 1  
+    **END**  
+    **END**  
+    **GO**  
+
+### 18.2.1 **BREAK**
+
+-   Provoca uma saída do loop **WHILE** mais interno. Todas as
+    instruções que apareçam depois da palavra-chave **END**, que marca o
+    final do loop, serão executadas.  
+
+-   BREAK sai do loop **WHILE** atual. Se o loop **WHILE** atual está
+    aninhado em outro, **BREAK** sai apenas do loop atual e o controle é
+    dado para a próxima instrução no loop externo.  
+
+-   **BREAK** geralmente está dentro de uma instrução **IF**.  
+
+### 18.2.2 **CONTINUE**
+
+-   Faz com que o loop **WHILE** seja reiniciado, ignorando todas as
+    instruções depois da palavra-chave **CONTINUE**.  
+
+-   Frequentemente, **CONTINUE** é aberto por um teste **IF**, mas não
+    sempre.  
 
 # 19 Categorias de comandos
 
@@ -2994,4 +3134,4 @@ permite que as declarações a serem agrupadas em transações lógicas.
 
 ## 21.1 Assunto em andamento
 
-Atualmente estou estudando Módulo 29 - AULA 115.  
+Concluído.  
