@@ -1,17 +1,9 @@
-ESCRITO EM 13/08/22
----
-PARA 14/08/22
+ESCRITO EM 14/08/22
 ---
 Subir github:
-	- AULA 115
-		- IF e ELSE
-		- CASE
-	- AULA 116
-		- WHILE
-		- BREAK
-		- CONTINUE
+
 Estudar:
-	- Modulo 30
+	- Concluído
 afazeres:
 	- tipo de dados
 	- Conectar os dois bancos		
