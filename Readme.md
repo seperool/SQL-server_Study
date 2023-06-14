@@ -203,10 +203,10 @@ sqlcmd -S localhost -U SA
 
 -   Sintaxe:  
     **BEGIN** **TRANSACTION** (ou **BEGIN**)  
-    UPDATE tabela SET coluna1_a\_modificar = expressão1  
-    WHERE tabela IN (lista_dos_registros_a\_modificar)  
-    UPDATE tabela SET coluna2_a\_modificar = expressão2  
-    WHERE tabela IN (lista_dos_registros_a\_modificar)  
+    UPDATE tabela SET coluna1_a_modificar = expressão1  
+    WHERE tabela IN (lista_dos_registros_a_modificar)  
+    UPDATE tabela SET coluna2_a_modificar = expressão2  
+    WHERE tabela IN (lista_dos_registros_a_modificar)  
     **COMMIT** (ou **ROLLBACK**)  
 
 -   Observação: Pode usar **BEGIN** **TRANSACTION** ou apenas
@@ -2693,16 +2693,16 @@ armazenados nas tabelas do banco de dados.
     -   Sintaxe:  
         **INSERT INTO** *nome_da_tabela*  
         **VALUES**  
-        (*valor_na_coluna_1\_registro1*,
-        *valor_na_coluna_2\_registro1*,…),  
-        (*valor_na_coluna_1\_registro2*,
-        *valor_na_coluna_2\_registro2*,…),  
+        (*valor_na_coluna_1_registro1*,
+        *valor_na_coluna_2_registro1*,…),  
+        (*valor_na_coluna_1_registro2*,
+        *valor_na_coluna_2_registro2*,…),  
         …  
         **GO**  
 -   **UPDATE**  
     -   Altera os dados de um ou mais registros em uma tabela.  
     -   Sintaxe:  
-        **UPDATE** *tabela* **SET** *coluna_a\_atualizar* **=**
+        **UPDATE** *tabela* **SET** *coluna_a_atualizar* **=**
         *valor_atualizado*  
         **WHERE** *condição* **=** *valor*  
         **GO**  
